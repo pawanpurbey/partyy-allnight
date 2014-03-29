@@ -111,6 +111,7 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    // Changes by Summved
     /**
      * A dummy fragment representing a section of the app, but that simply
      * displays dummy text.
