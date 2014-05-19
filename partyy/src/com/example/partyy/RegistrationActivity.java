@@ -53,6 +53,7 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 			SQLiteAsyncTask task = new SQLiteAsyncTask(this);
 			task.function = 0;
 			task.execute(user);
+			finish();
 		}
 		
 		

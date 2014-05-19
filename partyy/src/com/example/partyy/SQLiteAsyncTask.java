@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,17 +17,34 @@ import android.os.AsyncTask;
 			// TODO Auto-generated constructor stub
 			this.context = context;
 		}
-		
+		User user;
 		@Override
 		protected void onPostExecute(Boolean result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			if(function == 0){
-				Intent intent =  new Intent();
-		           intent.setAction("UserRegistered");
-		           SplashScreenApp.getInstance().getApplicationContext().sendBroadcast(intent);
+				Intent i = new Intent(context, MainActivity.class);
+				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				
+	            context.startActivity(i);
 		        
 			}
+			else if(function == 1){
+				if(result == false || user ==  null || user.name  == ""){
+					Intent i = new Intent(context, RegistrationActivity.class);
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					
+		           context.startActivity(i);
+				}else
+				{
+					Intent i = new Intent(context, MainActivity.class);
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					
+		           SplashScreenApp.getInstance().getApplicationContext().startActivity(i);
+	   		        
+				}
+			}
+			
 		}
 		@Override
 		protected void onProgressUpdate(Integer... values) {
@@ -42,19 +60,9 @@ import android.os.AsyncTask;
 			
 			}else {
 				SqliteController controller = new SqliteController(this.context);
-				User user = controller.getUser();
+				user = controller.getUser();
 				if(user ==  null || user.name  == ""){
-					 Intent intent =  new Intent();
-	   		           intent.setAction("FirstTime");
-	   		           SplashScreenApp.getInstance().getApplicationContext().sendBroadcast(intent);
-	   		        
 					return false;
-				}else
-				{
-					Intent intent =  new Intent();
-	   		           intent.setAction("UserAlreadyRegistered");
-	   		           SplashScreenApp.getInstance().getApplicationContext().sendBroadcast(intent);
-	   		        
 				}
 			}
 			return true;
