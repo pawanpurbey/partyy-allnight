@@ -8,19 +8,29 @@ import android.os.Handler;
 import org.json.JSONObject;
 public class SplashScreen extends Activity{
 	private static int SPLASH_TIME_OUT = 3000;
+	boolean isFirstTime = false;
 	public void onCreate(Bundle savedInstanceState){
-		DataFetcher fetcher = (DataFetcher) DataFetcher.getInstance();
-	    fetcher.execute();	
+		if(savedInstanceState == null){
+			//DataFetcher fetcher = (DataFetcher) DataFetcher.getInstance();
+		    //fetcher.execute();
+			SplashScreenApp app= new SplashScreenApp();
+			SplashScreenApp.getInstance().context = getApplicationContext();
+			SQLiteAsyncTask task = new SQLiteAsyncTask(this);
+			task.function = 1;
+			User user[] = null;
+			task.execute(user);
+		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
-		new Handler().postDelayed(new Runnable(){
+		
+		/*new Handler().postDelayed(new Runnable(){
 			/*
              * Showing splash screen with a timer. This will be useful when you
              * want to show case your app logo / company
              */
  
-            @Override
-            public void run() {
+            //@Override
+            /*public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
                 Intent i = new Intent(SplashScreen.this, MainActivity.class);
@@ -29,7 +39,7 @@ public class SplashScreen extends Activity{
                 // close this activity
                 finish();
             }
-		},SPLASH_TIME_OUT);
+		},SPLASH_TIME_OUT);*/
 		
 	}
 }

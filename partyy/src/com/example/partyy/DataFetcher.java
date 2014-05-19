@@ -12,11 +12,14 @@ public class DataFetcher extends AsyncTask<Void,Void,Void>{
 		return jsonStr;
 	}
 	private static DataFetcher instance = new DataFetcher();
+	
 	public static DataFetcher getInstance(){
 		return instance;
 	}
 	private static String url = "http://api.androidhive.info/contacts/";
+	
 	public static String jsonStr;
+	
 	protected void  onPreExecute(){
 		super.onPreExecute();
 		

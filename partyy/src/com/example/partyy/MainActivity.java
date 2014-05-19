@@ -3,6 +3,8 @@ package com.example.partyy;
 import java.util.Locale;
 
 
+import android.app.Activity;
+import android.app.ListFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,8 +18,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity {
@@ -48,7 +53,7 @@ public class MainActivity extends FragmentActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the app.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
+        mSectionsPagerAdapter.activity = this;
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -69,7 +74,7 @@ public class MainActivity extends FragmentActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
+        public Activity activity;
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -83,8 +88,18 @@ public class MainActivity extends FragmentActivity {
         		Log.d("screen number: ", "> " + position);
         		} 
         	
-            Fragment fragment = new DummySectionFragment();
+        	DummySectionFragment fragment = new DummySectionFragment();
+            fragment.activity = this.activity;
             Bundle args = new Bundle();
+            String s= new String();
+            if(position == 0){
+            	s = "Offer";
+            }else if(position == 1){
+            	s = "event";
+            }else{
+            	s = "venue";
+            }
+            fragment.description = s;
             args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
             fragment.setArguments(args);
             return fragment;
@@ -115,24 +130,45 @@ public class MainActivity extends FragmentActivity {
      * A dummy fragment representing a section of the app, but that simply
      * displays dummy text.
      */
-    public static class DummySectionFragment extends Fragment {
-        /**
+    public static class DummySectionFragment extends Fragment{
+        public static final String ARG_SECTION_NUMBER = null;
+		/**
          * The fragment argument representing the section number for this
          * fragment.
          */
-        public static final String ARG_SECTION_NUMBER = "section_number";
-
+        public Activity activity;
+        private ListView view;
+        public  String description;
         public DummySectionFragment() {
+        	
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main_dummy, container, false);
-            TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-            dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+                if(this.description == "Offer"){
+                    OfferData[] values = new OfferData[10];
+                    for(int i = 0;i<10;i++){
+                    	if(values[i] != null)
+                    	values[i].Name = "Name" + i;
+                    	else{
+                    		values[i] = new OfferData();
+                    		values[i].Name = "Name" + i;
+                    	}
+                    	
+                    }
+	                eventarrayadapter adapter = new eventarrayadapter(this.activity, values);
+	                view = (ListView)rootView.findViewById(R.id.listViewEvents);
+	                view.setAdapter(adapter);
+                }
+            
+            
+                
             return rootView;
         }
     }
+  
+
 
 }

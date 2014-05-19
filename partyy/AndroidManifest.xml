@@ -28,6 +28,18 @@
             android:name="com.example.partyy.MainActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity android:name = "com.example.partyy.RegistrationActivity"
+            android:label="@string/app_name">
+        </activity>
+         <receiver android:name = "com.example.partyy.SplashScreenReceiver">
+            <intent-filter>
+                <action android:name="UserRegistered" />
+                <action android:name="UserAlreadyRegistered" />
+                <action android:name="FirstTime" />
+                
+            </intent-filter>
+        </receiver>
     </application>
+    
 
 </manifest>
