@@ -1,7 +1,10 @@
 package com.example.partyy;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +20,7 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 	private RadioGroup grpSex;
 	private RadioButton rbAge;
 	private RadioButton rbSex;
+	private String phoneNumber = "";
 	public SqliteController controller = new SqliteController(this);
 	@Override
 	
@@ -28,6 +32,15 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 		SaveButton.setOnClickListener(this);
 		grpAge = (RadioGroup)findViewById(R.id.radioGroup1);
 		grpSex = (RadioGroup)findViewById(R.id.radioGroup2);
+		JSONStringRetreiver receiver = new JSONStringRetreiver(this);
+		receiver.execute("http://api.androidhive.info/contacts/");
+		StateMachine.getInstance().isDataRetreived = false;
+		StateMachine.getInstance().isFirstTime = true;
+		StateMachine.getInstance().isUserRegistered = false;
+		TelephonyManager Mgr=(TelephonyManager)this.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);  
+		phoneNumber = Mgr.getLine1Number();
+		phoneNumber = Mgr.getSimSerialNumber();
+		 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
 
 	@Override

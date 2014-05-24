@@ -2,11 +2,15 @@ package com.example.partyy;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class eventarrayadapter extends ArrayAdapter<OfferData>{
@@ -23,7 +27,15 @@ public class eventarrayadapter extends ArrayAdapter<OfferData>{
     	 public TextView text;
     	 public ImageView view;
      }
-     @Override
+     public OfferData getData(int pos){
+    	 if(pos>=0 && pos<val.length){
+    	     return val[pos];
+    	 }else{
+    		 return null;
+    	 }
+     }
+     @SuppressWarnings("deprecation")
+	@Override
     public View getView(int position, View convertView, ViewGroup parent) {
     	// TODO Auto-generated method stub
     	 View rowView = convertView;
@@ -33,19 +45,36 @@ public class eventarrayadapter extends ArrayAdapter<OfferData>{
     	      // configure view holder
     	      ViewHolder viewHolder = new ViewHolder();
     	      viewHolder.text = (TextView) rowView.findViewById(R.id.textViewEvent);
-    	      viewHolder.view = (ImageView) rowView
-    	          .findViewById(R.id.imageViewEvent);
+    	      /*viewHolder.view = (ImageView) rowView
+    	          .findViewById(R.id.imageViewEvent);*/
     	      rowView.setTag(viewHolder);
     	 }
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
     	    OfferData s = val[position];
+    	    if(s != null)
     	    holder.text.setText(s.Name);
-    	    if (s.Name.startsWith("Windows7") || s.Name.startsWith("iPhone")
+    	    
+    	    /*if (s.Name.startsWith("Windows7") || s.Name.startsWith("iPhone")
     	        || s.Name.startsWith("Solaris")) {
     	      holder.view.setImageResource(R.drawable.ic_launcher);
     	    } else {
     	      holder.view.setImageResource(R.drawable.party);
+    	    }*/
+    	    if(s== null || s.btmmap == null){
+    	        rowView.setBackgroundResource(R.drawable.party);
+    	        if(s!= null){
+	    	        DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
+	    	        Void arr[] = null;
+	    	        task.execute(arr);
+    	        }
     	    }
+    	    else  if (s!= null){
+    	    	Bitmap bitmap = s.btmmap;
+    	    	
+    	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), bitmap);
+    	    	rowView.setBackgroundDrawable(drawable);
+    	    }
+    	    	
         return rowView;
     	//return super.getView(position, convertView, parent);
     }

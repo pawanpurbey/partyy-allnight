@@ -5,6 +5,11 @@ import java.util.HashMap;
 
 
 
+
+
+
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -23,12 +28,13 @@ import android.os.AsyncTask;
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			if(function == 0){
-				Intent i = new Intent(context, MainActivity.class);
-				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				
-	            context.startActivity(i);
-		        
-			}
+				StateMachine.getInstance().isUserRegistered = true;
+				if(StateMachine.getInstance().isDataRetreived == true){
+					Intent i = new Intent(this.context, MainActivity.class);
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					this.context.startActivity(i);
+				}
+		    }
 			else if(function == 1){
 				if(result == false || user ==  null || user.name  == ""){
 					Intent i = new Intent(context, RegistrationActivity.class);
@@ -37,11 +43,11 @@ import android.os.AsyncTask;
 		           context.startActivity(i);
 				}else
 				{
-					Intent i = new Intent(context, MainActivity.class);
-					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					if(DataArray.getInstance().vec ==null || DataArray.getInstance().vec.size() ==0){
+						JSONStringRetreiver receiver = new JSONStringRetreiver(this.context);
+						receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
+					}
 					
-		           SplashScreenApp.getInstance().getApplicationContext().startActivity(i);
-	   		        
 				}
 			}
 			

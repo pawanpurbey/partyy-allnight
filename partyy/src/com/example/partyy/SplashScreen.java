@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+
 import org.json.JSONObject;
 public class SplashScreen extends Activity{
 	private static int SPLASH_TIME_OUT = 3000;
@@ -19,10 +20,23 @@ public class SplashScreen extends Activity{
 			task.function = 1;
 			User user[] = null;
 			task.execute(user);
+			if(DataArray.getInstance().vec ==null || DataArray.getInstance().vec.size() ==0){
+				
+			}
+			else{
+				Intent i = new Intent(this, MainActivity.class);
+				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				this.startActivity(i);
+		        finish();
+			}
+		}
+		else{
+			//abcd
+			int k = 0;
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
-		
+		//finish();
 		/*new Handler().postDelayed(new Runnable(){
 			/*
              * Showing splash screen with a timer. This will be useful when you
@@ -41,5 +55,16 @@ public class SplashScreen extends Activity{
             }
 		},SPLASH_TIME_OUT);*/
 		
+	}
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		finish();
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
 	}
 }
