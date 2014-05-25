@@ -45,6 +45,9 @@
                 
             </intent-filter>
         </receiver>
+        <service android:name = "com.example.partyy.DownloadImageService">
+            <intent-filter ></intent-filter>
+        </service>
     </application>
     
 

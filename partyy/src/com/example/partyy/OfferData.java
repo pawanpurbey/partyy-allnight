@@ -16,5 +16,6 @@ public class OfferData {
 	public String phone = new String();
     public Bitmap btmmap = null;
     public String url = "http://java.sogeti.nl/JavaBlog/wp-content/uploads/2009/04/android_icon_256.png";
+    public boolean isBitmapRequested = false;
     public int pos = 0;
 }

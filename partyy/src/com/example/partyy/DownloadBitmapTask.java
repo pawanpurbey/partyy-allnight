@@ -28,6 +28,23 @@ public class DownloadBitmapTask extends AsyncTask<Void, Void, Bitmap> {
 	}
 	protected void onPostExecute(Bitmap result) {
 		DataArray.getInstance().vec.elementAt(pos).btmmap = mIcon11;
+		//final ArrayAdapter adapter = ((ArrayAdapter)getListAdapter());
+		if(SplashScreenApp.getInstance() != null){
+			SplashScreenApp.getInstance().runOnUiThread(new Runnable() {
+			    public void run() {
+			    	if(eventarrayadapter.getInstance() != null){
+			            eventarrayadapter.getInstance().notifyDataSetChanged();
+			    	}
+			    	if(offerArrayAdapter.getInstance() != null){
+			           offerArrayAdapter.getInstance().notifyDataSetChanged();
+			    	}
+			        if(venueArayAdapater.getInstance() != null){
+			          venueArayAdapater.getInstance().notifyDataSetChanged();
+			        }
+			    }
+		});
+			
+		}
 	 }   
 		
 }/*public DownloadImageTask(ImageView bmImage) {

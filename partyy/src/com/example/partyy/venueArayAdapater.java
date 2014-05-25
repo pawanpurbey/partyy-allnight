@@ -13,19 +13,19 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class eventarrayadapter extends ArrayAdapter<OfferData>{
+public class venueArayAdapater extends ArrayAdapter<OfferData>{
      private Activity context;
      //Later on String will be changed by our own class
      private OfferData[] val;
-     private static eventarrayadapter _instance;
-     public static eventarrayadapter getInstance(){
-    	 return _instance;
-     }
-     public eventarrayadapter(Activity c,OfferData[] val){
+     private static venueArayAdapater _instance;
+     public venueArayAdapater(Activity c,OfferData[] val){
     	 super(c, R.layout.eventlayout,val);
     	 this.context = c;
     	 this.val = val;
     	 _instance = this;
+     }
+     public static venueArayAdapater getInstance(){
+    	 return _instance;
      }
      public static class ViewHolder{
     	 public TextView text;

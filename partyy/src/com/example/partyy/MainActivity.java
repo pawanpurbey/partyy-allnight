@@ -2,6 +2,7 @@ package com.example.partyy;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Timer;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -72,6 +73,12 @@ public class MainActivity extends FragmentActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         setRequestedOrientation(ActivityInfo  
         		  .SCREEN_ORIENTATION_PORTRAIT);
+        /*Intent serviceIntent = new Intent(this,DownloadImageService.class);
+        startService(serviceIntent);*/
+        Timer timer = new Timer();
+        DownloadImageTimerTask task = new DownloadImageTimerTask();
+        task.timer = timer;
+        timer.schedule(task, 100, 100);
     }
 /*
     @Override
@@ -188,7 +195,7 @@ public class MainActivity extends FragmentActivity {
                     	
                     	
                     }
-	                eventarrayadapter adapter = new eventarrayadapter(this.activity, values);
+	                offerArrayAdapter adapter = new offerArrayAdapter(this.activity, values);
 	                viewOffer = (ListView)rootView.findViewById(R.id.listViewOffer);
 	                viewOffer.setAdapter(adapter);
 	                //view.setLongClickable(true);
@@ -260,7 +267,7 @@ public class MainActivity extends FragmentActivity {
                     	
                     	
                     }
-	                eventarrayadapter adapter = new eventarrayadapter(this.activity, values);
+	                venueArayAdapater adapter = new venueArayAdapater(this.activity, values);
 	                viewVenue = (ListView)rootView.findViewById(R.id.listViewVenues);
 	                viewVenue.setAdapter(adapter);
 	                //view.setLongClickable(true);
@@ -275,7 +282,7 @@ public class MainActivity extends FragmentActivity {
 							// TODO Auto-generated method stub
 							ListView v= (ListView)arg0;
 							ListAdapter listadapter = v.getAdapter();
-							eventarrayadapter adapter = (eventarrayadapter)listadapter;
+							venueArayAdapater adapter = (venueArayAdapater)listadapter;
 							OfferData viewdata = adapter.getData(arg2);
 							
 							

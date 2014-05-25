@@ -15,13 +15,13 @@
 	import android.preference.PreferenceManager;
 
 	public class SplashScreenApp extends Application{
-		private Handler                       i_handler;
+		                      
 		public Context context;
-		public void onCreate(){
-	        i_handler = new Handler();
+		
+		private Handler   i_handler = new Handler();
 	       
 			
-		}
+		
 	    private static SplashScreenApp _instance = null;
 	    public SplashScreenApp(){
 	    	_instance= this;
