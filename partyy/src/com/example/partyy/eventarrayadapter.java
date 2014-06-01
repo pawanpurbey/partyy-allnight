@@ -48,7 +48,7 @@ public class eventarrayadapter extends ArrayAdapter<OfferData>{
     	      rowView = inflater.inflate(R.layout.eventlayout, null);
     	      // configure view holder
     	      ViewHolder viewHolder = new ViewHolder();
-    	      viewHolder.text = (TextView) rowView.findViewById(R.id.textViewEvent);
+    	      viewHolder.text = (TextView) rowView.findViewById(R.id.textView1);
     	      /*viewHolder.view = (ImageView) rowView
     	          .findViewById(R.id.imageViewEvent);*/
     	      rowView.setTag(viewHolder);
@@ -67,10 +67,10 @@ public class eventarrayadapter extends ArrayAdapter<OfferData>{
     	    if(s== null || s.btmmap == null){
     	        rowView.setBackgroundResource(R.drawable.party);
     	        if(s!= null && s.isBitmapRequested == false){
-	    	        DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
+	    	        /*DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
 	    	        Void arr[] = null;
 	    	        task.execute(arr);
-	    	        s.isBitmapRequested = true;
+	    	        s.isBitmapRequested = true;*/
     	        }
     	    }
     	    else  if (s!= null){

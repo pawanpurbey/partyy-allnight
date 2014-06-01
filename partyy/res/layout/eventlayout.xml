@@ -3,15 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    
     <TextView
-        android:id="@+id/textViewEvent"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="14dp"
-        android:textColor="#ffffffff"
-        android:text="TextView" />
+        android:textColor="#FF0000"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </RelativeLayout>
 

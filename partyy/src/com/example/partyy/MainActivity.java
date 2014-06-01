@@ -114,11 +114,11 @@ public class MainActivity extends FragmentActivity {
             Bundle args = new Bundle();
             String s= new String();
             if(position == 0){
-            	s = "Offer";
+            	s = "venue";
             }else if(position == 1){
             	s = "event";
             }else{
-            	s = "venue";
+            	s = "Offer";
             }
             fragment.description = s;
             args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
@@ -259,11 +259,11 @@ public class MainActivity extends FragmentActivity {
                 	rootView = inflater.inflate(R.layout.venuesfragment, container, false);
                 	Object[] val = DataArray.getInstance().vec.toArray();
                 	int len = val.length;
-                	OfferData[] values = new OfferData[1];
+                	OfferData[] values = new OfferData[len];
                     for(int i = 0;i<len;i++){
-                    	 if(DataArray.getInstance().vec.elementAt(i).Name.equals("Striker")){
-                  	       values[0] = (OfferData)val[i];
-                  	  }
+                    	 //if(DataArray.getInstance().vec.elementAt(i).Name.equals("Striker")){
+                  	       values[i] = (OfferData)val[i];
+                  	  //}
                     	
                     	
                     }

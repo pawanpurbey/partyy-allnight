@@ -1,10 +1,12 @@
 package com.example.partyy;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
@@ -44,6 +46,10 @@ public class OpenVenueActivity extends Activity{
     	    	Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
     	    	getWindow().getDecorView().setBackgroundDrawable(drawable);
     	    }
+		    Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr="+28.523056+","+77.2075));
+		    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+
+            startActivity(intent);
 	}
  }
 

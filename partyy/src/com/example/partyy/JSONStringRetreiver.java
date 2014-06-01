@@ -40,7 +40,7 @@ public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 		   context.startActivity(i);
 		   
 		}
-		StateMachine.getInstance().isDataRetreived = true;
+		StateMachine.getInstance().setDataRetreived(true);
 	}
     
 }

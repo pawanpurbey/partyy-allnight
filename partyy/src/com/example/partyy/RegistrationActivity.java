@@ -33,7 +33,7 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 		grpAge = (RadioGroup)findViewById(R.id.radioGroup1);
 		grpSex = (RadioGroup)findViewById(R.id.radioGroup2);
 		JSONStringRetreiver receiver = new JSONStringRetreiver(this);
-		receiver.execute("http://api.androidhive.info/contacts/");
+		receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
 		StateMachine.getInstance().isDataRetreived = false;
 		StateMachine.getInstance().isFirstTime = true;
 		StateMachine.getInstance().isUserRegistered = false;

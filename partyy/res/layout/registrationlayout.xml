@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/party" 
     android:orientation="vertical" >
 
     <TextView
@@ -13,6 +14,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="32dp"
         android:text="Name"
+       android:textColor="#FF0000"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
@@ -23,6 +25,7 @@
         android:layout_alignBottom="@+id/textView1"
         android:layout_alignParentRight="true"
         android:ems="10"
+        android:textColor="#FF0000"
         android:inputType="textPersonName" />
 
     <RadioGroup
@@ -31,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/radioGroup1"
         android:layout_below="@+id/editText1"
+        android:textColor="#FF0000"
         android:layout_marginTop="44dp" >
 
         <RadioButton
@@ -38,12 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
+            android:textColor="#FF0000"
             android:text="Male" />
 
         <RadioButton
             android:id="@+id/radio1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FF0000"
             android:text="Female" />
     </RadioGroup>
 
@@ -54,6 +60,7 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_alignTop="@+id/radioGroup2"
         android:text="Sex"
+        android:textColor="#FF0000"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -63,6 +70,7 @@
         android:layout_alignLeft="@+id/textView2"
         android:layout_centerVertical="true"
         android:text="Age"
+        android:textColor="#FF0000"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <RadioGroup
@@ -70,6 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView3"
+        android:textColor="#FF0000"
         android:layout_centerHorizontal="true" >
 
         <RadioButton
@@ -77,28 +86,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
+            android:textColor="#FF0000"
             android:text="15-25" />
 
         <RadioButton
             android:id="@+id/radio1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FF0000"
             android:text="25-35" />
 
         <RadioButton
             android:id="@+id/radio2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FF0000"
             android:text="35-45" />
     </RadioGroup>
 
+    
+
     <Button
         android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/radioGroup1"
-        android:layout_below="@+id/radioGroup1"
-        android:layout_marginTop="47dp"
-        android:text="Got it!!!" />
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/buttonshapered"
+        android:textColor="#FF0000"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Got it!!!"
+        android:textSize="30sp" />
 
 </RelativeLayout>
