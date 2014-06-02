@@ -56,7 +56,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
     	    OfferData s = val[position];
     	    if(s != null)
-    	    holder.text.setText(s.Name);
+    	    holder.text.setText(s.header);
     	    
     	    /*if (s.Name.startsWith("Windows7") || s.Name.startsWith("iPhone")
     	        || s.Name.startsWith("Solaris")) {

@@ -8,7 +8,10 @@ public class DataArray {
 	     public static DataArray getInstance(){
 	    	 return instance;
 	     }
-	     public Vector<OfferData> vec = null;
-	
+	     public Vector<VenueData> vecVenueData = null;
+	     public Vector<OfferData> vecOfferData = null;
+	     public Vector<EventData> vecEventData = null;
+	     static int numOffers = 0;
+	     static int numEvents = 0 ;
 
 }

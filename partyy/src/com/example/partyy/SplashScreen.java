@@ -20,7 +20,7 @@ public class SplashScreen extends Activity{
 			task.function = 1;
 			User user[] = null;
 			task.execute(user);
-			if(DataArray.getInstance().vec ==null || DataArray.getInstance().vec.size() ==0){
+			if(DataArray.getInstance().vecVenueData ==null || DataArray.getInstance().vecVenueData.size() ==0 ||DataArray.getInstance().vecOfferData ==null || DataArray.getInstance().vecOfferData.size() == 0 ){
 				
 			}
 			else{

@@ -13,10 +13,10 @@ public class DownloadImageTimerTask extends TimerTask{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		int len = DataArray.getInstance().vec.size();
+		int len = DataArray.getInstance().vecVenueData.size();
 		boolean bitmapRemaining = false;
 		for(int i = 0;i<len;i++){
-			OfferData s = DataArray.getInstance().vec.elementAt(i);
+			VenueData s = DataArray.getInstance().vecVenueData.elementAt(i);
 			if(s!= null && s.btmmap == null && s.isBitmapRequested == false){
     	        /*DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
     	        Void arr[] = null;
@@ -32,7 +32,7 @@ public class DownloadImageTimerTask extends TimerTask{
 			        
 			        e.printStackTrace();
 			    }
-				DataArray.getInstance().vec.elementAt(s.pos).btmmap = mIcon11;
+				DataArray.getInstance().vecVenueData.elementAt(s.pos).btmmap = mIcon11;
 				//final ArrayAdapter adapter = ((ArrayAdapter)getListAdapter());
 				if(SplashScreenApp.getInstance() != null){
 					SplashScreenApp.getInstance().runOnUiThread(new Runnable() {

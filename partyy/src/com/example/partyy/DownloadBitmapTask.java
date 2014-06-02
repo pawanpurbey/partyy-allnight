@@ -27,7 +27,7 @@ public class DownloadBitmapTask extends AsyncTask<Void, Void, Bitmap> {
 		//return null;
 	}
 	protected void onPostExecute(Bitmap result) {
-		DataArray.getInstance().vec.elementAt(pos).btmmap = mIcon11;
+		DataArray.getInstance().vecVenueData.elementAt(pos).btmmap = mIcon11;
 		//final ArrayAdapter adapter = ((ArrayAdapter)getListAdapter());
 		if(SplashScreenApp.getInstance() != null){
 			SplashScreenApp.getInstance().runOnUiThread(new Runnable() {

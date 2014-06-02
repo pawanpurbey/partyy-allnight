@@ -186,7 +186,7 @@ public class MainActivity extends FragmentActivity {
                     	
                     }*/
                 	//ArrayList<OfferData> value =  new ArrayList<OfferData>();
-                	Object[] val = DataArray.getInstance().vec.toArray();
+                	Object[] val = DataArray.getInstance().vecOfferData.toArray();
                 	int len = val.length;
                 	OfferData[] values = new OfferData[len];
                     for(int i = 0;i<len;i++){
@@ -210,8 +210,8 @@ public class MainActivity extends FragmentActivity {
 							ListView v= (ListView)arg0;
 							//int pos = v.getSelectedItemPosition();
 							//int id = v.getSelectedItemId();
-							OfferData data = DataArray.getInstance().vec.elementAt(arg2);
-							Toast.makeText(getActivity(),data.Name , Toast.LENGTH_SHORT).show();
+							OfferData data = DataArray.getInstance().vecOfferData.elementAt(arg2);
+							Toast.makeText(getActivity(),data.header , Toast.LENGTH_SHORT).show();
 						}
 	                	}); 
 	              
@@ -220,14 +220,13 @@ public class MainActivity extends FragmentActivity {
                 }
                 else if( this.description == "event"){
                 	rootView = inflater.inflate(R.layout.fragment_main_dummy, container, false);
-                	Object[] val = DataArray.getInstance().vec.toArray();
+                	Object[] val = DataArray.getInstance().vecOfferData.toArray();
                 	int len = val.length;
-                	OfferData[] values = new OfferData[1];
+                	OfferData[] values = new OfferData[len];
                     for(int i = 0;i<len;i++){
-                    	  String s =  DataArray.getInstance().vec.elementAt(i).Name;
-                    	  if(DataArray.getInstance().vec.elementAt(i).Name.equals("ABCD")){
+                    	  //String s =  DataArray.getInstance().vecOfferData.elementAt(i).Name;
+                    	 
                     	       values[0] = (OfferData)val[i];
-                    	  }
                     	
                     	
                     }
@@ -250,19 +249,19 @@ public class MainActivity extends FragmentActivity {
 							
 							//int pos = v.getSelectedItemPosition();
 							//int id = v.getSelectedItemId();
-							OfferData data = DataArray.getInstance().vec.elementAt(viewdata.pos);
-							Toast.makeText(getActivity(),data.Name , Toast.LENGTH_SHORT).show();
+							/*VenueData data = DataArray.getInstance().vec.elementAt(viewdata.);
+							Toast.makeText(getActivity(),data.Name , Toast.LENGTH_SHORT).show();*/
 						}
 	                	}); 
                 }
                 else if( this.description == "venue"){
                 	rootView = inflater.inflate(R.layout.venuesfragment, container, false);
-                	Object[] val = DataArray.getInstance().vec.toArray();
+                	Object[] val = DataArray.getInstance().vecVenueData.toArray();
                 	int len = val.length;
-                	OfferData[] values = new OfferData[len];
+                	VenueData[] values = new VenueData[len];
                     for(int i = 0;i<len;i++){
                     	 //if(DataArray.getInstance().vec.elementAt(i).Name.equals("Striker")){
-                  	       values[i] = (OfferData)val[i];
+                  	       values[i] = (VenueData)val[i];
                   	  //}
                     	
                     	
@@ -283,7 +282,7 @@ public class MainActivity extends FragmentActivity {
 							ListView v= (ListView)arg0;
 							ListAdapter listadapter = v.getAdapter();
 							venueArayAdapater adapter = (venueArayAdapater)listadapter;
-							OfferData viewdata = adapter.getData(arg2);
+							VenueData viewdata = adapter.getData(arg2);
 							
 							
 							Intent i = new Intent(context, OpenVenueActivity.class);
@@ -296,7 +295,7 @@ public class MainActivity extends FragmentActivity {
 							  i.putExtras(bundle);
 							  i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                               context.startActivity(i);
-							OfferData data = DataArray.getInstance().vec.elementAt(viewdata.pos);
+							VenueData data = DataArray.getInstance().vecVenueData.elementAt(viewdata.pos);
 							Toast.makeText(getActivity(),data.Name , Toast.LENGTH_SHORT).show();
 						}
 	                	}); 

@@ -28,7 +28,7 @@ public class OpenVenueActivity extends Activity{
 		    int  valPos = bundle.getInt("Pos");
 		    view = (TextView)findViewById(R.id.textViewEventLayout);
 		    //Now get actual data to show 
-		    OfferData data = DataArray.getInstance().vec.elementAt(valPos);
+		    VenueData data = DataArray.getInstance().vecVenueData.elementAt(valPos);
 		   
 		    if(data== null || data.btmmap == null){
 		    	//LayoutInflater inflater = getLayoutInflater();

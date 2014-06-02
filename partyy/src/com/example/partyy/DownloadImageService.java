@@ -15,9 +15,9 @@ public class DownloadImageService extends IntentService{
 	@Override
 	protected void onHandleIntent(Intent arg0) {
 		// TODO Auto-generated method stub
-		int len = DataArray.getInstance().vec.size();
+		int len = DataArray.getInstance().vecVenueData.size();
 		for(int i = 0;i<len;i++){
-			OfferData s = DataArray.getInstance().vec.elementAt(i);
+			VenueData s = DataArray.getInstance().vecVenueData.elementAt(i);
 			if(s!= null && s.btmmap == null){
     	        DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
     	        Void arr[] = null;

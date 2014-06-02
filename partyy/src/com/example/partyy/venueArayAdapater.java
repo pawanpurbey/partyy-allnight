@@ -13,12 +13,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class venueArayAdapater extends ArrayAdapter<OfferData>{
+public class venueArayAdapater extends ArrayAdapter<VenueData>{
      private Activity context;
      //Later on String will be changed by our own class
-     private OfferData[] val;
+     private VenueData[] val;
      private static venueArayAdapater _instance;
-     public venueArayAdapater(Activity c,OfferData[] val){
+     public venueArayAdapater(Activity c,VenueData[] val){
     	 super(c, R.layout.eventlayout,val);
     	 this.context = c;
     	 this.val = val;
@@ -31,7 +31,7 @@ public class venueArayAdapater extends ArrayAdapter<OfferData>{
     	 public TextView text;
     	 public ImageView view;
      }
-     public OfferData getData(int pos){
+     public VenueData getData(int pos){
     	 if(pos>=0 && pos<val.length){
     	     return val[pos];
     	 }else{
@@ -54,7 +54,7 @@ public class venueArayAdapater extends ArrayAdapter<OfferData>{
     	      rowView.setTag(viewHolder);
     	 }
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
-    	    OfferData s = val[position];
+    	 VenueData s = val[position];
     	    if(s != null)
     	    holder.text.setText(s.Name);
     	    
