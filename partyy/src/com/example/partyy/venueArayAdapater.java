@@ -19,7 +19,7 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
      private VenueData[] val;
      private static venueArayAdapater _instance;
      public venueArayAdapater(Activity c,VenueData[] val){
-    	 super(c, R.layout.eventlayout,val);
+    	 super(c, R.layout.venuelayout,val);
     	 this.context = c;
     	 this.val = val;
     	 _instance = this;
@@ -45,10 +45,10 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	 View rowView = convertView;
     	 if(rowView == null){
     		 LayoutInflater inflater = this.context.getLayoutInflater();
-    	      rowView = inflater.inflate(R.layout.eventlayout, null);
+    	      rowView = inflater.inflate(R.layout.venuelayout, null);
     	      // configure view holder
     	      ViewHolder viewHolder = new ViewHolder();
-    	      viewHolder.text = (TextView) rowView.findViewById(R.id.textView1);
+    	      viewHolder.text = (TextView) rowView.findViewById(R.id.textViewEventLayout);
     	      /*viewHolder.view = (ImageView) rowView
     	          .findViewById(R.id.imageViewEvent);*/
     	      rowView.setTag(viewHolder);
@@ -65,7 +65,7 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	      holder.view.setImageResource(R.drawable.party);
     	    }*/
     	    if(s== null || s.btmmap == null){
-    	        rowView.setBackgroundResource(R.drawable.party);
+    	        //rowView.setBackgroundResource(R.drawable.party);
     	        if(s!= null && s.isBitmapRequested == false){
 	    	        /*DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
 	    	        Void arr[] = null;
@@ -74,11 +74,11 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	        }
     	    }
     	    else  if (s!= null){
-    	    	Bitmap bitmap = s.btmmap;
+    	    /*	Bitmap bitmap = s.btmmap;
     	    	
     	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), bitmap);
     	    	rowView.setBackgroundDrawable(drawable);
-    	    }
+    	   */ }
     	    	
         return rowView;
     	//return super.getView(position, convertView, parent);
