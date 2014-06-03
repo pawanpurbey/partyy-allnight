@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="location_array">
+        <item>Delhi</item>
+        <item>Gurgaon</item>
+        <item>Noida</item>
+    </string-array>
+</resources>

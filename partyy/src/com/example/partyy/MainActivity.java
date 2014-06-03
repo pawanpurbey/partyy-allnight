@@ -219,7 +219,7 @@ public class MainActivity extends FragmentActivity {
 	                
                 }
                 else if( this.description == "event"){
-                	rootView = inflater.inflate(R.layout.fragment_main_dummy, container, false);
+                	rootView = inflater.inflate(R.layout.eventfragment, container, false);
                 	Object[] val = DataArray.getInstance().vecOfferData.toArray();
                 	int len = val.length;
                 	OfferData[] values = new OfferData[len];

@@ -19,7 +19,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
      private OfferData[] val;
      private static offerArrayAdapter _instance;
      public offerArrayAdapter(Activity c,OfferData[] val){
-    	 super(c, R.layout.eventlayout,val);
+    	 super(c, R.layout.offerlayout,val);
     	 this.context = c;
     	 this.val = val;
     	 _instance = this;
@@ -45,7 +45,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	 View rowView = convertView;
     	 if(rowView == null){
     		 LayoutInflater inflater = this.context.getLayoutInflater();
-    	      rowView = inflater.inflate(R.layout.eventlayout, null);
+    	      rowView = inflater.inflate(R.layout.offerlayout, null);
     	      // configure view holder
     	      ViewHolder viewHolder = new ViewHolder();
     	      viewHolder.text = (TextView) rowView.findViewById(R.id.textView1);
@@ -65,7 +65,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	      holder.view.setImageResource(R.drawable.party);
     	    }*/
     	    if(s== null || s.btmmap == null){
-    	        rowView.setBackgroundResource(R.drawable.party);
+    	      //  rowView.setBackgroundResource(R.drawable.party);
     	        if(s!= null && s.isBitmapRequested == false){
 	    	        /*DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
 	    	        Void arr[] = null;
