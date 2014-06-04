@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:partyyApp="http://schemas.android.com/apk/res-auto" >
+    
+    <item android:id="@+id/action_search"
+          android:title="Search"
+          partyyApp:showAsAction="ifRoom" />
+   
+    <item android:id="@+id/action_navigate"
+          android:title="Navigate"
+          partyyApp:showAsAction="always" />
+</menu>
