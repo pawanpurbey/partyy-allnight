@@ -6,6 +6,7 @@
           partyyApp:showAsAction="ifRoom" />
    
     <item android:id="@+id/action_navigate"
-          android:title="Navigate"
+          android:title=""
+          android:icon="@drawable/ic_action_locate"
           partyyApp:showAsAction="always" />
 </menu>
