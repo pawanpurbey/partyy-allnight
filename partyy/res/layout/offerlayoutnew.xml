@@ -42,7 +42,7 @@
 	</ImageView> 
 
    <TextView
-    android:layout_below="@+id/venue_urltextviewOfferlayout"   
+    android:layout_below="@+id/venue_urlOfferLayout"   
     android:background="#040a0b"
     android:layout_height="40dp"
     android:layout_width="fill_parent"

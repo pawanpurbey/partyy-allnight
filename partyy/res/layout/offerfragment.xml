@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="10dp"
-	android:paddingRight="10dp"
-	android:paddingBottom="6dp"
+    android:paddingLeft="0dp"
+	android:paddingRight="0dp"
+	android:paddingBottom="0dp"
     tools:context=".MainActivity$DummySectionFragment" >
 	
     <ListView
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="0dp"
         android:id="@+id/listViewOffer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
