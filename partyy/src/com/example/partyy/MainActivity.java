@@ -197,6 +197,8 @@ public class MainActivity extends FragmentActivity {
                     }
 	                offerArrayAdapter adapter = new offerArrayAdapter(this.activity, values);
 	                viewOffer = (ListView)rootView.findViewById(R.id.listViewOffer);
+	               View viewHeader = inflater.inflate(R.layout.offerheaderview, viewOffer,false);
+	               viewOffer.addHeaderView(viewHeader);
 	                viewOffer.setAdapter(adapter);
 	                //view.setLongClickable(true);
 	                viewOffer.setOnLongClickListener(this);

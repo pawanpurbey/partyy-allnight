@@ -19,7 +19,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
      private OfferData[] val;
      private static offerArrayAdapter _instance;
      public offerArrayAdapter(Activity c,OfferData[] val){
-    	 super(c, R.layout.offerlayout,val);
+    	 super(c, R.layout.offerlayoutnew,val);
     	 this.context = c;
     	 this.val = val;
     	 _instance = this;
@@ -45,7 +45,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	 View rowView = convertView;
     	 if(rowView == null){
     		 LayoutInflater inflater = this.context.getLayoutInflater();
-    	      rowView = inflater.inflate(R.layout.offerlayout, null);
+    	      rowView = inflater.inflate(R.layout.offerlayoutnew, null);
     	      // configure view holder
     	      ViewHolder viewHolder = new ViewHolder();
     	      viewHolder.text = (TextView) rowView.findViewById(R.id.textView1);
@@ -55,8 +55,8 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	 }
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
     	    OfferData s = val[position];
-    	    if(s != null)
-    	    holder.text.setText(s.header);
+    	    //if(s != null)
+    	    //holder.text.setText(s.header);
     	    
     	    /*if (s.Name.startsWith("Windows7") || s.Name.startsWith("iPhone")
     	        || s.Name.startsWith("Solaris")) {
