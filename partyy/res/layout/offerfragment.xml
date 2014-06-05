@@ -31,44 +31,36 @@
        />
 	
 	<LinearLayout 
+	    android:layout_marginTop="5dp"
 	    android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
-		android:background="#80000000"
+		android:background="@android:color/transparent"
 		>
 		
-	   <Button
-     android:id="@+id/offer_drinks"
-     android:layout_height="fill_parent"
-     android:layout_width="wrap_content"
-     android:text="Groups"
-     	android:background="@drawable/rounded_rectangle"
-     android:drawableTop="@drawable/bottle_and_glass"	
-	android:layout_marginRight="5dp"
-		 />
-	  <Button
-     android:id="@+id/offer_food"
-     android:layout_height="fill_parent"
-     android:layout_width="wrap_content"
-     android:text="Food"
-     android:drawableTop="@drawable/fastfood"	
-		android:layout_marginRight="5dp"
+		   <Button		 
+			android:text="Drinks"
+			android:id="@+id/offer_drinks"
+			style="@style/offer_buttons"
+			android:drawableTop="@drawable/bottle_and_glass"	
+			 />
+		  <Button
+		     android:id="@+id/offer_food"
+		     android:text="Food"
+		     android:drawableTop="@drawable/fastfood"
+style="@style/offer_buttons"
 		 />  
 		  <Button
-     android:id="@+id/offer_guest_list"
-     android:layout_height="fill_parent"
-     android:layout_width="wrap_content"
-     android:text="Guest List"
-     android:drawableTop="@drawable/list"	
-		android:layout_marginRight="5dp"
+		      style="@style/offer_buttons"
+		     android:id="@+id/offer_guest_list"
+		     android:text="Guestlist"
+		     android:drawableTop="@drawable/list"
 		 />       
 	     <Button
-     android:id="@+id/offer_others"
-     android:layout_height="fill_parent"
-     android:layout_width="wrap_content"
-     android:text="Others"
-     android:drawableTop="@drawable/questionmark"	
-		android:layout_marginRight="5dp"
+			android:id="@+id/offer_others"
+			android:text="Others"
+			android:drawableTop="@drawable/questionmark"	
+style="@style/offer_buttons"
 		 />  	    
 	</LinearLayout>
     <ListView

@@ -16,5 +16,15 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-
+ <style name="offer_buttons" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:layout_weight">1.0</item>
+		<item name="android:gravity">center</item>
+		<!--  <item name="android:background">@android:color/transparent</item>-->
+		<item name="android:background">@drawable/rounded_rectangle_transparent</item>
+		<item name="android:layout_marginRight">5dp</item>
+			
+    </style>
 </resources>
