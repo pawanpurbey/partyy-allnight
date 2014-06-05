@@ -202,6 +202,7 @@ public class MainActivity extends FragmentActivity {
 	                viewOffer.setAdapter(adapter);
 	                //view.setLongClickable(true);
 	                viewOffer.setOnLongClickListener(this);
+	                final Context context = this.getActivity().getApplicationContext();
 	                viewOffer.setOnItemClickListener(new OnItemClickListener() {
 	                	  
 
@@ -213,7 +214,17 @@ public class MainActivity extends FragmentActivity {
 							//int pos = v.getSelectedItemPosition();
 							//int id = v.getSelectedItemId();
 							OfferData data = DataArray.getInstance().vecOfferData.elementAt(arg2-1);
-							Toast.makeText(getActivity(),data.header , Toast.LENGTH_SHORT).show();
+							Intent i = new Intent(context, OpenOfferActivity.class);
+							 
+							  //Create the bundle
+							  Bundle bundle = new Bundle();
+							  //Add your data to bundle
+							  bundle.putInt("Pos", arg2-1);
+							  //Add the bundle to the intent
+							  i.putExtras(bundle);
+							  i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(i);
+							
 						}
 	                	}); 
 	              
