@@ -212,7 +212,7 @@ public class MainActivity extends FragmentActivity {
 							ListView v= (ListView)arg0;
 							//int pos = v.getSelectedItemPosition();
 							//int id = v.getSelectedItemId();
-							OfferData data = DataArray.getInstance().vecOfferData.elementAt(arg2);
+							OfferData data = DataArray.getInstance().vecOfferData.elementAt(arg2-1);
 							Toast.makeText(getActivity(),data.header , Toast.LENGTH_SHORT).show();
 						}
 	                	}); 

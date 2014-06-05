@@ -17,8 +17,8 @@
     <ImageView
 		android:layout_width="wrap_content"
 		android:layout_height="fill_parent"
-		android:src="@drawable/beer"	
-		android:background="#2fd6fb"
+		android:src="@drawable/star"	
+		android:background="#FFA500"
         ></ImageView>     
 
     <TextView
@@ -32,17 +32,24 @@
         android:textSize="18dp" />
     
     </LinearLayout>
-
+     <TextView
+    android:layout_below="@+id/venueLlayout"   
+    android:background="#040a0b"
+    android:layout_height="40dp"
+    android:layout_width="fill_parent"
+    android:id = "@+id/venue_url1OfferLayou"
+    
+     />
     <ImageView
-        android:id="@+id/venue_urlOfferLayout"
+        android:id="@+id/venue_urlImageview"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
-        android:layout_below="@+id/venueLlayout"
+        android:layout_below="@+id/venue_url1OfferLayou"
          >
 	</ImageView> 
 
    <TextView
-    android:layout_below="@+id/venue_urlOfferLayout"   
+    android:layout_below="@+id/venue_urlImageview"   
     android:background="#040a0b"
     android:layout_height="40dp"
     android:layout_width="fill_parent"
