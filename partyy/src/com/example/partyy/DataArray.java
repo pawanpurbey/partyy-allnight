@@ -13,5 +13,9 @@ public class DataArray {
 	     public Vector<EventData> vecEventData = null;
 	     static int numOffers = 0;
 	     static int numEvents = 0 ;
+	     static int numOffersDrink =0 ;
+	     static int numOffersFood = 0;
+	     static int numOffersGuestList= 0;
+	     static int numOffersunkown = 0;
 
 }

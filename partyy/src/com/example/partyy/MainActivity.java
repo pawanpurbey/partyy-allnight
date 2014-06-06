@@ -33,6 +33,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -152,7 +153,7 @@ public class MainActivity extends FragmentActivity {
      * A dummy fragment representing a section of the app, but that simply
      * displays dummy text.
      */
-    public static class DummySectionFragment extends Fragment implements OnLongClickListener{
+    public static class DummySectionFragment extends Fragment implements OnClickListener{
         public static final String ARG_SECTION_NUMBER = null;
 		/**
          * The fragment argument representing the section number for this
@@ -188,20 +189,59 @@ public class MainActivity extends FragmentActivity {
                 	//ArrayList<OfferData> value =  new ArrayList<OfferData>();
                 	Object[] val = DataArray.getInstance().vecOfferData.toArray();
                 	int len = val.length;
-                	OfferData[] values = new OfferData[len];
+                	
+                	ArrayList<OfferData> values = new ArrayList<OfferData>();
                     for(int i = 0;i<len;i++){
                     	
-                    	  values[i] = (OfferData)val[i];
+                    	  values.add(DataArray.getInstance().vecOfferData.elementAt(i));
                     	
                     	
                     }
-	                offerArrayAdapter adapter = new offerArrayAdapter(this.activity, values);
+                    offerArrayAdapter adapter;
+                    if(offerArrayAdapter.getInstance()== null){
+	                 adapter = new offerArrayAdapter(this.activity, values);
+                    }else{
+                    	adapter = offerArrayAdapter.getInstance();
+                    }
 	                viewOffer = (ListView)rootView.findViewById(R.id.listViewOffer);
 	               View viewHeader = inflater.inflate(R.layout.offerheaderview, viewOffer,false);
 	               viewOffer.addHeaderView(viewHeader);
 	                viewOffer.setAdapter(adapter);
 	                //view.setLongClickable(true);
-	                viewOffer.setOnLongClickListener(this);
+	                
+	                Button offerDrinks = (Button) viewOffer.findViewById(R.id.offer_drinks);
+	                if(offerDrinks!= null){
+	                	offerDrinks.setOnClickListener(this);
+	                	/*offerDrinks.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View arg0) {
+								// TODO Auto-generated method stub
+								if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_DRINKS){
+									offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_DRINKS;
+									offerArrayAdapter.getInstance().ChangeData();
+							    }
+								//viewOffer.invalidate();
+								
+							}
+						});*/
+	                }
+	                Button offerFood =  (Button) viewOffer.findViewById(R.id.offer_food);
+	                if(offerFood != null){
+	                	offerFood.setOnClickListener(this);
+	                }
+	                Button offerAll =  (Button) viewOffer.findViewById(R.id.offer_all);
+	                if(offerAll != null){
+	                	offerAll.setOnClickListener(this);
+	                }
+	                Button offerGuestList =  (Button) viewOffer.findViewById(R.id.offer_guest_list);
+	                if(offerGuestList != null){
+	                	offerGuestList.setOnClickListener(this);
+	                }
+	                Button offerUnknown =  (Button) viewOffer.findViewById(R.id.offer_others);
+	                if(offerUnknown != null){
+	                	offerUnknown.setOnClickListener(this);
+	                }
 	                final Context context = this.getActivity().getApplicationContext();
 	                viewOffer.setOnItemClickListener(new OnItemClickListener() {
 	                	  
@@ -247,7 +287,7 @@ public class MainActivity extends FragmentActivity {
 	                viewEvent = (ListView)rootView.findViewById(R.id.listViewEvents);
 	                viewEvent.setAdapter(adapter);
 	                //view.setLongClickable(true);
-	                viewEvent.setOnLongClickListener(this);
+	               
 	                viewEvent.setOnItemClickListener(new OnItemClickListener() {
 	                	  
 
@@ -283,7 +323,7 @@ public class MainActivity extends FragmentActivity {
 	                viewVenue = (ListView)rootView.findViewById(R.id.listViewVenues);
 	                viewVenue.setAdapter(adapter);
 	                //view.setLongClickable(true);
-	                viewVenue.setOnLongClickListener(this);
+	                
 	                final Context context = this.getActivity().getApplicationContext();
 	                viewVenue.setOnItemClickListener(new OnItemClickListener() {
 	                	  
@@ -317,11 +357,38 @@ public class MainActivity extends FragmentActivity {
             return rootView;
         }
 
+		
+
 		@Override
-		public boolean onLongClick(View arg0) {
+		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			int k = 0;
-			return false;
+			int id  = v.getId();
+			if(id == R.id.offer_drinks){
+				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_DRINKS){
+					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_DRINKS;
+					offerArrayAdapter.getInstance().ChangeData();
+			    }
+			}else if(id == R.id.offer_food){
+				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_FOOD){
+					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_FOOD;
+					offerArrayAdapter.getInstance().ChangeData();
+			    }
+			}else if(id == R.id.offer_all){
+				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_ALL){
+					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_ALL;
+					offerArrayAdapter.getInstance().ChangeData();
+			    }
+			}else if(id == R.id.offer_guest_list){
+				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_GUESTLIST){
+					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_GUESTLIST;
+					offerArrayAdapter.getInstance().ChangeData();
+			    }
+			}else if(id == R.id.offer_others){
+				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_UNKNOWN){
+					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_UNKNOWN;
+					offerArrayAdapter.getInstance().ChangeData();
+			    }
+			}
 		}
     }
   

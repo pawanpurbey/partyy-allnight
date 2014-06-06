@@ -28,6 +28,7 @@
         android:textColor="#ffffff"
         android:background="@drawable/rounded_rectangle"
         android:textSize="18dp"
+        android:id ="@+id/offer_all"
        />
 	
 	<LinearLayout 
