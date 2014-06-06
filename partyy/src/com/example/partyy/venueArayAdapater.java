@@ -77,11 +77,11 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	        }
     	    }
     	    else  if (s!= null){
-    	    /*	Bitmap bitmap = s.btmmap;
+    	    	Bitmap bitmap = s.btmmap;
     	    	
     	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), bitmap);
     	    	rowView.setBackgroundDrawable(drawable);
-    	   */ }
+    	   }
     	    	
         return rowView;
     	//return super.getView(position, convertView, parent);

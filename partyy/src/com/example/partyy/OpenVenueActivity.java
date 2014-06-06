@@ -85,15 +85,15 @@ public class OpenVenueActivity extends ActionBarActivity{
 	        viewPhone.setText(data.phone);
 	        viewAge.setText(data.City);
 	        viewDescription.setText(data.bDescription);
-		    /*if(data== null || data.btmmap == null){
+		    if(data== null || data.btmmap == null){
 		    	//LayoutInflater inflater = getLayoutInflater();
-		    	getWindow().getDecorView().setBackgroundResource(R.drawable.party);
+		    	//getWindow().getDecorView().setBackgroundResource(R.drawable.party);
 		        
-		       if(data != null){
+		       /*if(data != null){
 	    	        DownloadBitmapTask task = new DownloadBitmapTask(data.url, data.pos);
 	    	        Void arr[] = null;
 	    	        task.execute(arr);
-    	        }
+    	        }*/
     	    }
     	    else  if (data != null){
     	    	Bitmap bitmap = data.btmmap;

@@ -17,7 +17,7 @@ public class VenueData {
 	public String type = new String();
 	public String phone = new String();
     public Bitmap btmmap = null;
-    public String url = "http://java.sogeti.nl/JavaBlog/wp-content/uploads/2009/04/android_icon_256.png";
+    public String url = "http://www.mobiwebdev.com/wp-content/uploads/2014/06/PartyRock-Venue-Ggn-7Brauhaus1.jpg";
     public boolean isBitmapRequested = false;
     public int pos = 0;
     
