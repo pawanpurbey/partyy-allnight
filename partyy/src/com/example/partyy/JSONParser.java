@@ -69,10 +69,11 @@ public class JSONParser {
 				data.type = obj.getString("type");
 				JSONObject venueOffer = obj.getJSONObject("venue");
 				//data.url = obj.getString("image");
+				
 				String venueName = venueOffer.getString("name");
-				
+				if(mapVenue.get(venueName) != null){
 				data.venuePos = mapVenue.get(venueName).pos;
-				
+				}
 				vecOffer.add(data);
 			}
 			mapVenue = null;

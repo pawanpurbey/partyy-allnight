@@ -43,11 +43,15 @@
 	</ImageView> 
 
    <TextView
-    android:layout_below="@+id/venue_url"   
+    android:id="@+id/venue_urlTextViewVenueLayout"   
     android:background="#040a0b"
     android:layout_height="40dp"
     android:layout_width="fill_parent"
     android:drawableRight="@drawable/bullet_green"
+    android:layout_below="@+id/venue_url"
+    android:textColor="#2fd6fb"
+    android:text="ramhjuuu"
+    android:textSize="18dp"
      />
  
 </RelativeLayout>

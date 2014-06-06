@@ -30,6 +30,7 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
      public static class ViewHolder{
     	 public TextView text;
     	 public ImageView view;
+    	 public TextView textSmall;
      }
      public VenueData getData(int pos){
     	 if(pos>=0 && pos<val.length){
@@ -51,13 +52,15 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	      viewHolder.text = (TextView) rowView.findViewById(R.id.textViewEventLayout);
     	      /*viewHolder.view = (ImageView) rowView
     	          .findViewById(R.id.imageViewEvent);*/
+    	      viewHolder.textSmall = (TextView)rowView.findViewById(R.id.venue_urlTextViewVenueLayout);
     	      rowView.setTag(viewHolder);
     	 }
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
     	 VenueData s = val[position];
     	    if(s != null)
     	    holder.text.setText(s.Name);
-    	    
+    	    if(holder.textSmall != null)
+    	    holder.textSmall.setText(s.Name);
     	    /*if (s.Name.startsWith("Windows7") || s.Name.startsWith("iPhone")
     	        || s.Name.startsWith("Solaris")) {
     	      holder.view.setImageResource(R.drawable.ic_launcher);

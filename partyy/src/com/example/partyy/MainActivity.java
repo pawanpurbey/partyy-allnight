@@ -200,6 +200,7 @@ public class MainActivity extends FragmentActivity {
                     offerArrayAdapter adapter;
                     if(offerArrayAdapter.getInstance()== null){
 	                 adapter = new offerArrayAdapter(this.activity, values);
+	                 
                     }else{
                     	adapter = offerArrayAdapter.getInstance();
                     }

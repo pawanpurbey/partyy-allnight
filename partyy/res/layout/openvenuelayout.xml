@@ -33,7 +33,7 @@
         ></ImageView>     
 
     <TextView
-        android:id="@+id/defg"
+        android:id="@+id/TimingsOpenVenueLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:text="TextView"
@@ -59,7 +59,7 @@
         ></ImageView>     
 
     <TextView
-        android:id="@+id/defgh"
+        android:id="@+id/AgeOpenVenueLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:text="TextView"
@@ -84,7 +84,7 @@
         ></ImageView>     
 
     <TextView
-        android:id="@+id/defghi"
+        android:id="@+id/PhoneOpenVenueLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:text="TextView"
@@ -94,6 +94,15 @@
         android:textSize="18dp" />
     
     </LinearLayout>
+    <TextView
+        android:id="@+id/DescriptionOpenVenueLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:text="TextView"
+        android:gravity="center" 
+        android:textColor="#ffffff"
+        android:background="#99000000"
+        android:textSize="18dp" />
 	</LinearLayout>
 	</ScrollView>
 

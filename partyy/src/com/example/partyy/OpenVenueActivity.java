@@ -26,7 +26,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class OpenVenueActivity extends ActionBarActivity{
-	private TextView view;
+	private TextView viewTiming;
+	private TextView viewAge;
+	private TextView viewPhone;
+	private TextView viewDescription;
 	private LocationManager locationManager;
 	private Location location;
 	// The minimum distance to change Updates in meters 
@@ -74,6 +77,14 @@ public class OpenVenueActivity extends ActionBarActivity{
 	                } 
 	            } 
 	        }
+	        viewTiming = (TextView)this.findViewById(R.id.TimingsOpenVenueLayout);
+	        viewPhone = (TextView)this.findViewById(R.id.PhoneOpenVenueLayout);
+	        viewAge = (TextView)this.findViewById(R.id.AgeOpenVenueLayout);
+	        viewDescription = (TextView)this.findViewById(R.id.DescriptionOpenVenueLayout);
+	        viewTiming.setText(data.timing);
+	        viewPhone.setText(data.phone);
+	        viewAge.setText(data.City);
+	        viewDescription.setText(data.bDescription);
 		    /*if(data== null || data.btmmap == null){
 		    	//LayoutInflater inflater = getLayoutInflater();
 		    	getWindow().getDecorView().setBackgroundResource(R.drawable.party);
