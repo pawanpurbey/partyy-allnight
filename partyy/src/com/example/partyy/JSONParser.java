@@ -35,7 +35,7 @@ public class JSONParser {
 				data.phone = obj.getString("phone");
 				data.type = obj.getString("type");
 				data.ID =   obj.getString("_id");
-				//data.url = obj.getString("image");
+				data.url = obj.getString("image");
 				data.pos = i;
 				integer i1 = new integer();
 				
@@ -71,6 +71,7 @@ public class JSONParser {
 				//data.url = obj.getString("image");
 				
 				String venueName = venueOffer.getString("name");
+				data.venueName = venueName;
 				if(mapVenue.get(venueName) != null){
 				data.venuePos = mapVenue.get(venueName).pos;
 				}

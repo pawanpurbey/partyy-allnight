@@ -14,6 +14,7 @@ public class OfferData {
 	public String timing = new String();
     public String startDate = new String();
 	public String endData =new String();
+	public String venueName = new String();
     public Bitmap btmmap = null;
     public String url = "http://java.sogeti.nl/JavaBlog/wp-content/uploads/2009/04/android_icon_256.png";
     public boolean isBitmapRequested = false;

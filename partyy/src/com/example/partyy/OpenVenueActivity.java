@@ -1,6 +1,8 @@
 package com.example.partyy;
+import java.io.IOException;
 import java.util.Locale;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +24,9 @@ import android.view.View;
 import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class OpenVenueActivity extends ActionBarActivity{
@@ -32,12 +36,15 @@ public class OpenVenueActivity extends ActionBarActivity{
 	private TextView viewDescription;
 	private LocationManager locationManager;
 	private Location location;
+	String venueLat ;
+	String venueLon;
 	// The minimum distance to change Updates in meters 
 		private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
 	 
 		// The minimum time between updates in milliseconds 
 		private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
 	 
+	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.openvenuelayout);
@@ -77,6 +84,12 @@ public class OpenVenueActivity extends ActionBarActivity{
 	                } 
 	            } 
 	        }
+	        String sDescription = data.sDescription;
+	        String[] arrSplit =sDescription.split("LAT:");
+	        
+	        String[] lon = sDescription.split("LON:");
+	        venueLat = arrSplit[1].split(",")[0];
+	        venueLon = lon[1];
 	        viewTiming = (TextView)this.findViewById(R.id.TimingsOpenVenueLayout);
 	        viewPhone = (TextView)this.findViewById(R.id.PhoneOpenVenueLayout);
 	        viewAge = (TextView)this.findViewById(R.id.AgeOpenVenueLayout);
@@ -99,7 +112,9 @@ public class OpenVenueActivity extends ActionBarActivity{
     	    	Bitmap bitmap = data.btmmap;
     	    	
     	    	Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
-    	    	getWindow().getDecorView().setBackgroundDrawable(drawable);
+    	    
+    	    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openvenuelayout);
+    	    	 relativeLayout.setBackgroundDrawable(drawable);
     	    }
 		    /*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr="+28.523056+","+77.2075));
 		    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
@@ -129,7 +144,7 @@ public class OpenVenueActivity extends ActionBarActivity{
 	}
 	private void openSettings() {
 		// TODO Auto-generated method stub
-		String uri = "http://maps.google.com/maps?saddr=" + location.getLatitude()+","+location.getLongitude()+"&daddr="+28.523056+","+77.2075 ;
+		String uri = "http://maps.google.com/maps?saddr=" + location.getLatitude()+","+location.getLongitude()+"&daddr="+venueLat+","+venueLon ;
 
 		/*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
 	    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");*/

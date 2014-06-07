@@ -22,10 +22,10 @@
         ></ImageView>     
 
     <TextView
-        android:id="@+id/textViewOfferLayout"
+        android:id="@+id/HeaderOfferLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="TextView"
+        android:text="TextViewName"
         android:gravity="center" 
         android:textColor="#0b110b"
         android:background="#ffffff"
@@ -37,14 +37,15 @@
     android:background="#040a0b"
     android:layout_height="40dp"
     android:layout_width="fill_parent"
-    android:id = "@+id/venue_url1OfferLayou"
-    
+    android:id = "@+id/timingOfferLayout"
+    android:text = "Name123"
+     android:textColor="#FFA500"
      />
     <ImageView
         android:id="@+id/venue_urlImageview"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
-        android:layout_below="@+id/venue_url1OfferLayou"
+        android:layout_below="@+id/timingOfferLayout"
          >
 	</ImageView> 
 
@@ -54,6 +55,9 @@
     android:layout_height="40dp"
     android:layout_width="fill_parent"
     android:drawableRight="@drawable/bullet_green"
+    android:id = "@+id/venueNameOfferLayout"
+    android:text = "Name"
+     android:textColor="#FFA500"
      />
  
 </RelativeLayout>

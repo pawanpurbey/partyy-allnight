@@ -51,7 +51,9 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	 return _instance;
      }
      public static class ViewHolder{
-    	 public TextView text;
+    	 public TextView textHeader;
+    	 public TextView textTiming;
+    	 public TextView textVenueName;
     	 public ImageView view;
      }
     /* public OfferData getData(int pos){
@@ -120,7 +122,9 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	      rowView = inflater.inflate(R.layout.offerlayoutnew, null);
     	      // configure view holder
     	      ViewHolder viewHolder = new ViewHolder();
-    	      viewHolder.text = (TextView) rowView.findViewById(R.id.textView1);
+    	      viewHolder.textHeader = (TextView) rowView.findViewById(R.id.HeaderOfferLayout);
+    	      viewHolder.textTiming = (TextView) rowView.findViewById(R.id.timingOfferLayout);
+    	      viewHolder.textVenueName = (TextView) rowView.findViewById(R.id.venueNameOfferLayout);
     	      /*viewHolder.view = (ImageView) rowView
     	          .findViewById(R.id.imageViewEvent);*/
     	      rowView.setTag(viewHolder);
@@ -156,6 +160,12 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	    /*if(showString == SHOW_DRINKS && s.type.equals("Food") && s.header.equals("Free drinks for 2")){
     	    	rowView.setVisibility(View.GONE);
     	    }*/
+    	    if(holder.textHeader != null)
+    	    holder.textHeader.setText(s.header);
+    	    if(holder.textTiming != null)
+    	    holder.textTiming.setText(s.timing);
+    	    if(holder.textVenueName != null)
+    	    holder.textVenueName.setText(s.venueName);
         return rowView;
     	//return super.getView(position, convertView, parent);
     }
