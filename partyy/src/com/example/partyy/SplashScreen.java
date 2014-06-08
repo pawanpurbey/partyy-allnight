@@ -1,5 +1,9 @@
 package com.example.partyy;
 
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,13 +13,24 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.widget.ImageView;
 
 import org.json.JSONObject;
-public class SplashScreen extends Activity{
+public class SplashScreen extends Activity {
 	private static int SPLASH_TIME_OUT = 3000;
 	boolean isFirstTime = false;
 	boolean isAlertDialogShown = false;
+	
+	private ArrayList<ImageView> imageHolders;
+	private ArrayList<String> images;
+	private Thread animationThread;
+	private boolean stopped = true;
+
 	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_splash);
 		if(savedInstanceState == null){
 			//DataFetcher fetcher = (DataFetcher) DataFetcher.getInstance();
 		    //fetcher.execute();
@@ -53,14 +68,32 @@ public class SplashScreen extends Activity{
 				this.startActivity(i);
 		        finish();
 			}
+			imageHolders = new ArrayList<ImageView>();
+			View v = findViewById(R.id.imgOne1);
+			imageHolders.add((ImageView) findViewById(R.id.imgOne1));
+			imageHolders.add((ImageView) findViewById(R.id.imgTwo2));
+			imageHolders.add((ImageView) findViewById(R.id.imgThree3));
+
+			// Prepare an array list of images to be animated
+			images = new ArrayList<String>();
+
+			images.add("progress_1");
+			images.add("progress_2");
+			images.add("progress_3");
+			images.add("progress_4");
+			images.add("progress_5");
+			images.add("progress_6");
+			images.add("progress_7");
+			images.add("progress_8");
+			images.add("progress_9");
+			startAnimation();
 		    }
 		}
 		else{
 			//abcd
 			int k = 0;
 		}
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_splash);
+		
 		//finish();
 		/*new Handler().postDelayed(new Runnable(){
 			/*
@@ -85,6 +118,7 @@ public class SplashScreen extends Activity{
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+        stopped = true;
 		if(isAlertDialogShown == false)
 		   finish();
 	}
@@ -93,4 +127,49 @@ public class SplashScreen extends Activity{
 		// TODO Auto-generated method stub
 		super.onResume();
 	}
-}
+	public void startAnimation() {
+		//setVisibility(View.VISIBLE);
+		 Timer timer = new Timer();
+	        TimerTask task = new TimerTask() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					runOnUiThread(new Runnable() 
+				     {
+				    public void run() 
+				    {
+				         handleMessage();  
+				        }
+				     });
+				}
+			};
+	        timer.schedule(task, 0, 50);
+	}
+	
+
+	    int currentImage = 0;
+	
+		public void handleMessage() {
+			int currentImage = 0;
+			int nextImage = 0;
+			// Logic to change the images
+			for (ImageView imageView : imageHolders) {
+				currentImage = Integer.parseInt(imageView.getTag().toString());
+				if (currentImage < 9) {
+					nextImage = currentImage + 1;
+				} else {
+					nextImage = 1;
+				}
+				imageView.setTag("" + nextImage);
+				imageView.setImageResource(getResources().getIdentifier(
+						images.get(nextImage - 1), "drawable",
+						"com.example.partyy"));
+			}
+			
+		}
+
+	
+
+
+	}
