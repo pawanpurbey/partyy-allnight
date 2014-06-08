@@ -99,9 +99,8 @@ public class OpenVenueActivity extends ActionBarActivity{
 	        viewAge.setText(data.City);
 	        viewDescription.setText(data.bDescription);
 		    if(data== null || data.btmmap == null){
-		    	//LayoutInflater inflater = getLayoutInflater();
-		    	//getWindow().getDecorView().setBackgroundResource(R.drawable.party);
-		        
+		    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openvenuelayout);
+    	    	relativeLayout.setBackgroundResource(R.drawable.striker);
 		       /*if(data != null){
 	    	        DownloadBitmapTask task = new DownloadBitmapTask(data.url, data.pos);
 	    	        Void arr[] = null;

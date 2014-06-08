@@ -143,7 +143,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	      holder.view.setImageResource(R.drawable.party);
     	    }*/
     	    if(s== null || s.btmmap == null){
-    	      //  rowView.setBackgroundResource(R.drawable.party);
+    	        rowView.setBackgroundResource(R.drawable.striker);
     	        if(s!= null && s.isBitmapRequested == false){
 	    	        /*DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
 	    	        Void arr[] = null;
@@ -164,7 +164,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	    holder.textTiming.setText(s.timing);
     	    if(holder.textVenueName != null)
     	    holder.textVenueName.setText(s.venueName);
-        return rowView;
+            return rowView;
     	//return super.getView(position, convertView, parent);
     }
      @Override

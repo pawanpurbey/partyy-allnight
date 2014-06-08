@@ -24,6 +24,7 @@ import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class OpenOfferActivity extends ActionBarActivity{
@@ -91,6 +92,18 @@ public class OpenOfferActivity extends ActionBarActivity{
 		    viewTimings.setText(data.timing);
 		    if(viewdate!=null)
 		    viewdate.setText(data.startDate+ "-"+data.endData);
+		    if(data== null || data.btmmap == null){
+		    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openofferlayoutNew);
+    	    	relativeLayout.setBackgroundResource(R.drawable.striker);
+    	    }
+    	    else  if (data != null && data.btmmap != null){
+    	    	Bitmap bitmap = data.btmmap;
+    	    	
+    	    	Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
+    	    
+    	    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openofferlayoutNew);
+    	    	relativeLayout.setBackgroundDrawable(drawable);
+    	    }
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
