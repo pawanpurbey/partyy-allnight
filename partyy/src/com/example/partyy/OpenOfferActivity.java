@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,9 +27,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class OpenOfferActivity extends ActionBarActivity{
-	private TextView view;
+	private TextView viewHeader;
+	private TextView viewTimings;
+	private TextView viewdate;
 	private LocationManager locationManager;
 	private Location location;
+	private String venueLocationlat;
+	private String venueLocationLon;
 	// The minimum distance to change Updates in meters 
 		private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
 	 
@@ -45,10 +50,16 @@ public class OpenOfferActivity extends ActionBarActivity{
 		   // view = (TextView)findViewById(R.id.textViewEventLayout);
 		    //Now get actual data to show 
 		    OfferData data = DataArray.getInstance().vecOfferData.elementAt(valPos);
-		   
+		    int venueId = data.venuePos;
+		    VenueData dataVenue = DataArray.getInstance().vecVenueData.elementAt(venueId);
+		    venueLocationlat = dataVenue.lat;
+		    venueLocationLon = dataVenue.lon;
 		    locationManager = (LocationManager) this.getApplicationContext()
 	                .getSystemService(Context.LOCATION_SERVICE);
- 
+            viewHeader = (TextView)findViewById(R.id.headeropenoffer);
+            View v = findViewById(R.id.timingOpenOfferLayoutNew);
+            viewTimings = (TextView)findViewById(R.id.timingOpenOfferLayoutNew);
+            viewdate = (TextView)findViewById(R.id.dateOpenOffer);
 	        // getting GPS status 
 	       boolean  isGPSEnabled = locationManager
 	                .isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -58,7 +69,7 @@ public class OpenOfferActivity extends ActionBarActivity{
 	                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
  
 	        if (!isGPSEnabled && !isNetworkEnabled) {
-	            // no network provider is enabled 
+	            //  no network provider is enabled 
 	        } else { 
 	            //this.canGetLocation = true;
 	            if (isNetworkEnabled) {
@@ -74,26 +85,12 @@ public class OpenOfferActivity extends ActionBarActivity{
 	                } 
 	            } 
 	        }
-		    /*if(data== null || data.btmmap == null){
-		    	//LayoutInflater inflater = getLayoutInflater();
-		    	getWindow().getDecorView().setBackgroundResource(R.drawable.party);
-		        
-		       if(data != null){
-	    	        DownloadBitmapTask task = new DownloadBitmapTask(data.url, data.pos);
-	    	        Void arr[] = null;
-	    	        task.execute(arr);
-    	        }
-    	    }
-    	    else  if (data != null){
-    	    	Bitmap bitmap = data.btmmap;
-    	    	
-    	    	Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
-    	    	getWindow().getDecorView().setBackgroundDrawable(drawable);
-    	    }
-		    /*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr="+28.523056+","+77.2075));
-		    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-
-            startActivity(intent);*/
+	        if(viewHeader!=null)
+		    viewHeader.setText(data.header);
+		    if(viewTimings != null)
+		    viewTimings.setText(data.timing);
+		    if(viewdate!=null)
+		    viewdate.setText(data.startDate+ "-"+data.endData);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -118,7 +115,7 @@ public class OpenOfferActivity extends ActionBarActivity{
 	}
 	private void openSettings() {
 		// TODO Auto-generated method stub
-		String uri = "http://maps.google.com/maps?saddr=" + location.getLatitude()+","+location.getLongitude()+"&daddr="+28.523056+","+77.2075 ;
+		String uri = "http://maps.google.com/maps?saddr=" + location.getLatitude()+","+location.getLongitude()+"&daddr="+venueLocationlat+","+venueLocationLon ;
 
 		/*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
 	    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");*/

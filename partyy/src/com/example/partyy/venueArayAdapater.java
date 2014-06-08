@@ -68,15 +68,15 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	      holder.view.setImageResource(R.drawable.party);
     	    }*/
     	    if(s== null || s.btmmap == null){
-    	        //rowView.setBackgroundResource(R.drawable.party);
-    	        if(s!= null && s.isBitmapRequested == false){
+    	        rowView.setBackgroundResource(R.drawable.striker);
+    	       if(s!= null && s.isBitmapRequested == false){
 	    	        /*DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
 	    	        Void arr[] = null;
 	    	        task.execute(arr);
 	    	        s.isBitmapRequested = true;*/
     	        }
     	    }
-    	    else  if (s!= null){
+    	    else  if (s!= null ){
     	    	Bitmap bitmap = s.btmmap;
     	    	
     	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), bitmap);

@@ -75,7 +75,7 @@
         ></ImageView>     
 
     <TextView
-        android:id="@+id/defg"
+        android:id="@+id/headeropenoffer"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:text="TextView"
@@ -101,10 +101,10 @@
         ></ImageView>     
 
     <TextView
-        android:id="@+id/defghOpenOffer"
+        android:id="@+id/timingOpenOfferLayoutNew"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="TextView"
+        android:text="TextViewRAMJI"
         android:gravity="center" 
         android:textColor="#0b110b"
         android:background="#ffffff"
@@ -126,7 +126,7 @@
         ></ImageView>     
 
     <TextView
-        android:id="@+id/defghiOpenOffer"
+        android:id="@+id/dateOpenOffer"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:text="TextView"

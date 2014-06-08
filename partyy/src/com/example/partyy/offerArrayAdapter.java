@@ -151,15 +151,13 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
 	    	        s.isBitmapRequested = true;*/
     	        }
     	    }
-    	    else  if (s!= null){
+    	    else  if (s!= null ){
     	    	Bitmap bitmap = s.btmmap;
     	    	
     	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), bitmap);
     	    	rowView.setBackgroundDrawable(drawable);
     	    }
-    	    /*if(showString == SHOW_DRINKS && s.type.equals("Food") && s.header.equals("Free drinks for 2")){
-    	    	rowView.setVisibility(View.GONE);
-    	    }*/
+    	    
     	    if(holder.textHeader != null)
     	    holder.textHeader.setText(s.header);
     	    if(holder.textTiming != null)

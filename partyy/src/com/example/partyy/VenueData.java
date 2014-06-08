@@ -16,6 +16,8 @@ public class VenueData {
 	public String timing = new String();
 	public String type = new String();
 	public String phone = new String();
+	public String lat = new String();
+	public String lon =  new String();
     public Bitmap btmmap = null;
     public String url = "http://www.mobiwebdev.com/wp-content/uploads/2014/06/PartyRock-Venue-Ggn-7Brauhaus1.jpg";
     public boolean isBitmapRequested = false;

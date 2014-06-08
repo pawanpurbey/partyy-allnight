@@ -260,7 +260,7 @@ public class MainActivity extends FragmentActivity {
 							  //Create the bundle
 							  Bundle bundle = new Bundle();
 							  //Add your data to bundle
-							  bundle.putInt("Pos", arg2-1);
+							  bundle.putInt("Pos", data.ownPosition);
 							  //Add the bundle to the intent
 							  i.putExtras(bundle);
 							  i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

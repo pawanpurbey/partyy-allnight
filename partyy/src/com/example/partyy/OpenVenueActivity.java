@@ -108,14 +108,15 @@ public class OpenVenueActivity extends ActionBarActivity{
 	    	        task.execute(arr);
     	        }*/
     	    }
-    	    else  if (data != null){
+    	    else  if (data != null && data.btmmap != null){
     	    	Bitmap bitmap = data.btmmap;
     	    	
     	    	Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
     	    
     	    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openvenuelayout);
-    	    	 relativeLayout.setBackgroundDrawable(drawable);
+    	    	relativeLayout.setBackgroundDrawable(drawable);
     	    }
+		    getWindow().getDecorView().setBackgroundColor(3135227);
 		    /*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr="+28.523056+","+77.2075));
 		    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
 

@@ -37,6 +37,12 @@ public class JSONParser {
 				data.ID =   obj.getString("_id");
 				data.url = obj.getString("image");
 				data.pos = i;
+				String sDescription = data.sDescription;
+		        String[] arrSplit =sDescription.split("LAT:");
+		        
+		        String[] lon = sDescription.split("LON:");
+		        data.lat = arrSplit[1].split(",")[0];
+		        data.lon = lon[1];
 				integer i1 = new integer();
 				
 				mapVenue.put(data.Name, data);
@@ -65,8 +71,10 @@ public class JSONParser {
 				data.type = obj.getString("type");
 				data.isFeatured = obj.getString("isFeatured");
 				data.timing = obj.getString("timeInfo");
-				
+				data.startDate = obj.getString("startDate");
+				data.endData = obj.getString("endDate");
 				data.type = obj.getString("type");
+				data.ownPosition = i;
 				JSONObject venueOffer = obj.getJSONObject("venue");
 				//data.url = obj.getString("image");
 				
@@ -74,8 +82,9 @@ public class JSONParser {
 				data.venueName = venueName;
 				if(mapVenue.get(venueName) != null){
 				data.venuePos = mapVenue.get(venueName).pos;
-				}
 				vecOffer.add(data);
+				}
+				
 			}
 			mapVenue = null;
 		} catch (JSONException e) {
