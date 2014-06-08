@@ -16,22 +16,25 @@ import android.widget.TextView;
 public class eventarrayadapter extends ArrayAdapter<OfferData>{
      private Activity context;
      //Later on String will be changed by our own class
-     private OfferData[] val;
+     private EventData[] val;
      private static eventarrayadapter _instance;
      public static eventarrayadapter getInstance(){
     	 return _instance;
      }
-     public eventarrayadapter(Activity c,OfferData[] val){
-    	 super(c, R.layout.eventlayout,val);
-    	 this.context = c;
+     
+     public eventarrayadapter(Activity activity, EventData[] values) {
+		// TODO Auto-generated constructor stub
+    	 super(activity, R.layout.eventlayout);
+    	 this.context = activity;
     	 this.val = val;
     	 _instance = this;
-     }
-     public static class ViewHolder{
+	}
+	
+	public static class ViewHolder{
     	 public TextView text;
     	 public ImageView view;
      }
-     public OfferData getData(int pos){
+     public EventData getData(int pos){
     	 if(pos>=0 && pos<val.length){
     	     return val[pos];
     	 }else{
@@ -54,8 +57,8 @@ public class eventarrayadapter extends ArrayAdapter<OfferData>{
     	      rowView.setTag(viewHolder);
     	 }
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
-    	    OfferData s = val[position];
-    	    if(s != null)
+    	    EventData s = val[position];
+    	    /*if(s != null)
     	    holder.text.setText(s.header);
     	    
     	    /*if (s.Name.startsWith("Windows7") || s.Name.startsWith("iPhone")
@@ -63,14 +66,14 @@ public class eventarrayadapter extends ArrayAdapter<OfferData>{
     	      holder.view.setImageResource(R.drawable.ic_launcher);
     	    } else {
     	      holder.view.setImageResource(R.drawable.party);
-    	    }*/
+    	    }
     	    if(s== null || s.btmmap == null){
     	        rowView.setBackgroundResource(R.drawable.party);
     	        if(s!= null && s.isBitmapRequested == false){
 	    	        /*DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
 	    	        Void arr[] = null;
 	    	        task.execute(arr);
-	    	        s.isBitmapRequested = true;*/
+	    	        s.isBitmapRequested = true;
     	        }
     	    }
     	    else  if (s!= null){
@@ -79,7 +82,7 @@ public class eventarrayadapter extends ArrayAdapter<OfferData>{
     	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), bitmap);
     	    	rowView.setBackgroundDrawable(drawable);
     	    }
-    	    	
+    	    */
         return rowView;
     	//return super.getView(position, convertView, parent);
     }

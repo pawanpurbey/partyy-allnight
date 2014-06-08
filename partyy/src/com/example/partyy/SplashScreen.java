@@ -1,7 +1,11 @@
 package com.example.partyy;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,10 +14,30 @@ import org.json.JSONObject;
 public class SplashScreen extends Activity{
 	private static int SPLASH_TIME_OUT = 3000;
 	boolean isFirstTime = false;
+	boolean isAlertDialogShown = false;
 	public void onCreate(Bundle savedInstanceState){
 		if(savedInstanceState == null){
 			//DataFetcher fetcher = (DataFetcher) DataFetcher.getInstance();
 		    //fetcher.execute();
+			ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+		     if(cm.getActiveNetworkInfo() == null ||cm.getActiveNetworkInfo().isConnected() == false){
+		    	 AlertDialog alertDialog = new AlertDialog.Builder(this).create(); 
+		         alertDialog.setTitle("No Interent connection");
+		         alertDialog.setMessage("To use this application internet connection is required...Please try again after switching on the internet connection.");
+                 final Context c = this;
+		         alertDialog.setButton("Got it..", new DialogInterface.OnClickListener() {
+		            public void onClick(DialogInterface dialog, int which) {
+		               // here you can add functions
+		            	
+		   		        	finish();
+		   		        
+		            }
+		         });
+                 isAlertDialogShown = true;
+		         alertDialog.show();
+		    	 
+		     }
+		    else{
 			SplashScreenApp app= new SplashScreenApp();
 			SplashScreenApp.getInstance().context = getApplicationContext();
 			SQLiteAsyncTask task = new SQLiteAsyncTask(this);
@@ -29,6 +53,7 @@ public class SplashScreen extends Activity{
 				this.startActivity(i);
 		        finish();
 			}
+		    }
 		}
 		else{
 			//abcd
@@ -60,7 +85,8 @@ public class SplashScreen extends Activity{
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		finish();
+		if(isAlertDialogShown == false)
+		   finish();
 	}
 	@Override
 	protected void onResume() {

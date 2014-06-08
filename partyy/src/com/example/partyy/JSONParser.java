@@ -16,6 +16,7 @@ public class JSONParser {
     }
     Vector<VenueData> vecVenue = new Vector<VenueData>();
     Vector<OfferData> vecOffer = new Vector<OfferData>();
+    Vector<EventData> vecEvent = new Vector<EventData>();
     void Parse(){
     	//OfferData data = new OfferData();
     	HashMap<String,VenueData> mapVenue = new HashMap<String, VenueData>();

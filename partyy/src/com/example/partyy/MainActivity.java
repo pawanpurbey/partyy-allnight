@@ -274,13 +274,13 @@ public class MainActivity extends FragmentActivity {
                 }
                 else if( this.description == "event"){
                 	rootView = inflater.inflate(R.layout.eventfragment, container, false);
-                	Object[] val = DataArray.getInstance().vecOfferData.toArray();
-                	int len = val.length;
-                	OfferData[] values = new OfferData[len];
+                	
+                	int len = DataArray.getInstance().vecEventData.size();
+                	EventData[] values = new EventData[len];
                     for(int i = 0;i<len;i++){
                     	  //String s =  DataArray.getInstance().vecOfferData.elementAt(i).Name;
                     	 
-                    	       values[0] = (OfferData)val[i];
+                    	       values[i] = (EventData)DataArray.getInstance().vecEventData.elementAt(i);
                     	
                     	
                     }
@@ -299,7 +299,7 @@ public class MainActivity extends FragmentActivity {
 							ListView v= (ListView)arg0;
 							ListAdapter listadapter = v.getAdapter();
 							eventarrayadapter adapter = (eventarrayadapter)listadapter;
-							OfferData viewdata = adapter.getData(arg2);
+							EventData viewdata = adapter.getData(arg2);
 							
 							//int pos = v.getSelectedItemPosition();
 							//int id = v.getSelectedItemId();

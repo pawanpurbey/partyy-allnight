@@ -35,6 +35,7 @@ public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 		//Now we have the retreived vector in parser
 		DataArray.getInstance().vecVenueData = parser.vecVenue;
 		DataArray.getInstance().vecOfferData = parser.vecOffer;
+		DataArray.getInstance().vecEventData = parser.vecEvent;
 		if(StateMachine.getInstance().isFirstTime == false || StateMachine.getInstance().isUserRegistered ==true){
 		   Intent i = new Intent(context, MainActivity.class);
 		   i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
