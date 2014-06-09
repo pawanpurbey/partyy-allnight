@@ -18,4 +18,5 @@ public class StateMachine {
 		
 	}
    }
+   public int currentFragment = 0;
 }

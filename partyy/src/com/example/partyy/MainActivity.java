@@ -10,6 +10,7 @@ import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
+import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -56,7 +59,7 @@ public class MainActivity extends FragmentActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
-
+    PagerTitleStrip titleStrip;// = (PagerTitleStrip)this.findViewById(R.id.pager_title_strip);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	//removes the title bars
@@ -74,6 +77,38 @@ public class MainActivity extends FragmentActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         setRequestedOrientation(ActivityInfo  
         		  .SCREEN_ORIENTATION_PORTRAIT);
+         titleStrip = (PagerTitleStrip)this.findViewById(R.id.pager_title_strip);
+         titleStrip.setBackgroundColor(Color.rgb(51, 181, 229));
+        mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+			
+			@Override
+			public void onPageSelected(int arg0) {
+				// TODO Auto-generated method stub
+				
+				if(arg0 == 0){
+					titleStrip.setBackgroundColor(Color.rgb(51, 181, 229));
+					
+				}
+				else if(arg0 == 1){
+					titleStrip.setBackgroundColor(Color.rgb(181, 229, 51));
+				}else{
+					titleStrip.setBackgroundColor(Color.rgb(255, 165, 0));
+				}
+				StateMachine.getInstance().currentFragment = arg0;
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
         /*Intent serviceIntent = new Intent(this,DownloadImageService.class);
         startService(serviceIntent);*/
         Timer timer = new Timer();
@@ -165,7 +200,11 @@ public class MainActivity extends FragmentActivity {
         private ListView viewEvent;
         private ListView viewOffer;
         private ListView viewVenue;
-        
+        Button offerDrinks;
+        Button offerFood;
+        Button offerAll;
+        Button offerGuestList;
+        Button offerUnknown;
         public  String description;
         public DummySectionFragment() {
         	
@@ -212,7 +251,7 @@ public class MainActivity extends FragmentActivity {
 	                viewOffer.setAdapter(adapter);
 	                //view.setLongClickable(true);
 	                
-	                Button offerDrinks = (Button) viewOffer.findViewById(R.id.offer_drinks);
+	                 offerDrinks = (Button) viewOffer.findViewById(R.id.offer_drinks);
 	                if(offerDrinks!= null){
 	                	offerDrinks.setOnClickListener(this);
 	                	/*offerDrinks.setOnClickListener(new OnClickListener() {
@@ -229,19 +268,19 @@ public class MainActivity extends FragmentActivity {
 							}
 						});*/
 	                }
-	                Button offerFood =  (Button) viewOffer.findViewById(R.id.offer_food);
+	                offerFood =  (Button) viewOffer.findViewById(R.id.offer_food);
 	                if(offerFood != null){
 	                	offerFood.setOnClickListener(this);
 	                }
-	                Button offerAll =  (Button) viewOffer.findViewById(R.id.offer_all);
+	                 offerAll =  (Button) viewOffer.findViewById(R.id.offer_all);
 	                if(offerAll != null){
 	                	offerAll.setOnClickListener(this);
 	                }
-	                Button offerGuestList =  (Button) viewOffer.findViewById(R.id.offer_guest_list);
+	                offerGuestList =  (Button) viewOffer.findViewById(R.id.offer_guest_list);
 	                if(offerGuestList != null){
 	                	offerGuestList.setOnClickListener(this);
 	                }
-	                Button offerUnknown =  (Button) viewOffer.findViewById(R.id.offer_others);
+	                offerUnknown =  (Button) viewOffer.findViewById(R.id.offer_others);
 	                if(offerUnknown != null){
 	                	offerUnknown.setOnClickListener(this);
 	                }
@@ -270,7 +309,7 @@ public class MainActivity extends FragmentActivity {
 							
 						}
 	                	}); 
-	              
+	               
 					
 	                
                 }
@@ -309,6 +348,7 @@ public class MainActivity extends FragmentActivity {
 							Toast.makeText(getActivity(),data.Name , Toast.LENGTH_SHORT).show();*/
 						}
 	                	}); 
+	               
                 }
                 else if( this.description == "venue"){
                 	rootView = inflater.inflate(R.layout.venuesfragment, container, false);
@@ -355,6 +395,7 @@ public class MainActivity extends FragmentActivity {
 							Toast.makeText(getActivity(),data.Name , Toast.LENGTH_SHORT).show();
 						}
 	                	}); 
+	                
                 }
                 
             return rootView;
@@ -370,26 +411,52 @@ public class MainActivity extends FragmentActivity {
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_DRINKS){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_DRINKS;
 					offerArrayAdapter.getInstance().ChangeData();
+					offerDrinks.setBackgroundColor(Color.rgb(255, 165, 0));
+			        offerFood.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerAll.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerGuestList.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerUnknown.setBackgroundColor(Color.rgb(0, 0, 0));
+
 			    }
 			}else if(id == R.id.offer_food){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_FOOD){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_FOOD;
 					offerArrayAdapter.getInstance().ChangeData();
+					offerDrinks.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerFood.setBackgroundColor(Color.rgb(255, 165, 0));
+			        offerAll.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerGuestList.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerUnknown.setBackgroundColor(Color.rgb(0, 0, 0));
 			    }
 			}else if(id == R.id.offer_all){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_ALL){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_ALL;
 					offerArrayAdapter.getInstance().ChangeData();
+					offerDrinks.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerFood.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerAll.setBackgroundColor(Color.rgb(255, 165, 0));
+			        offerGuestList.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerUnknown.setBackgroundColor(Color.rgb(0, 0, 0));
 			    }
 			}else if(id == R.id.offer_guest_list){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_GUESTLIST){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_GUESTLIST;
 					offerArrayAdapter.getInstance().ChangeData();
+					offerDrinks.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerFood.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerAll.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerGuestList.setBackgroundColor(Color.rgb(255, 165, 0));
+			        offerUnknown.setBackgroundColor(Color.rgb(0, 0, 0));
 			    }
 			}else if(id == R.id.offer_others){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_UNKNOWN){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_UNKNOWN;
 					offerArrayAdapter.getInstance().ChangeData();
+					offerDrinks.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerFood.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerAll.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerGuestList.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerUnknown.setBackgroundColor(Color.rgb(255, 165, 0));
 			    }
 			}
 		}

@@ -26,9 +26,9 @@
         android:text="All Offers"
         android:gravity="center" 
         android:textColor="#ffffff"
-        android:background="@drawable/rounded_rectangle"
         android:textSize="18dp"
         android:id ="@+id/offer_all"
+        android:background="#FFA500"
        />
 	
 	<LinearLayout 
@@ -61,7 +61,7 @@ style="@style/offer_buttons"
 			android:id="@+id/offer_others"
 			android:text="Others"
 			android:drawableTop="@drawable/questionmark"	
-style="@style/offer_buttons"
+            style="@style/offer_buttons"
 		 />  	    
 	</LinearLayout>
     
