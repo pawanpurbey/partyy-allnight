@@ -16,7 +16,7 @@
         android:textSize="50dp" />
 
     <LinearLayout
-        
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView1"
@@ -48,16 +48,18 @@
             android:layout_toRightOf="@id/imgTwo2"
             android:src="@drawable/progress_3"
             android:tag="3" />
-
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imgThree3"
-            android:layout_alignTop="@id/imgThree3"
-            android:layout_toRightOf="@id/imgThree3"
-            android:gravity="bottom"
-            android:text="Please Wait..." />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/TextViewPlsWait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="74dp"
+        android:gravity="bottom"
+        android:text="Please Wait..."
+        android:textSize="20dp" />
 
 </RelativeLayout>

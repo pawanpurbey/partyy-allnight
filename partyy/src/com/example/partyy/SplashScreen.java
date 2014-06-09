@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 public class SplashScreen extends Activity {
@@ -25,9 +26,10 @@ public class SplashScreen extends Activity {
 	
 	private ArrayList<ImageView> imageHolders;
 	private ArrayList<String> images;
+	private String[] array = {"Please wait.","Please wait...","Please wait.....","Please wait......."};
 	private Thread animationThread;
 	private boolean stopped = true;
-
+    TextView plsWaitView;
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
@@ -69,7 +71,7 @@ public class SplashScreen extends Activity {
 		        finish();
 			}
 			imageHolders = new ArrayList<ImageView>();
-			View v = findViewById(R.id.imgOne1);
+			plsWaitView= (TextView)findViewById(R.id.TextViewPlsWait);
 			imageHolders.add((ImageView) findViewById(R.id.imgOne1));
 			imageHolders.add((ImageView) findViewById(R.id.imgTwo2));
 			imageHolders.add((ImageView) findViewById(R.id.imgThree3));
@@ -92,6 +94,10 @@ public class SplashScreen extends Activity {
 		else{
 			//abcd
 			int k = 0;
+		}
+		for (ImageView imageView : imageHolders) {
+			
+			imageView.setVisibility(View.GONE);
 		}
 		
 		//finish();
@@ -118,7 +124,7 @@ public class SplashScreen extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-        stopped = true;
+        timer.cancel();
 		if(isAlertDialogShown == false)
 		   finish();
 	}
@@ -127,9 +133,10 @@ public class SplashScreen extends Activity {
 		// TODO Auto-generated method stub
 		super.onResume();
 	}
+	private Timer timer;
 	public void startAnimation() {
 		//setVisibility(View.VISIBLE);
-		 Timer timer = new Timer();
+		  timer = new Timer();
 	        TimerTask task = new TimerTask() {
 				
 				@Override
@@ -144,17 +151,17 @@ public class SplashScreen extends Activity {
 				     });
 				}
 			};
-	        timer.schedule(task, 0, 50);
+	        timer.schedule(task, 0, 100);
 	}
 	
 
 	    int currentImage = 0;
-	
+	    int index = 0;
 		public void handleMessage() {
 			int currentImage = 0;
 			int nextImage = 0;
 			// Logic to change the images
-			for (ImageView imageView : imageHolders) {
+			/*for (ImageView imageView : imageHolders) {
 				currentImage = Integer.parseInt(imageView.getTag().toString());
 				if (currentImage < 9) {
 					nextImage = currentImage + 1;
@@ -165,8 +172,11 @@ public class SplashScreen extends Activity {
 				imageView.setImageResource(getResources().getIdentifier(
 						images.get(nextImage - 1), "drawable",
 						"com.example.partyy"));
-			}
-			
+				imageView.setVisibility(View.GONE);
+			}*/
+			if(index >=4)
+				index = 0;
+			plsWaitView.setText(array[index++]);
 		}
 
 	

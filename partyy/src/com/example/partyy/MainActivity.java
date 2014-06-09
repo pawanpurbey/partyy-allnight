@@ -79,7 +79,9 @@ public class MainActivity extends FragmentActivity {
         Timer timer = new Timer();
         DownloadImageTimerTask task = new DownloadImageTimerTask();
         task.timer = timer;
-        timer.schedule(task, 100, 100);
+        timer.schedule(task, 0, 300);
+        /* DownlaodBitmapThread thread = new DownlaodBitmapThread();
+        thread.start();*/
     }
 /*
     @Override

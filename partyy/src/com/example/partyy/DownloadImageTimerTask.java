@@ -9,7 +9,7 @@ import android.graphics.BitmapFactory;
 
 public class DownloadImageTimerTask extends TimerTask{
 	public Timer  timer;
-	Bitmap mIcon11;
+	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -21,13 +21,14 @@ public class DownloadImageTimerTask extends TimerTask{
     	        
 				try {
 			        InputStream in = new java.net.URL(s.url).openStream();
-			        mIcon11 = BitmapFactory.decodeStream(in);
+                    Bitmap mIcon11 = BitmapFactory.decodeStream(in);
+                    DataArray.getInstance().vecVenueData.elementAt(s.pos).btmmap = mIcon11;
+    				
 			        bitmapRemaining = true;
 			    } catch (Exception e) {
 			        
 			        e.printStackTrace();
 			    }
-				DataArray.getInstance().vecVenueData.elementAt(s.pos).btmmap = mIcon11;
 				
 				//final ArrayAdapter adapter = ((ArrayAdapter)getListAdapter());
 				if(SplashScreenApp.getInstance() != null){
@@ -59,13 +60,14 @@ public class DownloadImageTimerTask extends TimerTask{
     	        
 				try {
 			        InputStream in = new java.net.URL(s1.photoString).openStream();
-			        mIcon11 = BitmapFactory.decodeStream(in);
+			        Bitmap mIcon11 = BitmapFactory.decodeStream(in);
+			        DataArray.getInstance().vecOfferData.elementAt(s1.ownPosition).btmmap = mIcon11;
+					
 			        bitmapRemaining = true;
 			    } catch (Exception e) {
 			        
 			        e.printStackTrace();
 			    }
-				DataArray.getInstance().vecOfferData.elementAt(s1.ownPosition).btmmap = mIcon11;
 				
 				//final ArrayAdapter adapter = ((ArrayAdapter)getListAdapter());
 				if(SplashScreenApp.getInstance() != null){
