@@ -9,18 +9,27 @@ import android.util.Log;
 
 public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 	private Context context;
-	public JSONStringRetreiver(Context context) {
+	public int method = 0;
+	public JSONStringRetreiver(Context context, int method) {
 		// TODO Auto-generated constructor stub
 		this.context = context;
+		this.method = method;
 	}
 	
 	@Override
 	protected String doInBackground(String... params) {
 		// TODO Auto-generated method stub
 		ServiceHandler sh = new ServiceHandler();
+		String jsonStr = null;
 		// Making a request to url and getting response
-        String jsonStr = sh.makeServiceCall(params[0], ServiceHandler.POST);
-        Log.d("Response: ", "> " + jsonStr);
+		if(method ==0 ){
+           jsonStr = sh.makeServiceCall(params[0], ServiceHandler.POST);
+           Log.d("Response: ", "> " + jsonStr);
+		}
+		else if (method ==1){
+			jsonStr = sh.makeServiceCall(params[0], ServiceHandler.GET);
+	        Log.d("Response: ", "> " + jsonStr);
+		}
 		// TODO Auto-generated method stub
 		return jsonStr;
 		

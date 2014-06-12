@@ -8,19 +8,28 @@ import android.location.LocationManager;
 public class LocationGetter {
 	
 	private LocationManager locationManager;
-	
+	public double latitide;
+	public double longitude;
+	private static Object obj;
 	public Location location;
 	
-	public static LocationGetter getInstance(){
+	public static synchronized LocationGetter getInstance(){
+		if(_instance == null){
+			_instance = new LocationGetter();
+		}
 		return _instance;
 	}
 	
-	private static LocationGetter _instance = null;
+	private static LocationGetter _instance = new LocationGetter();
 	
-	private LocationGetter(){
+	 private LocationGetter(){
 		_instance=this;
 		locationManager = (LocationManager) SplashScreenApp.getInstance().getApplicationContext()
                 .getSystemService(Context.LOCATION_SERVICE);
+	 }
+	 public void  getLocation(){
+		 
+		
 
         // getting GPS status 
        boolean  isGPSEnabled = locationManager
@@ -41,8 +50,8 @@ public class LocationGetter {
                    location =  locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                 	if (location != null) {
     	                //Log.d("activity", "LOC by Network");
-                        double latitude = location.getLatitude();
-                        double longitude = location.getLongitude();
+                       latitide = location.getLatitude();
+                       longitude = location.getLongitude();
                     } 
                 } 
             } 

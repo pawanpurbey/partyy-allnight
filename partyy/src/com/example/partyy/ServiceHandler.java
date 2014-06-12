@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
- 
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -15,6 +15,8 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+
+import android.location.LocationManager;
  
 public class ServiceHandler {
  
@@ -73,7 +75,14 @@ public class ServiceHandler {
                     url += "?" + paramString;
                 }
                 HttpGet httpGet = new HttpGet(url);
-                httpGet.addHeader("data","{'sds':'asa','asa':23}"); 	
+                LocationGetter.getInstance().getLocation();
+                String longitude = new String();
+                longitude += LocationGetter.getInstance().longitude;
+                String latitude = new String();
+                latitude += LocationGetter.getInstance().latitide;
+                //String val = "{'lon':"+longitude+"'lat':"+latitude+"}" ;
+                httpGet.addHeader("lat",latitude); 	
+                httpGet.addHeader("lon",longitude);
                 httpResponse = httpClient.execute(httpGet);
  
             }
