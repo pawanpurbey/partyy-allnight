@@ -34,8 +34,7 @@ public class OpenVenueActivity extends ActionBarActivity{
 	private TextView viewAge;
 	private TextView viewPhone;
 	private TextView viewDescription;
-	private LocationManager locationManager;
-	private Location location;
+
 	String venueLat ;
 	String venueLon;
 	// The minimum distance to change Updates in meters 
@@ -56,35 +55,7 @@ public class OpenVenueActivity extends ActionBarActivity{
 		    //Now get actual data to show 
 		    VenueData data = DataArray.getInstance().vecVenueData.elementAt(valPos);
 		   
-		    locationManager = (LocationManager) this.getApplicationContext()
-	                .getSystemService(Context.LOCATION_SERVICE);
- 
-	        // getting GPS status 
-	       boolean  isGPSEnabled = locationManager
-	                .isProviderEnabled(LocationManager.GPS_PROVIDER);
- 
-	        // getting network status 
-	        boolean isNetworkEnabled = locationManager
-	                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
- 
-	        if (!isGPSEnabled && !isNetworkEnabled) {
-	            // no network provider is enabled 
-	        } else { 
-	            //this.canGetLocation = true;
-	            if (isNetworkEnabled) {
-	                
-	                if (locationManager != null) {
-	                    location = locationManager
-	                            .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-	                    if (location != null) {
-	    	                //Log.d("activity", "LOC by Network");
-	                        double latitude = location.getLatitude();
-	                        double longitude = location.getLongitude();
-	                    } 
-	                } 
-	            } 
-	        }
-	        String sDescription = data.sDescription;
+		    	        String sDescription = data.sDescription;
 	        String[] arrSplit =sDescription.split("LAT:");
 	        
 	        String[] lon = sDescription.split("LON:");
@@ -144,8 +115,9 @@ public class OpenVenueActivity extends ActionBarActivity{
 	}
 	private void openSettings() {
 		// TODO Auto-generated method stub
-		String uri = "http://maps.google.com/maps?saddr=" + location.getLatitude()+","+location.getLongitude()+"&daddr="+venueLat+","+venueLon ;
-
+		//String uri = "http://maps.google.com/maps?saddr=" + location.getLatitude()+","+location.getLongitude()+"&daddr="+venueLat+","+venueLon ;
+		String uri = "http://maps.google.com/maps?saddr=" + LocationGetter.getInstance().location.getLatitude()+","+
+				LocationGetter.getInstance().location.getLongitude()+"&daddr="+venueLat+","+venueLon ;
 		/*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
 	    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");*/
 		//String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?saddr=%f,%f(%s)&daddr=%f,%f (%s)", location.getLatitude(), location.getLatitude(), "Home Sweet Home", 28.523056, 77.2075, "Where the party is at");

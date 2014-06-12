@@ -38,13 +38,22 @@ public class JSONParser {
 				data.ID =   obj.getString("_id");
 				data.url = obj.getString("image");
 				data.pos = i;
+				JSONObject objLoc = obj.getJSONObject("loc");
+				if(objLoc != null){
+					JSONArray objCoordiantes = objLoc.getJSONArray("coordinates");
+					data.lon = objCoordiantes.getString(0);
+					data.lat = objCoordiantes.getString(1);
+				}
 				String sDescription = data.sDescription;
+				/*
 		        String[] arrSplit =sDescription.split("LAT:");
 		        
 		        String[] lon = sDescription.split("LON:");
 		        data.lat = arrSplit[1].split(",")[0];
 		        data.lon = lon[1];
+		        
 				integer i1 = new integer();
+				*/
 				
 				mapVenue.put(data.Name, data);
 				vecVenue.add(data);

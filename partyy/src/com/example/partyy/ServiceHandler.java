@@ -1,6 +1,7 @@
 package com.example.partyy;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
  
 import org.apache.http.HttpEntity;
@@ -12,6 +13,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
  
 public class ServiceHandler {
@@ -51,9 +53,15 @@ public class ServiceHandler {
             if (method == POST) {
                 HttpPost httpPost = new HttpPost(url);
                 // adding post params
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+                nameValuePairs.add(new BasicNameValuePair("latC", "12345"));
+                nameValuePairs.add(new BasicNameValuePair("lonC", "AndDev is Cool!"));
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                /*
                 if (params != null) {
                     httpPost.setEntity(new UrlEncodedFormEntity(params));
-                }
+                }*/
  
                 httpResponse = httpClient.execute(httpPost);
  
@@ -65,7 +73,7 @@ public class ServiceHandler {
                     url += "?" + paramString;
                 }
                 HttpGet httpGet = new HttpGet(url);
- 
+                httpGet.addHeader("data","{'sds':'asa','asa':23}"); 	
                 httpResponse = httpClient.execute(httpGet);
  
             }

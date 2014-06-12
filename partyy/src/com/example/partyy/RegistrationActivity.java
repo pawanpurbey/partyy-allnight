@@ -32,15 +32,16 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 		SaveButton.setOnClickListener(this);
 		grpAge = (RadioGroup)findViewById(R.id.radioGroup1);
 		grpSex = (RadioGroup)findViewById(R.id.radioGroup2);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		JSONStringRetreiver receiver = new JSONStringRetreiver(this);
-		receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
+		//receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
+		receiver.execute("http://192.168.56.138:3000/venues/totaldata");
 		StateMachine.getInstance().isDataRetreived = false;
 		StateMachine.getInstance().isFirstTime = true;
 		StateMachine.getInstance().isUserRegistered = false;
 		TelephonyManager Mgr=(TelephonyManager)this.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);  
 		phoneNumber = Mgr.getLine1Number();
-		phoneNumber = Mgr.getSimSerialNumber();
-		 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		phoneNumber = Mgr.getSimSerialNumber();		
 	}
 
 	@Override

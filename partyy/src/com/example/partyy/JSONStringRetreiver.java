@@ -19,7 +19,7 @@ public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 		// TODO Auto-generated method stub
 		ServiceHandler sh = new ServiceHandler();
 		// Making a request to url and getting response
-        String jsonStr = sh.makeServiceCall(params[0], ServiceHandler.GET);
+        String jsonStr = sh.makeServiceCall(params[0], ServiceHandler.POST);
         Log.d("Response: ", "> " + jsonStr);
 		// TODO Auto-generated method stub
 		return jsonStr;

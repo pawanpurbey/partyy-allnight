@@ -47,6 +47,7 @@ import android.os.AsyncTask;
 					if(DataArray.getInstance().vecVenueData ==null || DataArray.getInstance().vecVenueData.size() ==0 ||DataArray.getInstance().vecOfferData ==null || DataArray.getInstance().vecOfferData.size() == 0 ){
 							JSONStringRetreiver receiver = new JSONStringRetreiver(this.context);
 						receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
+						
 					}
 					
 				}
