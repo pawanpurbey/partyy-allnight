@@ -56,6 +56,7 @@ public class ServiceHandler {
                 HttpPost httpPost = new HttpPost(url);
                 // adding post params
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+                LocationGetter.getInstance().getLocation();
                 String longitude = new String();
                 longitude += LocationGetter.getInstance().longitude;
                 String latitude = new String();

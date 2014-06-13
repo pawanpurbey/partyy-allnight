@@ -55,8 +55,7 @@ public class OpenOfferActivity extends ActionBarActivity{
 		    VenueData dataVenue = DataArray.getInstance().vecVenueData.elementAt(venueId);
 		    venueLocationlat = dataVenue.lat;
 		    venueLocationLon = dataVenue.lon;
-		    locationManager = (LocationManager) this.getApplicationContext()
-	                .getSystemService(Context.LOCATION_SERVICE);
+		   
             viewHeader = (TextView)findViewById(R.id.headeropenoffer);
             View v = findViewById(R.id.timingOpenOfferLayoutNew);
             viewTimings = (TextView)findViewById(R.id.timingOpenOfferLayoutNew);
@@ -128,8 +127,15 @@ public class OpenOfferActivity extends ActionBarActivity{
 	}
 	private void openSettings() {
 		// TODO Auto-generated method stub
-		String uri = "http://maps.google.com/maps?saddr=" + location.getLatitude()+","+location.getLongitude()+"&daddr="+venueLocationlat+","+venueLocationLon ;
-
+		LocationGetter.getInstance().getLocation();
+        String longitude = new String();
+        longitude += LocationGetter.getInstance().longitude;
+        String latitude = new String();
+        latitude += LocationGetter.getInstance().latitide;
+		String uri = "http://maps.google.com/maps?saddr=" + latitude+","+
+				longitude+"&daddr="+latitude+","+longitude;
+		
+		
 		/*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
 	    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");*/
 		//String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?saddr=%f,%f(%s)&daddr=%f,%f (%s)", location.getLatitude(), location.getLatitude(), "Home Sweet Home", 28.523056, 77.2075, "Where the party is at");
