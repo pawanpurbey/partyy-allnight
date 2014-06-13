@@ -35,7 +35,7 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		JSONStringRetreiver receiver = new JSONStringRetreiver(this,0);
 		//receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
-		receiver.execute("http://192.168.56.138:3000/venues/totaldata");
+		receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
 		StateMachine.getInstance().isDataRetreived = false;
 		StateMachine.getInstance().isFirstTime = true;
 		StateMachine.getInstance().isUserRegistered = false;

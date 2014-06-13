@@ -56,8 +56,12 @@ public class ServiceHandler {
                 HttpPost httpPost = new HttpPost(url);
                 // adding post params
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-                nameValuePairs.add(new BasicNameValuePair("latC", "12345"));
-                nameValuePairs.add(new BasicNameValuePair("lonC", "AndDev is Cool!"));
+                String longitude = new String();
+                longitude += LocationGetter.getInstance().longitude;
+                String latitude = new String();
+                latitude += LocationGetter.getInstance().latitide;
+                nameValuePairs.add(new BasicNameValuePair("lat", latitude));
+                nameValuePairs.add(new BasicNameValuePair("lon", longitude));
                 httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                 /*

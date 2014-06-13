@@ -56,11 +56,11 @@ public class OpenVenueActivity extends ActionBarActivity{
 		    VenueData data = DataArray.getInstance().vecVenueData.elementAt(valPos);
 		   
 		    	        String sDescription = data.sDescription;
-	        String[] arrSplit =sDescription.split("LAT:");
+	       // String[] arrSplit =sDescription.split("LAT:");
 	        
-	        String[] lon = sDescription.split("LON:");
-	        venueLat = arrSplit[1].split(",")[0];
-	        venueLon = lon[1];
+	        //String[] lon = sDescription.split("LON:");
+	        venueLat = data.lat;
+	        venueLon = data.lon;
 	        viewTiming = (TextView)this.findViewById(R.id.TimingsOpenVenueLayout);
 	        viewPhone = (TextView)this.findViewById(R.id.PhoneOpenVenueLayout);
 	        viewAge = (TextView)this.findViewById(R.id.AgeOpenVenueLayout);
