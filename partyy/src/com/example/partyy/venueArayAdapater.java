@@ -52,21 +52,18 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	      viewHolder.text = (TextView) rowView.findViewById(R.id.textViewEventLayout);
     	      /*viewHolder.view = (ImageView) rowView
     	          .findViewById(R.id.imageViewEvent);*/
-    	      viewHolder.textSmall = (TextView)rowView.findViewById(R.id.venue_urlTextViewVenueLayout);
+    	      viewHolder.textSmall = (TextView)rowView.findViewById(R.id.venue_DistlTextViewVenueLayout);
     	      rowView.setTag(viewHolder);
     	 }
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
     	 VenueData s = val[position];
     	    if(s != null)
     	    holder.text.setText(s.Name);
-    	    if(holder.textSmall != null)
-    	    holder.textSmall.setText(s.Name);
-    	    /*if (s.Name.startsWith("Windows7") || s.Name.startsWith("iPhone")
-    	        || s.Name.startsWith("Solaris")) {
-    	      holder.view.setImageResource(R.drawable.ic_launcher);
-    	    } else {
-    	      holder.view.setImageResource(R.drawable.party);
-    	    }*/
+    	    if(holder.textSmall != null &&  s.distance.equals("-1") == false){
+    	    	holder.textSmall.setText(s.distance);
+    	    }
+    	    //holder.textSmall.setText(s.Name);
+    	    
     	    if(s== null || s.btmmap == null){
     	        rowView.setBackgroundResource(R.drawable.striker);
     	       if(s!= null && s.isBitmapRequested == false){

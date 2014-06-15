@@ -28,31 +28,14 @@
          >
          
 
-    <TextView
-        android:id="@+id/textViewOfferOpen"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:text="Offer is valid"
-        android:gravity="center" 
-        android:textColor="#0b110b"
-       
-        android:textSize="18dp" />
-     <TextView
-        android:id="@+id/textViewOfferOpen1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:text="You can use this offer"
-        android:gravity="center" 
-        android:textColor="#0b110b"
-        
-        android:textSize="10dp" />
+    
      <Button
         android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:paddingBottom="10dp"
         android:paddingRight="20dp"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Avail this offer"
         android:gravity="center" 
         android:textColor="#ffffff"

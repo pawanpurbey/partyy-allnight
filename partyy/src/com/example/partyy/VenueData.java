@@ -22,5 +22,6 @@ public class VenueData {
     public String url = "http://www.mobiwebdev.com/wp-content/uploads/2014/06/PartyRock-Venue-Ggn-7Brauhaus1.jpg";
     public boolean isBitmapRequested = false;
     public int pos = 0;
+    public String distance = "-1";
     
 }

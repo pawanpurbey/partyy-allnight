@@ -16,6 +16,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -86,11 +89,18 @@ public class OpenVenueActivity extends ActionBarActivity{
     	    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openvenuelayout);
     	    	relativeLayout.setBackgroundDrawable(drawable);
     	    }
-		    getWindow().getDecorView().setBackgroundColor(3135227);
-		    /*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr="+28.523056+","+77.2075));
-		    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-
-            startActivity(intent);*/
+		    int actionBarHt = 0;
+		    TypedValue tv = new TypedValue();
+		    if(getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)){
+		    	actionBarHt = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+		    }
+		    ImageView v1 = (ImageView)this.findViewById(R.id.imageViewopenvenuelayout);
+			DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+			
+			int ht = metrics.heightPixels;
+			//LayoutParams params = new LayoutParams(source); 
+			v1.requestLayout();
+			v1.getLayoutParams().height  = ht-90-actionBarHt;
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

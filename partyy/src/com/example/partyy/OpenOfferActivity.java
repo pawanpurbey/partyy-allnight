@@ -1,11 +1,12 @@
 package com.example.partyy;
 import java.util.Locale;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -14,15 +15,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver;
 import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,7 +36,6 @@ public class OpenOfferActivity extends ActionBarActivity{
 	private TextView viewHeader;
 	private TextView viewTimings;
 	private TextView viewdate;
-	private LocationManager locationManager;
 	private Location location;
 	private String venueLocationlat;
 	private String venueLocationLon;
@@ -41,9 +45,11 @@ public class OpenOfferActivity extends ActionBarActivity{
 		// The minimum time between updates in milliseconds 
 		private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
 	 
+	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.openofferlayout);
+			
 			Bundle bundle = getIntent().getExtras();
 
 		    //Extract the data…
@@ -60,31 +66,8 @@ public class OpenOfferActivity extends ActionBarActivity{
             View v = findViewById(R.id.timingOpenOfferLayoutNew);
             viewTimings = (TextView)findViewById(R.id.timingOpenOfferLayoutNew);
             viewdate = (TextView)findViewById(R.id.dateOpenOffer);
-	        // getting GPS status 
-	       boolean  isGPSEnabled = locationManager
-	                .isProviderEnabled(LocationManager.GPS_PROVIDER);
- 
-	        // getting network status 
-	        boolean isNetworkEnabled = locationManager
-	                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
- 
-	        if (!isGPSEnabled && !isNetworkEnabled) {
-	            //  no network provider is enabled 
-	        } else { 
-	            //this.canGetLocation = true;
-	            if (isNetworkEnabled) {
-	                
-	                if (locationManager != null) {
-	                    location = locationManager
-	                            .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-	                    if (location != null) {
-	    	                //Log.d("activity", "LOC by Network");
-	                        double latitude = location.getLatitude();
-	                        double longitude = location.getLongitude();
-	                    } 
-	                } 
-	            } 
-	        }
+	       
+	        
 	        if(viewHeader!=null)
 		    viewHeader.setText(data.header);
 		    if(viewTimings != null)
@@ -103,6 +86,19 @@ public class OpenOfferActivity extends ActionBarActivity{
     	    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openofferlayoutNew);
     	    	relativeLayout.setBackgroundDrawable(drawable);
     	    }
+		    TypedValue tv = new TypedValue();
+		    int actionBarHt = 0;
+		    if(getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)){
+		    	actionBarHt = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+		    }
+		    ImageView v1 = (ImageView)this.findViewById(R.id.imageViewopenOfferlayout);
+			DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+			
+			int ht = metrics.heightPixels;
+			//LayoutParams params = new LayoutParams(source);
+			v1.requestLayout();
+			v1.getLayoutParams().height  = ht-50-actionBarHt;
+			
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -133,7 +129,7 @@ public class OpenOfferActivity extends ActionBarActivity{
         String latitude = new String();
         latitude += LocationGetter.getInstance().latitide;
 		String uri = "http://maps.google.com/maps?saddr=" + latitude+","+
-				longitude+"&daddr="+latitude+","+longitude;
+				longitude+"&daddr="+venueLocationlat+","+venueLocationLon;
 		
 		
 		/*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));

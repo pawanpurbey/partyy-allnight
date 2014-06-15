@@ -79,6 +79,7 @@ public class MainActivity extends FragmentActivity {
         		  .SCREEN_ORIENTATION_PORTRAIT);
          titleStrip = (PagerTitleStrip)this.findViewById(R.id.pager_title_strip);
          titleStrip.setBackgroundColor(Color.rgb(51, 181, 229));
+         int h = titleStrip.getLayoutParams().height;
         mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
 			
 			@Override
@@ -87,12 +88,17 @@ public class MainActivity extends FragmentActivity {
 				
 				if(arg0 == 0){
 					titleStrip.setBackgroundColor(Color.rgb(51, 181, 229));
-					
+					int h = titleStrip.getLayoutParams().height;
+					int k = 0;
 				}
 				else if(arg0 == 1){
 					titleStrip.setBackgroundColor(Color.rgb(181, 229, 51));
+					int h = titleStrip.getLayoutParams().height;
+					int k = 0;
 				}else{
 					titleStrip.setBackgroundColor(Color.rgb(255, 165, 0));
+					int h = titleStrip.getLayoutParams().height;
+					int k = 0;
 				}
 				StateMachine.getInstance().currentFragment = arg0;
 			}
@@ -111,10 +117,14 @@ public class MainActivity extends FragmentActivity {
 		});
         /*Intent serviceIntent = new Intent(this,DownloadImageService.class);
         startService(serviceIntent);*/
-        Timer timer = new Timer();
+        Timer timerdownloadImage = new Timer();
         DownloadImageTimerTask task = new DownloadImageTimerTask();
-        task.timer = timer;
-        timer.schedule(task, 0, 300);
+        task.timer = timerdownloadImage;
+        timerdownloadImage.schedule(task, 0, 300);
+        
+       Timer timerUpdateDistance = new Timer();
+        CalculateDistanceTimerTask taskCalcDist = new CalculateDistanceTimerTask();
+        timerUpdateDistance.schedule(taskCalcDist, 100, 5*1000*60);
         /* DownlaodBitmapThread thread = new DownlaodBitmapThread();
         thread.start();*/
     }
@@ -412,50 +422,50 @@ public class MainActivity extends FragmentActivity {
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_DRINKS;
 					offerArrayAdapter.getInstance().ChangeData();
 					offerDrinks.setBackgroundColor(Color.rgb(255, 165, 0));
-			        offerFood.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerAll.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerGuestList.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerUnknown.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerFood.setBackgroundColor(Color.TRANSPARENT);
+			        offerAll.setBackgroundColor(Color.TRANSPARENT);
+			        offerGuestList.setBackgroundColor(Color.TRANSPARENT);
+			        offerUnknown.setBackgroundColor(Color.TRANSPARENT);
 
 			    }
 			}else if(id == R.id.offer_food){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_FOOD){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_FOOD;
 					offerArrayAdapter.getInstance().ChangeData();
-					offerDrinks.setBackgroundColor(Color.rgb(0, 0, 0));
+					offerDrinks.setBackgroundColor(Color.TRANSPARENT);
 			        offerFood.setBackgroundColor(Color.rgb(255, 165, 0));
-			        offerAll.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerGuestList.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerUnknown.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerAll.setBackgroundColor(Color.TRANSPARENT);
+			        offerGuestList.setBackgroundColor(Color.TRANSPARENT);
+			        offerUnknown.setBackgroundColor(Color.TRANSPARENT);
 			    }
 			}else if(id == R.id.offer_all){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_ALL){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_ALL;
 					offerArrayAdapter.getInstance().ChangeData();
-					offerDrinks.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerFood.setBackgroundColor(Color.rgb(0, 0, 0));
+					offerDrinks.setBackgroundColor(Color.TRANSPARENT);
+			        offerFood.setBackgroundColor(Color.TRANSPARENT);
 			        offerAll.setBackgroundColor(Color.rgb(255, 165, 0));
-			        offerGuestList.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerUnknown.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerGuestList.setBackgroundColor(Color.TRANSPARENT);
+			        offerUnknown.setBackgroundColor(Color.TRANSPARENT);
 			    }
 			}else if(id == R.id.offer_guest_list){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_GUESTLIST){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_GUESTLIST;
 					offerArrayAdapter.getInstance().ChangeData();
-					offerDrinks.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerFood.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerAll.setBackgroundColor(Color.rgb(0, 0, 0));
+					offerDrinks.setBackgroundColor(Color.TRANSPARENT);
+			        offerFood.setBackgroundColor(Color.TRANSPARENT);
+			        offerAll.setBackgroundColor(Color.TRANSPARENT);
 			        offerGuestList.setBackgroundColor(Color.rgb(255, 165, 0));
-			        offerUnknown.setBackgroundColor(Color.rgb(0, 0, 0));
+			        offerUnknown.setBackgroundColor(Color.TRANSPARENT);
 			    }
 			}else if(id == R.id.offer_others){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_UNKNOWN){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_UNKNOWN;
 					offerArrayAdapter.getInstance().ChangeData();
-					offerDrinks.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerFood.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerAll.setBackgroundColor(Color.rgb(0, 0, 0));
-			        offerGuestList.setBackgroundColor(Color.rgb(0, 0, 0));
+					offerDrinks.setBackgroundColor(Color.TRANSPARENT);
+			        offerFood.setBackgroundColor(Color.TRANSPARENT);
+			        offerAll.setBackgroundColor(Color.TRANSPARENT);
+			        offerGuestList.setBackgroundColor(Color.TRANSPARENT);
 			        offerUnknown.setBackgroundColor(Color.rgb(255, 165, 0));
 			    }
 			}
