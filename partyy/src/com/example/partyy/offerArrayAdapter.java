@@ -85,7 +85,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
             list.clear();
             int len =  DataArray.getInstance().vecOfferData.size();
             for(int i =0 ;i<len;i++){
-          	  if(DataArray.getInstance().vecOfferData.elementAt(i).type.equals("Drinks")){
+          	  if(DataArray.getInstance().vecOfferData.elementAt(i).type.equals("Drink")){
            	 list.add( DataArray.getInstance().vecOfferData.elementAt(i));
             }
             }
@@ -96,7 +96,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
             
             int len =  DataArray.getInstance().vecOfferData.size();
             for(int i =0 ;i<len;i++){
-          	  if(DataArray.getInstance().vecOfferData.elementAt(i).type.equals("GuestList")){
+          	  if(DataArray.getInstance().vecOfferData.elementAt(i).type.equals("Unknown")){
            	 list.add( DataArray.getInstance().vecOfferData.elementAt(i));
             }
             }
@@ -105,7 +105,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
             list.clear();
             int len =  DataArray.getInstance().vecOfferData.size();
             for(int i =0 ;i<len;i++){
-          	  if(DataArray.getInstance().vecOfferData.elementAt(i).type.equals("Unknown")){
+          	  if(DataArray.getInstance().vecOfferData.elementAt(i).type.equals("GuestList")){
            	 list.add( DataArray.getInstance().vecOfferData.elementAt(i));
             }
             }

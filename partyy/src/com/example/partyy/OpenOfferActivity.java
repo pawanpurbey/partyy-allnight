@@ -97,7 +97,7 @@ public class OpenOfferActivity extends ActionBarActivity{
 			int ht = metrics.heightPixels;
 			//LayoutParams params = new LayoutParams(source);
 			v1.requestLayout();
-			v1.getLayoutParams().height  = ht-50-actionBarHt;
+			v1.getLayoutParams().height  = ht-80-actionBarHt;
 			
 	}
 	@Override

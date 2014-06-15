@@ -422,50 +422,50 @@ public class MainActivity extends FragmentActivity {
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_DRINKS;
 					offerArrayAdapter.getInstance().ChangeData();
 					offerDrinks.setBackgroundColor(Color.rgb(255, 165, 0));
-			        offerFood.setBackgroundColor(Color.TRANSPARENT);
-			        offerAll.setBackgroundColor(Color.TRANSPARENT);
-			        offerGuestList.setBackgroundColor(Color.TRANSPARENT);
-			        offerUnknown.setBackgroundColor(Color.TRANSPARENT);
+			        offerFood.setBackgroundColor(Color.rgb(0,0,0));
+			        offerAll.setBackgroundColor(Color.rgb(0,0,0));
+			        offerGuestList.setBackgroundColor(Color.rgb(0,0,0));
+			        offerUnknown.setBackgroundColor(Color.rgb(0,0,0));
 
 			    }
 			}else if(id == R.id.offer_food){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_FOOD){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_FOOD;
 					offerArrayAdapter.getInstance().ChangeData();
-					offerDrinks.setBackgroundColor(Color.TRANSPARENT);
+					offerDrinks.setBackgroundColor(Color.rgb(0,0,0));
 			        offerFood.setBackgroundColor(Color.rgb(255, 165, 0));
-			        offerAll.setBackgroundColor(Color.TRANSPARENT);
-			        offerGuestList.setBackgroundColor(Color.TRANSPARENT);
-			        offerUnknown.setBackgroundColor(Color.TRANSPARENT);
+			        offerAll.setBackgroundColor(Color.rgb(0,0,0));
+			        offerGuestList.setBackgroundColor(Color.rgb(0,0,0));
+			        offerUnknown.setBackgroundColor(Color.rgb(0,0,0));
 			    }
 			}else if(id == R.id.offer_all){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_ALL){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_ALL;
 					offerArrayAdapter.getInstance().ChangeData();
-					offerDrinks.setBackgroundColor(Color.TRANSPARENT);
-			        offerFood.setBackgroundColor(Color.TRANSPARENT);
+					offerDrinks.setBackgroundColor(Color.rgb(0,0,0));
+			        offerFood.setBackgroundColor(Color.rgb(0,0,0));
 			        offerAll.setBackgroundColor(Color.rgb(255, 165, 0));
-			        offerGuestList.setBackgroundColor(Color.TRANSPARENT);
-			        offerUnknown.setBackgroundColor(Color.TRANSPARENT);
+			        offerGuestList.setBackgroundColor(Color.rgb(0,0,0));
+			        offerUnknown.setBackgroundColor(Color.rgb(0,0,0));
 			    }
 			}else if(id == R.id.offer_guest_list){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_GUESTLIST){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_GUESTLIST;
 					offerArrayAdapter.getInstance().ChangeData();
-					offerDrinks.setBackgroundColor(Color.TRANSPARENT);
-			        offerFood.setBackgroundColor(Color.TRANSPARENT);
-			        offerAll.setBackgroundColor(Color.TRANSPARENT);
+					offerDrinks.setBackgroundColor(Color.rgb(0,0,0));
+			        offerFood.setBackgroundColor(Color.rgb(0,0,0));
+			        offerAll.setBackgroundColor(Color.rgb(0,0,0));
 			        offerGuestList.setBackgroundColor(Color.rgb(255, 165, 0));
-			        offerUnknown.setBackgroundColor(Color.TRANSPARENT);
+			        offerUnknown.setBackgroundColor(Color.rgb(0,0,0));
 			    }
 			}else if(id == R.id.offer_others){
 				if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_UNKNOWN){
 					offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_UNKNOWN;
 					offerArrayAdapter.getInstance().ChangeData();
-					offerDrinks.setBackgroundColor(Color.TRANSPARENT);
-			        offerFood.setBackgroundColor(Color.TRANSPARENT);
-			        offerAll.setBackgroundColor(Color.TRANSPARENT);
-			        offerGuestList.setBackgroundColor(Color.TRANSPARENT);
+					offerDrinks.setBackgroundColor(Color.rgb(0,0,0));
+			        offerFood.setBackgroundColor(Color.rgb(0,0,0));
+			        offerAll.setBackgroundColor(Color.rgb(0,0,0));
+			        offerGuestList.setBackgroundColor(Color.rgb(0,0,0));
 			        offerUnknown.setBackgroundColor(Color.rgb(255, 165, 0));
 			    }
 			}

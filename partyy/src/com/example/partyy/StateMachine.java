@@ -12,6 +12,7 @@ public class StateMachine {
    public boolean isFirstTime = false;
    public boolean isUserRegistered = false;
    public boolean isDataRetreived = false;
+   public boolean isMainactivityLaunched = false;
    public  void setDataRetreived(boolean b){
 	   synchronized (_lock) {
 		isDataRetreived = true;

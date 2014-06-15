@@ -40,18 +40,36 @@ public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 		super.onPostExecute(result);
 		//Start activity from here
 		JSONParser parser = new JSONParser(result);
-		parser.Parse();
+		if(parser.Parse() ==true){
 		//Now we have the retreived vector in parser
-		DataArray.getInstance().vecVenueData = parser.vecVenue;
-		DataArray.getInstance().vecOfferData = parser.vecOffer;
-		DataArray.getInstance().vecEventData = parser.vecEvent;
-		if(StateMachine.getInstance().isFirstTime == false || StateMachine.getInstance().isUserRegistered ==true){
-		   Intent i = new Intent(context, MainActivity.class);
-		   i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		   context.startActivity(i);
-		   
+			DataArray.getInstance().vecVenueData = parser.vecVenue;
+			DataArray.getInstance().vecOfferData = parser.vecOffer;
+			DataArray.getInstance().vecEventData = parser.vecEvent;
+			if(StateMachine.getInstance().isFirstTime == false || StateMachine.getInstance().isMainactivityLaunched == false){
+				StateMachine.getInstance().isMainactivityLaunched = true;
+			   Intent i = new Intent(context, MainActivity.class);
+			   i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			   context.startActivity(i);
+			   
+			}else if(StateMachine.getInstance().isFirstTime == true && StateMachine.getInstance().isMainactivityLaunched == true){
+				if(SplashScreenApp.getInstance() != null){
+					SplashScreenApp.getInstance().runOnUiThread(new Runnable() {
+					    public void run() {
+					    	if(eventarrayadapter.getInstance() != null){
+					            eventarrayadapter.getInstance().notifyDataSetChanged();
+					    	}
+					    	if(offerArrayAdapter.getInstance() != null){
+					           offerArrayAdapter.getInstance().notifyDataSetChanged();
+					    	}
+					        if(venueArayAdapater.getInstance() != null){
+					          venueArayAdapater.getInstance().notifyDataSetChanged();
+					        }
+					    }
+				});
+			}
+			}
+			StateMachine.getInstance().setDataRetreived(true);
 		}
-		StateMachine.getInstance().setDataRetreived(true);
 	}
     
 }

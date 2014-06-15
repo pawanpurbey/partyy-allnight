@@ -131,14 +131,14 @@ public class OpenVenueActivity extends ActionBarActivity{
          longitude += LocationGetter.getInstance().longitude;
          String latitude = new String();
          latitude += LocationGetter.getInstance().latitide;
-		String uri = "http://maps.google.com/maps?saddr=" + latitude+","+
+		 String uri = "http://maps.google.com/maps?saddr=" + latitude+","+
 				longitude+"&daddr="+venueLat+","+venueLon ;
 		/*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
 	    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");*/
 		//String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?saddr=%f,%f(%s)&daddr=%f,%f (%s)", location.getLatitude(), location.getLatitude(), "Home Sweet Home", 28.523056, 77.2075, "Where the party is at");
-		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-		intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-		startActivity(intent);
+		 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+		 intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+		 startActivity(intent);
 	}
  }
 

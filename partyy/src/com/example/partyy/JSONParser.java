@@ -17,7 +17,7 @@ public class JSONParser {
     Vector<VenueData> vecVenue = new Vector<VenueData>();
     Vector<OfferData> vecOffer = new Vector<OfferData>();
     Vector<EventData> vecEvent = new Vector<EventData>();
-    void Parse(){
+    boolean Parse(){
     	//OfferData data = new OfferData();
     	HashMap<String,VenueData> mapVenue = new HashMap<String, VenueData>();
     	try {
@@ -97,9 +97,11 @@ public class JSONParser {
 				
 			}
 			mapVenue = null;
+			return true;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
     }
     
