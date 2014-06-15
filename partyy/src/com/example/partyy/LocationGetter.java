@@ -32,9 +32,7 @@ public class LocationGetter {
                 .getSystemService(Context.LOCATION_SERVICE);
 	 }
 	 public void  getLocation(){
-		 locationManager = (LocationManager) SplashScreenApp.getInstance().getApplicationContext()
-	                .getSystemService(Context.LOCATION_SERVICE);
-		 
+	  
        boolean  isGPSEnabled = locationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
 

@@ -9,6 +9,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,11 +23,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONObject;
-public class SplashScreen extends Activity {
+public class SplashScreen extends Activity implements LocationListener{
+	
 	private static int SPLASH_TIME_OUT = 3000;
 	boolean isFirstTime = false;
 	boolean isAlertDialogShown = false;
-	
+	private LocationManager locationManager;
+	private String provider;
 	private ArrayList<ImageView> imageHolders;
 	private ArrayList<String> images;
 	private String[] array = {"Please wait.","Please wait...","Please wait.....","Please wait......."};
@@ -90,6 +96,19 @@ public class SplashScreen extends Activity {
 			images.add("progress_9");
 			startAnimation();
 		    }
+		     locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		     // Define the criteria how to select the locatioin provider -> use
+		     // default
+		     Criteria criteria = new Criteria();
+		     provider = locationManager.getBestProvider(criteria, false);
+		     locationManager.requestLocationUpdates(provider, 400, 1, this);
+		     Location location = locationManager.getLastKnownLocation(provider);
+
+		     // Initialize the location fields
+		     if (location != null) {
+		       System.out.println("Provider " + provider + " has been selected.");
+		       
+		     } 
 		}
 		else{
 			//abcd
@@ -177,6 +196,26 @@ public class SplashScreen extends Activity {
 			if(index >=4)
 				index = 0;
 			plsWaitView.setText(array[index++]);
+		}
+		@Override
+		public void onLocationChanged(Location arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void onProviderDisabled(String arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void onProviderEnabled(String arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	

@@ -124,7 +124,7 @@ public class MainActivity extends FragmentActivity {
         
        Timer timerUpdateDistance = new Timer();
         CalculateDistanceTimerTask taskCalcDist = new CalculateDistanceTimerTask();
-        timerUpdateDistance.schedule(taskCalcDist, 100, 5*1000*60);
+        timerUpdateDistance.schedule(taskCalcDist, 100, 1000*60);
         //timerUpdateDistance.
         /* DownlaodBitmapThread thread = new DownlaodBitmapThread();
         thread.start();*/
