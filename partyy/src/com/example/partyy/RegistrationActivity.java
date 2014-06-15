@@ -70,7 +70,7 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 			task.execute(user);
 			
 			
-			finish();
+			//finish();
 		}
 		
 		

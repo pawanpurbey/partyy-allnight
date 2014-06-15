@@ -11,17 +11,21 @@ import java.util.HashMap;
 
 
 
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
 
 	public class SQLiteAsyncTask extends AsyncTask<User ,Integer, Boolean>{
-		private Context context;
+		//private Context context;
+		private Activity activity;
 		public int function ;
-		public SQLiteAsyncTask(Context context) {
+		public SQLiteAsyncTask(Activity act) {
 			// TODO Auto-generated constructor stub
-			this.context = context;
+			this.activity = act;
+			
 		}
 		User user;
 		@Override
@@ -32,9 +36,10 @@ import android.os.AsyncTask;
 				StateMachine.getInstance().isUserRegistered = true;
 				////if(StateMachine.getInstance().isDataRetreived == true){
 					StateMachine.getInstance().isMainactivityLaunched = true;
-					Intent i = new Intent(this.context, MainActivity.class);
+					Intent i = new Intent(this.activity.getApplicationContext(), MainActivity.class);
 				    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					this.context.startActivity(i);
+				    this.activity.startActivity(i);
+				    this.activity.finish();
 					
 				//}
 				/*else{
@@ -48,14 +53,14 @@ import android.os.AsyncTask;
 		    }
 			else if(function == 1){
 				if(result == false || user ==  null || user.name  == ""){
-					Intent i = new Intent(context, RegistrationActivity.class);
+					Intent i = new Intent(this.activity, RegistrationActivity.class);
 					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					
-		           context.startActivity(i);
+					this.activity.startActivity(i);
 				}else
 				{
 					if(DataArray.getInstance().vecVenueData ==null || DataArray.getInstance().vecVenueData.size() ==0 ||DataArray.getInstance().vecOfferData ==null || DataArray.getInstance().vecOfferData.size() == 0 ){
-							JSONStringRetreiver receiver = new JSONStringRetreiver(this.context,1);
+							JSONStringRetreiver receiver = new JSONStringRetreiver(this.activity,1);
 							
 						    receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
 						
@@ -74,11 +79,11 @@ import android.os.AsyncTask;
 		protected Boolean doInBackground(User... params) {
 			// TODO Auto-generated method stub
 			if(function == 0){
-			SqliteController controller = new SqliteController(this.context);
+			SqliteController controller = new SqliteController(this.activity.getApplicationContext());
 			controller.SaveUser(params[0]);
 			
 			}else {
-				SqliteController controller = new SqliteController(this.context);
+				SqliteController controller = new SqliteController(this.activity.getApplicationContext());
 				user = controller.getUser();
 				if(user ==  null || user.name  == ""){
 					return false;
