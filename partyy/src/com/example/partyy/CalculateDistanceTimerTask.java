@@ -14,7 +14,10 @@ public class CalculateDistanceTimerTask extends TimerTask{
          double longitude = LocationGetter.getInstance().longitude;
          //String latitude = new String();
          double latitude = LocationGetter.getInstance().latitide;
-         int len =  DataArray.getInstance().vecVenueData.size();
+         int len  = 0;
+         if(DataArray.getInstance().vecVenueData != null){
+             len =  DataArray.getInstance().vecVenueData.size();
+         }
          for(int i = 0 ; i< len;i++){
         	 double venueLat = Double.parseDouble(DataArray.getInstance().vecVenueData.elementAt(i).lat);
         	 double venueLon = Double.parseDouble(DataArray.getInstance().vecVenueData.elementAt(i).lon);

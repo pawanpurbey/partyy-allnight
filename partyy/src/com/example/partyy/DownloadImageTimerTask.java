@@ -15,9 +15,12 @@ public class DownloadImageTimerTask extends TimerTask{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		int len = DataArray.getInstance().vecVenueData.size();
+		int len = 0;
+		if(DataArray.getInstance().vecVenueData != null){
+			len = DataArray.getInstance().vecVenueData.size();
+		}
 		boolean bitmapRemaining = false;
-		if(StateMachine.getInstance().currentFragment == 0 || (AllEventDataDownloaded == true && AllOffersDataDownloaded == true)){
+		if(len != 0 &&(StateMachine.getInstance().currentFragment == 0 || (AllEventDataDownloaded == true && AllOffersDataDownloaded == true))){
 		for(int i = 0;i<len;i++){
 			VenueData s = DataArray.getInstance().vecVenueData.elementAt(i);
 			if(s!= null && s.btmmap == null && s.isBitmapRequested == false){
@@ -59,7 +62,8 @@ public class DownloadImageTimerTask extends TimerTask{
 		 AllVenuesBitmapDownloaded = true;
 	}
 		else if (StateMachine.getInstance().currentFragment == 2 || (AllVenuesBitmapDownloaded == true && AllEventDataDownloaded == true)){
-		len =  DataArray.getInstance().vecOfferData.size();
+		if( DataArray.getInstance().vecOfferData != null)
+		    len =  DataArray.getInstance().vecOfferData.size();
 		for(int i = 0;i<len;i++){
 			OfferData s1 = DataArray.getInstance().vecOfferData.elementAt(i);
 			if(s1!= null && s1.btmmap == null && s1.isBitmapRequested == false){

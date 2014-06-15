@@ -2,6 +2,7 @@ package com.example.partyy;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -33,7 +34,7 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 		grpAge = (RadioGroup)findViewById(R.id.radioGroup1);
 		grpSex = (RadioGroup)findViewById(R.id.radioGroup2);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		JSONStringRetreiver receiver = new JSONStringRetreiver(this,0);
+		JSONStringRetreiver receiver = new JSONStringRetreiver(this,1);
 		//receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
 		receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
 		StateMachine.getInstance().isDataRetreived = false;
@@ -67,6 +68,8 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 			SQLiteAsyncTask task = new SQLiteAsyncTask(this);
 			task.function = 0;
 			task.execute(user);
+			
+			
 			finish();
 		}
 		

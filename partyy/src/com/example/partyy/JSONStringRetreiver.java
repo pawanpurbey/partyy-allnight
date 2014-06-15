@@ -45,7 +45,7 @@ public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 			DataArray.getInstance().vecVenueData = parser.vecVenue;
 			DataArray.getInstance().vecOfferData = parser.vecOffer;
 			DataArray.getInstance().vecEventData = parser.vecEvent;
-			if(StateMachine.getInstance().isFirstTime == false || StateMachine.getInstance().isMainactivityLaunched == false){
+			if(StateMachine.getInstance().isFirstTime == false || (StateMachine.getInstance().isMainactivityLaunched == false && StateMachine.getInstance().isUserRegistered == true)){
 				StateMachine.getInstance().isMainactivityLaunched = true;
 			   Intent i = new Intent(context, MainActivity.class);
 			   i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

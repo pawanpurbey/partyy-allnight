@@ -64,9 +64,12 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	 }
      }*/
      public void ChangeData(){
+    	 int len = 0;
+   		 if(DataArray.getInstance().vecOfferData != null)
+              len =  DataArray.getInstance().vecOfferData.size();
     	 if(showString == 0 ){
     		 list.clear();
-             int len =  DataArray.getInstance().vecOfferData.size();
+    		 
              for(int i =0 ;i<len;i++){
             	 list.add( DataArray.getInstance().vecOfferData.elementAt(i));
              }
@@ -74,7 +77,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
  	    	 
           	
              list.clear();
-              int len =  DataArray.getInstance().vecOfferData.size();
+             
               for(int i =0 ;i<len;i++){
             	  if(DataArray.getInstance().vecOfferData.elementAt(i).type.equals("Food")){
              	 list.add( DataArray.getInstance().vecOfferData.elementAt(i));
@@ -83,7 +86,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
  	    }else if(showString == 2 ){
  	    	
             list.clear();
-            int len =  DataArray.getInstance().vecOfferData.size();
+          
             for(int i =0 ;i<len;i++){
           	  if(DataArray.getInstance().vecOfferData.elementAt(i).type.equals("Drink")){
            	 list.add( DataArray.getInstance().vecOfferData.elementAt(i));
@@ -92,9 +95,6 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
  	    }else if(showString == 3 ){
  	    	
  	    	list.clear();
-            	
-            
-            int len =  DataArray.getInstance().vecOfferData.size();
             for(int i =0 ;i<len;i++){
           	  if(DataArray.getInstance().vecOfferData.elementAt(i).type.equals("Unknown")){
            	 list.add( DataArray.getInstance().vecOfferData.elementAt(i));
@@ -103,7 +103,7 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
  	    }else if(showString == 4 ){
  	    	
             list.clear();
-            int len =  DataArray.getInstance().vecOfferData.size();
+            
             for(int i =0 ;i<len;i++){
           	  if(DataArray.getInstance().vecOfferData.elementAt(i).type.equals("GuestList")){
            	 list.add( DataArray.getInstance().vecOfferData.elementAt(i));

@@ -30,20 +30,21 @@ import android.os.AsyncTask;
 			super.onPostExecute(result);
 			if(function == 0){
 				StateMachine.getInstance().isUserRegistered = true;
-				if(StateMachine.getInstance().isDataRetreived == true){
+				////if(StateMachine.getInstance().isDataRetreived == true){
 					StateMachine.getInstance().isMainactivityLaunched = true;
 					Intent i = new Intent(this.context, MainActivity.class);
 				    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					this.context.startActivity(i);
-				}
-				else{
+					
+				//}
+				/*else{
 					JSONStringRetreiver receiver = new JSONStringRetreiver(this.context,1);
 					StateMachine.getInstance().isMainactivityLaunched = true;
 				    receiver.execute("http://safe-wave-7903.herokuapp.com/venues/totaldata");
 				    Intent i = new Intent(this.context, MainActivity.class);
 					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					this.context.startActivity(i);
-				}
+				}*/
 		    }
 			else if(function == 1){
 				if(result == false || user ==  null || user.name  == ""){

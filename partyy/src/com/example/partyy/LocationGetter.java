@@ -1,9 +1,13 @@
 package com.example.partyy;
 
-import android.content.Context;
+import java.util.List;
 
+import android.content.Context;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 
 public class LocationGetter {
 	
@@ -28,10 +32,9 @@ public class LocationGetter {
                 .getSystemService(Context.LOCATION_SERVICE);
 	 }
 	 public void  getLocation(){
+		 locationManager = (LocationManager) SplashScreenApp.getInstance().getApplicationContext()
+	                .getSystemService(Context.LOCATION_SERVICE);
 		 
-		
-
-        // getting GPS status 
        boolean  isGPSEnabled = locationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
@@ -47,6 +50,7 @@ public class LocationGetter {
                 
                 if (locationManager != null) {
                    // location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                	//locationManager.requestLocationUpdates (LocationManager.GPS_PROVIDER,10000, 1, this); 
                    location =  locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                 	if (location != null) {
     	                //Log.d("activity", "LOC by Network");
@@ -55,8 +59,24 @@ public class LocationGetter {
                     } 
                 } 
             } 
+             if(location == null &&isGPSEnabled){
+            	if (locationManager != null) {
+                    // location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    location =  locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                 	if (location != null) {
+     	                //Log.d("activity", "LOC by Network");
+                        latitide = location.getLatitude();
+                        longitude = location.getLongitude();
+                     } 
+                 } 
+            }
         }
+        List<String> providers = locationManager.getProviders(true);
+        for (int i=providers.size()-1; i>=0; i--) {
+            location = locationManager.getLastKnownLocation(providers.get(i));
+            if (location != null) break;
+    }
 
 	}
-	
 }
+

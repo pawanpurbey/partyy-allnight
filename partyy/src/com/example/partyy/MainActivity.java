@@ -125,6 +125,7 @@ public class MainActivity extends FragmentActivity {
        Timer timerUpdateDistance = new Timer();
         CalculateDistanceTimerTask taskCalcDist = new CalculateDistanceTimerTask();
         timerUpdateDistance.schedule(taskCalcDist, 100, 5*1000*60);
+        //timerUpdateDistance.
         /* DownlaodBitmapThread thread = new DownlaodBitmapThread();
         thread.start();*/
     }
@@ -238,9 +239,11 @@ public class MainActivity extends FragmentActivity {
                     	
                     }*/
                 	//ArrayList<OfferData> value =  new ArrayList<OfferData>();
-                	Object[] val = DataArray.getInstance().vecOfferData.toArray();
-                	int len = val.length;
-                	
+                	int len  = 0;
+                	if(DataArray.getInstance().vecOfferData != null){
+                	   Object[] val = DataArray.getInstance().vecOfferData.toArray();
+                	   len = val.length;
+                	}
                 	ArrayList<OfferData> values = new ArrayList<OfferData>();
                     for(int i = 0;i<len;i++){
                     	
@@ -325,8 +328,9 @@ public class MainActivity extends FragmentActivity {
                 }
                 else if( this.description == "event"){
                 	rootView = inflater.inflate(R.layout.eventfragment, container, false);
-                	
-                	int len = DataArray.getInstance().vecEventData.size();
+                	int len =0;
+                	if(DataArray.getInstance().vecEventData != null)
+                	   len = DataArray.getInstance().vecEventData.size();
                 	EventData[] values = new EventData[len];
                     for(int i = 0;i<len;i++){
                     	  //String s =  DataArray.getInstance().vecOfferData.elementAt(i).Name;
@@ -362,8 +366,12 @@ public class MainActivity extends FragmentActivity {
                 }
                 else if( this.description == "venue"){
                 	rootView = inflater.inflate(R.layout.venuesfragment, container, false);
-                	Object[] val = DataArray.getInstance().vecVenueData.toArray();
-                	int len = val.length;
+                	int len =0;
+                	Object[] val = null;
+                	if(DataArray.getInstance().vecVenueData != null){
+                	 val = DataArray.getInstance().vecVenueData.toArray();
+                	 len = val.length;
+                	}
                 	VenueData[] values = new VenueData[len];
                     for(int i = 0;i<len;i++){
                     	 //if(DataArray.getInstance().vec.elementAt(i).Name.equals("Striker")){
