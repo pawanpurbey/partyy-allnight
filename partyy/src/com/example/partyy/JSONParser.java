@@ -62,18 +62,6 @@ public class JSONParser {
 			JSONArray arrOffer = reader.getJSONArray("offer");
 			len = arrOffer.length();
 			for(int i = 0;i<len ;i++){
-				/*"header": "Free drinks for 2",
-			      "photoString": "asdadaa",
-			      "type": "Food",
-			      "isFeatured": "1",
-			      "timeInfo": "11AM - 12 AM",
-			      "startDate": "06/18/2014",
-			      "endDate": "06/10/2014",
-			      "venue": {
-			        "_id": "5380782bd993780200d20bb3",
-			        "name": "ABCD"
-			      },
-			      "_id": "538ad3349c764f02007a4000"*/
 				OfferData data = new OfferData();
 				JSONObject obj = arrOffer.getJSONObject(i);
 				data.header = obj.getString("header");
@@ -96,7 +84,35 @@ public class JSONParser {
 				}
 				
 			}
-			mapVenue = null;
+			
+		
+		//now fill eventData
+		JSONArray arrEvent = reader.getJSONArray("event");
+		len = arrEvent.length();
+		for(int i = 0;i<len ;i++){
+			
+			EventData data = new EventData();
+			JSONObject obj = arrEvent.getJSONObject(i);
+			data.title = obj.getString("title");
+			data.photoString = obj.getString("photo1");
+			data.date = obj.getString("date");
+			data.time = obj.getString("time");
+			data.Desc = obj.getString("desc");
+			
+			data.ownPosition = i;
+			JSONObject venueOffer = obj.getJSONObject("venue");
+			//data.url = obj.getString("image");
+			
+			String venueName = venueOffer.getString("name");
+			data.venueName = venueName;
+			if(mapVenue.get(venueName) != null){
+			data.venuePos = mapVenue.get(venueName).pos;
+			vecEvent.add(data);
+			}
+			
+		}
+		mapVenue.clear();
+		mapVenue = null;
 			return true;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

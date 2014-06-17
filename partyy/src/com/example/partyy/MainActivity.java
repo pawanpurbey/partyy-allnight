@@ -59,7 +59,8 @@ public class MainActivity extends FragmentActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
-    PagerTitleStrip titleStrip;// = (PagerTitleStrip)this.findViewById(R.id.pager_title_strip);
+    PagerTitleStrip titleStrip;
+    public static int Screen = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	//removes the title bars
@@ -90,15 +91,18 @@ public class MainActivity extends FragmentActivity {
 					titleStrip.setBackgroundColor(Color.rgb(51, 181, 229));
 					int h = titleStrip.getLayoutParams().height;
 					int k = 0;
+					Screen =  0;
 				}
 				else if(arg0 == 1){
 					titleStrip.setBackgroundColor(Color.rgb(181, 229, 51));
 					int h = titleStrip.getLayoutParams().height;
 					int k = 0;
+					Screen = 1;
 				}else{
 					titleStrip.setBackgroundColor(Color.rgb(255, 165, 0));
 					int h = titleStrip.getLayoutParams().height;
 					int k = 0;
+					Screen = 2;
 				}
 				StateMachine.getInstance().currentFragment = arg0;
 			}
@@ -196,11 +200,7 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    // Changes by Summved
-    /**
-     * A dummy fragment representing a section of the app, but that simply
-     * displays dummy text.
-     */
+    
     public static class DummySectionFragment extends Fragment implements OnClickListener{
         public static final String ARG_SECTION_NUMBER = null;
 		/**
@@ -228,17 +228,8 @@ public class MainActivity extends FragmentActivity {
         	View rootView = null;
                 if(this.description == "Offer" ){
                 	 rootView = inflater.inflate(R.layout.offerfragment, container, false);
-                    /*OfferData[] values = new OfferData[10];
-                    for(int i = 0;i<10;i++){
-                    	if(values[i] != null)
-                    	values[i].Name = "Name" + i;
-                    	else{
-                    		values[i] = new OfferData();
-                    		values[i].Name = "Name" + i;
-                    	}
-                    	
-                    }*/
-                	//ArrayList<OfferData> value =  new ArrayList<OfferData>();
+                    
+                	
                 	int len  = 0;
                 	if(DataArray.getInstance().vecOfferData != null){
                 	   Object[] val = DataArray.getInstance().vecOfferData.toArray();
@@ -259,27 +250,14 @@ public class MainActivity extends FragmentActivity {
                     	adapter = offerArrayAdapter.getInstance();
                     }
 	                viewOffer = (ListView)rootView.findViewById(R.id.listViewOffer);
-	               View viewHeader = inflater.inflate(R.layout.offerheaderview, viewOffer,false);
-	               viewOffer.addHeaderView(viewHeader);
+	                View viewHeader = inflater.inflate(R.layout.offerheaderview, viewOffer,false);
+	                viewOffer.addHeaderView(viewHeader);
 	                viewOffer.setAdapter(adapter);
-	                //view.setLongClickable(true);
 	                
-	                 offerDrinks = (Button) viewOffer.findViewById(R.id.offer_drinks);
+	                offerDrinks = (Button) viewOffer.findViewById(R.id.offer_drinks);
 	                if(offerDrinks!= null){
 	                	offerDrinks.setOnClickListener(this);
-	                	/*offerDrinks.setOnClickListener(new OnClickListener() {
-							
-							@Override
-							public void onClick(View arg0) {
-								// TODO Auto-generated method stub
-								if(offerArrayAdapter.getInstance().showString != offerArrayAdapter.getInstance().SHOW_DRINKS){
-									offerArrayAdapter.getInstance().showString = offerArrayAdapter.getInstance().SHOW_DRINKS;
-									offerArrayAdapter.getInstance().ChangeData();
-							    }
-								//viewOffer.invalidate();
-								
-							}
-						});*/
+	                	
 	                }
 	                offerFood =  (Button) viewOffer.findViewById(R.id.offer_food);
 	                if(offerFood != null){
@@ -306,8 +284,7 @@ public class MainActivity extends FragmentActivity {
 								int arg2, long arg3) {
 							// TODO Auto-generated method stub
 							ListView v= (ListView)arg0;
-							//int pos = v.getSelectedItemPosition();
-							//int id = v.getSelectedItemId();
+							
 							OfferData data = DataArray.getInstance().vecOfferData.elementAt(arg2-1);
 							Intent i = new Intent(context, OpenOfferActivity.class);
 							 
@@ -333,17 +310,14 @@ public class MainActivity extends FragmentActivity {
                 	   len = DataArray.getInstance().vecEventData.size();
                 	EventData[] values = new EventData[len];
                     for(int i = 0;i<len;i++){
-                    	  //String s =  DataArray.getInstance().vecOfferData.elementAt(i).Name;
-                    	 
-                    	       values[i] = (EventData)DataArray.getInstance().vecEventData.elementAt(i);
-                    	
-                    	
+                    	  values[i] = DataArray.getInstance().vecEventData.elementAt(i);
                     }
 	                eventarrayadapter adapter = new eventarrayadapter(this.activity, values);
-	                viewEvent = (ListView)rootView.findViewById(R.id.listViewEvents);
+	                viewEvent = (ListView)rootView.findViewById(R.id.listView121Events);
 	                viewEvent.setAdapter(adapter);
-	                //view.setLongClickable(true);
 	               
+	                final Context context = this.getActivity().getApplicationContext();
+		               
 	                viewEvent.setOnItemClickListener(new OnItemClickListener() {
 	                	  
 
@@ -355,30 +329,34 @@ public class MainActivity extends FragmentActivity {
 							ListAdapter listadapter = v.getAdapter();
 							eventarrayadapter adapter = (eventarrayadapter)listadapter;
 							EventData viewdata = adapter.getData(arg2);
+							Intent i = new Intent(context, openEventActivity.class);
+							 
+							  //Create the bundle
+							  Bundle bundle = new Bundle();
+							  //Add your data to bundle
+							  bundle.putInt("Pos", viewdata.ownPosition);
+							  //Add the bundle to the intent
+							  i.putExtras(bundle);
+							  i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                              context.startActivity(i);
+							//VenueData data = DataArray.getInstance().vecVenueData.elementAt(viewdata.pos);
 							
-							//int pos = v.getSelectedItemPosition();
-							//int id = v.getSelectedItemId();
-							/*VenueData data = DataArray.getInstance().vec.elementAt(viewdata.);
-							Toast.makeText(getActivity(),data.Name , Toast.LENGTH_SHORT).show();*/
+							
 						}
 	                	}); 
 	               
                 }
-                else if( this.description == "venue"){
+                else if(  this.description == "venue"){
                 	rootView = inflater.inflate(R.layout.venuesfragment, container, false);
                 	int len =0;
-                	Object[] val = null;
+                	
                 	if(DataArray.getInstance().vecVenueData != null){
-                	 val = DataArray.getInstance().vecVenueData.toArray();
-                	 len = val.length;
+                	 len = DataArray.getInstance().vecVenueData.size();
+                	 
                 	}
                 	VenueData[] values = new VenueData[len];
                     for(int i = 0;i<len;i++){
-                    	 //if(DataArray.getInstance().vec.elementAt(i).Name.equals("Striker")){
-                  	       values[i] = (VenueData)val[i];
-                  	  //}
-                    	
-                    	
+                    	values[i] = (VenueData)DataArray.getInstance().vecVenueData.elementAt(i);
                     }
 	                venueArayAdapater adapter = new venueArayAdapater(this.activity, values);
 	                viewVenue = (ListView)rootView.findViewById(R.id.listViewVenues);
@@ -409,8 +387,8 @@ public class MainActivity extends FragmentActivity {
 							  i.putExtras(bundle);
 							  i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                               context.startActivity(i);
-							VenueData data = DataArray.getInstance().vecVenueData.elementAt(viewdata.pos);
-							Toast.makeText(getActivity(),data.Name , Toast.LENGTH_SHORT).show();
+							//VenueData data = DataArray.getInstance().vecVenueData.elementAt(viewdata.pos);
+							//Toast.makeText(getActivity(),data.Name , Toast.LENGTH_SHORT).show();
 						}
 	                	}); 
 	                

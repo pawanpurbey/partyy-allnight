@@ -3,6 +3,7 @@ package com.example.partyy;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -13,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class eventarrayadapter extends ArrayAdapter<OfferData>{
+public class eventarrayadapter extends ArrayAdapter<EventData>{
      private Activity context;
      //Later on String will be changed by our own class
      private EventData[] val;
@@ -24,15 +25,15 @@ public class eventarrayadapter extends ArrayAdapter<OfferData>{
      
      public eventarrayadapter(Activity activity, EventData[] values) {
 		// TODO Auto-generated constructor stub
-    	 super(activity, R.layout.eventlayout);
+    	 super(activity, R.layout.eventlayout,values);
     	 this.context = activity;
-    	 this.val = val;
+    	 this.val = values;
     	 _instance = this;
 	}
 	
 	public static class ViewHolder{
     	 public TextView text;
-    	 public ImageView view;
+    	 public TextView textSmall;
      }
      public EventData getData(int pos){
     	 if(pos>=0 && pos<val.length){
@@ -51,39 +52,44 @@ public class eventarrayadapter extends ArrayAdapter<OfferData>{
     	      rowView = inflater.inflate(R.layout.eventlayout, null);
     	      // configure view holder
     	      ViewHolder viewHolder = new ViewHolder();
-    	      viewHolder.text = (TextView) rowView.findViewById(R.id.textView1);
+    	      viewHolder.text = (TextView) rowView.findViewById(R.id.textVieweventLayout);
+    	      //viewHolder.textSmall = (TextView)rowView.findViewById(R.id.venue_DistlTextViewEventLayout);
     	      /*viewHolder.view = (ImageView) rowView
     	          .findViewById(R.id.imageViewEvent);*/
     	      rowView.setTag(viewHolder);
     	 }
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
     	    EventData s = val[position];
-    	    /*if(s != null)
-    	    holder.text.setText(s.header);
+    	    if(s != null){
+    	       holder.text.setText(s.title);
     	    
-    	    /*if (s.Name.startsWith("Windows7") || s.Name.startsWith("iPhone")
-    	        || s.Name.startsWith("Solaris")) {
-    	      holder.view.setImageResource(R.drawable.ic_launcher);
-    	    } else {
-    	      holder.view.setImageResource(R.drawable.party);
     	    }
+    	   
     	    if(s== null || s.btmmap == null){
-    	        rowView.setBackgroundResource(R.drawable.party);
-    	        if(s!= null && s.isBitmapRequested == false){
-	    	        /*DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
-	    	        Void arr[] = null;
-	    	        task.execute(arr);
-	    	        s.isBitmapRequested = true;
-    	        }
+    	        rowView.setBackgroundResource(R.drawable.striker);
+    	        
     	    }
     	    else  if (s!= null){
-    	    	Bitmap bitmap = s.btmmap;
-    	    	
-    	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), bitmap);
+    	    	if(s.smallBitmap == null && s.btmmap != null){
+                    
+    	    		  int width = s.btmmap.getWidth();
+    	                 //Log.i("Old width................", width + "");
+    	              int   height = s.btmmap.getHeight();
+    	                 //Log.i("Old height................", height + "");
+    	 
+    	            Matrix matrix = new Matrix();
+    	            float scaleWidth = ((float) 200) / width;
+    	            float scaleHeight = ((float) 200) / height;
+    	            matrix.postScale(scaleWidth, scaleHeight);
+    	    		s.smallBitmap = Bitmap.createBitmap(s.btmmap, 0, 0,width, height, matrix, true);
+    	    		
+    	    	}
+    	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), s.smallBitmap);
     	    	rowView.setBackgroundDrawable(drawable);
     	    }
-    	    */
+    	    
         return rowView;
     	//return super.getView(position, convertView, parent);
     }
 }
+

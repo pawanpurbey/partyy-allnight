@@ -32,14 +32,14 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class OpenVenueActivity extends ActionBarActivity{
+public class openEventActivity extends ActionBarActivity{
 	private TextView viewTiming;
-	private TextView viewAge;
-	private TextView viewPhone;
+	private TextView viewDate;
+	private TextView viewTitle;
 	private TextView viewDescription;
 
-	String venueLat ;
-	String venueLon;
+	String venueLat  = "0.0";
+	String venueLon  = "0.0";
 	// The minimum distance to change Updates in meters 
 		private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
 	 
@@ -49,29 +49,30 @@ public class OpenVenueActivity extends ActionBarActivity{
 	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
-			setContentView(R.layout.openvenuelayout);
+			setContentView(R.layout.openeventlayout);
 			Bundle bundle = getIntent().getExtras();
 
 		    //Extract the data…
 		    int  valPos = bundle.getInt("Pos");
 		   // view = (TextView)findViewById(R.id.textViewEventLayout);
 		    //Now get actual data to show 
-		    VenueData data = DataArray.getInstance().vecVenueData.elementAt(valPos);
+		    EventData data = DataArray.getInstance().vecEventData.elementAt(valPos);
+		       
+		    int venueId = data.venuePos;
+		    VenueData dataVenue = DataArray.getInstance().vecVenueData.elementAt(venueId);
+		    venueLat = dataVenue.lat;
+		    venueLon = dataVenue.lon;
 		   
-		    	        String sDescription = data.sDescription;
-	       // String[] arrSplit =sDescription.split("LAT:");
-	        
-	        //String[] lon = sDescription.split("LON:");
-	        venueLat = data.lat;
-	        venueLon = data.lon;
-	        viewTiming = (TextView)this.findViewById(R.id.TimingsOpenVenueLayout);
-	        viewPhone = (TextView)this.findViewById(R.id.PhoneOpenVenueLayout);
-	        viewAge = (TextView)this.findViewById(R.id.AgeOpenVenueLayout);
-	        viewDescription = (TextView)this.findViewById(R.id.DescriptionOpenVenueLayout);
-	        viewTiming.setText(data.timing);
-	        viewPhone.setText(data.phone);
-	        viewAge.setText(data.City);
-	        viewDescription.setText(data.bDescription);
+		    
+		    viewTitle = (TextView)this.findViewById(R.id.TitleOpeneventLayout);
+	        viewTiming = (TextView)this.findViewById(R.id.timingsOpenEventLayout);
+	        viewDescription = (TextView)this.findViewById(R.id.DescriptionOpeneventLayout);
+	        viewDate = (TextView)this.findViewById(R.id.dateOpeneventLayout);
+	        viewTiming.setText(data.time);
+	        viewDescription.setText(data.Desc);
+	        viewDate.setText(data.date);
+	        viewTitle.setText(data.title);
+	       
 		    if(data== null || data.btmmap == null){
 		    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openeventlayout);
     	    	relativeLayout.setBackgroundResource(R.drawable.striker);
@@ -79,10 +80,8 @@ public class OpenVenueActivity extends ActionBarActivity{
     	    }
     	    else  if (data != null && data.btmmap != null){
     	    	Bitmap bitmap = data.btmmap;
-    	    	
     	    	Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
-    	        View v = findViewById(R.id.openeventlayout);
-    	    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openeventlayout);
+    	        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openeventlayout);
     	    	relativeLayout.setBackgroundDrawable(drawable);
     	    }
 		    int actionBarHt = 0;
@@ -90,7 +89,7 @@ public class OpenVenueActivity extends ActionBarActivity{
 		    if(getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)){
 		    	actionBarHt = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
 		    }
-		    ImageView v1 = (ImageView)this.findViewById(R.id.imageViewopenvenuelayout);
+		    ImageView v1 = (ImageView)this.findViewById(R.id.imageViewopeneventlayout);
 			DisplayMetrics metrics = this.getResources().getDisplayMetrics();
 			
 			int ht = metrics.heightPixels;

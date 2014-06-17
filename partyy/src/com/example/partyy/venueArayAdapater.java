@@ -51,7 +51,7 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	      rowView = inflater.inflate(R.layout.venuelayout, null);
     	      // configure view holder
     	      ViewHolder viewHolder = new ViewHolder();
-    	      viewHolder.text = (TextView) rowView.findViewById(R.id.textViewEventLayout);
+    	      viewHolder.text = (TextView) rowView.findViewById(R.id.textViewVenueLayout);
     	      /*viewHolder.view = (ImageView) rowView
     	          .findViewById(R.id.imageViewEvent);*/
     	      viewHolder.textSmall = (TextView)rowView.findViewById(R.id.venue_DistlTextViewVenueLayout);
@@ -68,12 +68,7 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	    
     	    if(s== null || s.btmmap == null){
     	        rowView.setBackgroundResource(R.drawable.striker);
-    	       if(s!= null && s.isBitmapRequested == false){
-	    	        /*DownloadBitmapTask task = new DownloadBitmapTask(s.url, s.pos);
-	    	        Void arr[] = null;
-	    	        task.execute(arr);
-	    	        s.isBitmapRequested = true;*/
-    	        }
+    	       
     	    }
     	    else  if (s!= null ){
     	    	if(s.sbtmmap == null && s.btmmap != null){

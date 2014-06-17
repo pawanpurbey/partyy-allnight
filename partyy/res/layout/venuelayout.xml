@@ -23,7 +23,7 @@
         ></ImageView>     
 
     <TextView
-        android:id="@+id/textViewEventLayout"
+        android:id="@+id/textViewVenueLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:text="TextView"

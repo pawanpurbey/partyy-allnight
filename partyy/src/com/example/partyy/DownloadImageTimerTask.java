@@ -10,7 +10,7 @@ import android.graphics.BitmapFactory;
 public class DownloadImageTimerTask extends TimerTask{
 	public Timer  timer;
 	static boolean AllVenuesBitmapDownloaded = false;
-	static boolean AllEventDataDownloaded = true;//For the time being till event  data from serevr not retreived
+	static boolean AllEventDataDownloaded = false;//For the time being till event  data from serevr not retreived
 	static boolean AllOffersDataDownloaded = false;
 	@Override
 	public void run() {
@@ -20,7 +20,7 @@ public class DownloadImageTimerTask extends TimerTask{
 			len = DataArray.getInstance().vecVenueData.size();
 		}
 		boolean bitmapRemaining = false;
-		if(len != 0 &&(StateMachine.getInstance().currentFragment == 0 || (AllEventDataDownloaded == true && AllOffersDataDownloaded == true))){
+	if(len != 0 &&(StateMachine.getInstance().currentFragment == 0 || (AllEventDataDownloaded == true && AllOffersDataDownloaded == true))){
 		for(int i = 0;i<len;i++){
 			VenueData s = DataArray.getInstance().vecVenueData.elementAt(i);
 			if(s!= null && s.btmmap == null && s.isBitmapRequested == false){
@@ -61,7 +61,7 @@ public class DownloadImageTimerTask extends TimerTask{
 	}
 		 AllVenuesBitmapDownloaded = true;
 	}
-		else if (StateMachine.getInstance().currentFragment == 2 || (AllVenuesBitmapDownloaded == true && AllEventDataDownloaded == true)){
+    else if (StateMachine.getInstance().currentFragment == 2 || (AllVenuesBitmapDownloaded == true && AllEventDataDownloaded == true)){
 		if( DataArray.getInstance().vecOfferData != null)
 		    len =  DataArray.getInstance().vecOfferData.size();
 		for(int i = 0;i<len;i++){
@@ -104,7 +104,49 @@ public class DownloadImageTimerTask extends TimerTask{
 	}
 		 AllOffersDataDownloaded = true;
 	}
-		
+    else if(StateMachine.getInstance().currentFragment ==1 || (AllOffersDataDownloaded == true && AllVenuesBitmapDownloaded == true)){
+    	if( DataArray.getInstance().vecEventData != null)
+		    len =  DataArray.getInstance().vecEventData.size();
+    	for(int i = 0;i<len;i++){
+			EventData s1 = DataArray.getInstance().vecEventData.elementAt(i);
+			if(s1!= null && s1.btmmap == null && s1.isBitmapRequested == false){
+    	        
+				try {
+			        InputStream in = new java.net.URL(s1.photoString).openStream();
+			        Bitmap mIcon11 = BitmapFactory.decodeStream(in);
+			        DataArray.getInstance().vecEventData.elementAt(s1.ownPosition).btmmap = mIcon11;
+					
+			        bitmapRemaining = true;
+			    } catch (Exception e) {
+			        
+			        e.printStackTrace();
+			    }
+				
+				//final ArrayAdapter adapter = ((ArrayAdapter)getListAdapter());
+				if(SplashScreenApp.getInstance() != null){
+					SplashScreenApp.getInstance().runOnUiThread(new Runnable() {
+					    public void run() {
+					    	if(eventarrayadapter.getInstance() != null){
+					            eventarrayadapter.getInstance().notifyDataSetChanged();
+					    	}
+					    	if(offerArrayAdapter.getInstance() != null){
+					           offerArrayAdapter.getInstance().notifyDataSetChanged();
+					    	}
+					        if(venueArayAdapater.getInstance() != null){
+					          venueArayAdapater.getInstance().notifyDataSetChanged();
+					        }
+					    }
+				});
+					
+	        }
+				bitmapRemaining = true;
+    	        return;
+		}
+	   
+			 
+	}
+    	AllEventDataDownloaded = true;
+    }
 		if(AllEventDataDownloaded == true && AllOffersDataDownloaded == true && AllVenuesBitmapDownloaded == true){
 			if(this.timer != null){
 				this.timer.cancel();

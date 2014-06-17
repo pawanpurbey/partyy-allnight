@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/striker"
+    android:id="@+id/openeventlayout"  >
+
+    
+    
+	<ScrollView android:layout_width="fill_parent"
+	     android:layout_height="fill_parent">
+	      
+	       <LinearLayout android:layout_width="fill_parent" 
+	           android:layout_height="wrap_content" 
+	           android:orientation="vertical" > 
+	           <ImageView android:id="@+id/imageViewopeneventlayout" 
+        android:layout_width="wrap_content" 
+        android:layout_height="400dp"
+         android:layout_alignParentTop="true" 
+        android:layout_centerHorizontal="true" 
+        /> 
+	           <LinearLayout
+        android:id="@+id/abcd"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        
+		android:orientation="horizontal"
+         >
+    <ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:src="@drawable/time"	
+		android:background="#000000"
+        ></ImageView>     
+
+    <TextView
+        android:id="@+id/TitleOpeneventLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="TextView"
+        android:gravity="center" 
+        android:textColor="#0b110b"
+        android:background="#ffffff"
+        android:textSize="18dp" />
+    
+    </LinearLayout> 
+	          
+	           <LinearLayout
+        android:id="@+id/abcde"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+		android:orientation="horizontal"
+         >
+    <ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:src="@drawable/time"	
+		android:background="#000000"
+        ></ImageView>     
+
+    <TextView
+        android:id="@+id/dateOpeneventLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="TextView"
+        android:gravity="center" 
+        android:textColor="#0b110b"
+        android:background="#ffffff"
+        android:textSize="18dp" />
+    
+    </LinearLayout>
+      <LinearLayout
+        android:id="@+id/abcdef"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+		android:orientation="horizontal"
+         >
+    <ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:src="@drawable/time"	
+		android:background="#000000"
+        ></ImageView>     
+
+    <TextView
+        android:id="@+id/timingsOpenEventLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="TextView"
+        android:gravity="center" 
+        android:textColor="#0b110b"
+        android:background="#ffffff"
+        android:textSize="18dp" />
+    
+    </LinearLayout>
+    <TextView
+        android:id="@+id/DescriptionOpeneventLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:gravity="center" 
+        android:textColor="#ffffff"
+        android:background="#99000000"
+        android:textSize="18dp" />
+	</LinearLayout>
+	</ScrollView>
+
+
+
+
+
+</RelativeLayout>
+

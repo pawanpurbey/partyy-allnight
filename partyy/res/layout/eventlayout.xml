@@ -1,19 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_width="wrap_content"
+    android:layout_height="400dp"
+	android:paddingLeft="0dp"
+	android:paddingRight="0dp"
+	android:paddingBottom="0dp"
+	android:background="@drawable/striker"
+    >
 
-    
+   <LinearLayout
+        android:id="@+id/eventLlayout"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+
+		android:orientation="horizontal"
+         >
+    <ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:src="@drawable/beer"	
+		android:background="#000000"
+        ></ImageView>     
+
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:textColor="#FF0000"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:id="@+id/textVieweventLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="TextView"
+        android:gravity="center" 
+        android:textColor="#0b110b"
+        android:background="#ffffff"
+        android:textSize="18dp" />
+    
+    </LinearLayout>
 
+    <ImageView
+        android:id="@+id/event_url"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/eventLlayout"
+         >
+	</ImageView>
+
+   <TextView
+       android:id="@+id/venue_DistlTextVieweventLayout"
+       android:layout_width="fill_parent"
+       android:layout_height="40dp"
+       android:layout_alignParentBottom="true"
+       android:layout_alignParentLeft="true"
+       android:background="#040a0b"
+       android:drawableRight="@drawable/bullet_green"
+       android:text="Dist....."
+       android:textColor="#2fd6fb"
+       android:textSize="18dp" />
+ 
 </RelativeLayout>
+
 

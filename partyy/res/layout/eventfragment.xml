@@ -4,14 +4,24 @@
     android:layout_height="match_parent"
     
     tools:context=".MainActivity$DummySectionFragment" >
+    <TextView
+        android:id="@+id/textView121324"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        
+        android:gravity="center_horizontal"
+        android:text="MOZITOS"
+        android:textColor="#454545"
+        android:textSize="50dp"
+        android:textStyle="italic" />
 
     <ListView
-        android:id="@+id/listViewEvents"
+        android:id="@+id/listView121Events"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" >
+        android:layout_below="@+id/textView121324" >
 
     </ListView>
 
