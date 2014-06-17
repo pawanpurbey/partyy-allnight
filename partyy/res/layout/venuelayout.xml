@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="400dp"
 	android:paddingLeft="0dp"
 	android:paddingRight="0dp"
 	android:paddingBottom="0dp"
@@ -40,13 +40,14 @@
         android:layout_height="200dp"
         android:layout_below="@+id/venueLlayout"
          >
-	</ImageView> 
+	</ImageView>
 
    <TextView
        android:id="@+id/venue_DistlTextViewVenueLayout"
        android:layout_width="fill_parent"
        android:layout_height="40dp"
-       android:layout_below="@+id/venue_url"
+       android:layout_alignParentBottom="true"
+       android:layout_alignParentLeft="true"
        android:background="#040a0b"
        android:drawableRight="@drawable/bullet_green"
        android:text="Dist....."

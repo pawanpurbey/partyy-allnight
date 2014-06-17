@@ -16,6 +16,7 @@ public class OfferData {
 	public String endData =new String();
 	public String venueName = new String();
     public Bitmap btmmap = null;
+    public Bitmap smallBitmap = null;
      public boolean isBitmapRequested = false;
     public int venuePos = 0;
     public int ownPosition = 0;

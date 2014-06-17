@@ -1,8 +1,10 @@
+
 package com.example.partyy;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -74,10 +76,22 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	        }
     	    }
     	    else  if (s!= null ){
-    	    	Bitmap bitmap = s.btmmap;
-    	    	
-    	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), bitmap);
-    	    	rowView.setBackgroundDrawable(drawable);
+    	    	if(s.sbtmmap == null && s.btmmap != null){
+                    
+  	    		  int width = s.btmmap.getWidth();
+  	                 //Log.i("Old width................", width + "");
+  	              int   height = s.btmmap.getHeight();
+  	                 //Log.i("Old height................", height + "");
+  	 
+  	            Matrix matrix = new Matrix();
+  	            float scaleWidth = ((float) 200) / width;
+  	            float scaleHeight = ((float) 200) / height;
+  	            matrix.postScale(scaleWidth, scaleHeight);
+  	    		s.sbtmmap = Bitmap.createBitmap(s.btmmap, 0, 0,width, height, matrix, true);
+  	    		
+  	    	}
+  	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), s.sbtmmap);
+  	    	rowView.setBackgroundDrawable(drawable);
     	   }
     	    	
         return rowView;

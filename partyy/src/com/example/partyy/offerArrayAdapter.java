@@ -7,6 +7,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -152,9 +153,22 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	        }
     	    }
     	    else  if (s!= null ){
-    	    	Bitmap bitmap = s.btmmap;
-    	    	
-    	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), bitmap);
+    	    
+    	    	if(s.smallBitmap == null && s.btmmap != null){
+                     
+    	    		  int width = s.btmmap.getWidth();
+    	                 //Log.i("Old width................", width + "");
+    	              int   height = s.btmmap.getHeight();
+    	                 //Log.i("Old height................", height + "");
+    	 
+    	            Matrix matrix = new Matrix();
+    	            float scaleWidth = ((float) 200) / width;
+    	            float scaleHeight = ((float) 200) / height;
+    	            matrix.postScale(scaleWidth, scaleHeight);
+    	    		s.smallBitmap = Bitmap.createBitmap(s.btmmap, 0, 0,width, height, matrix, true);
+    	    		
+    	    	}
+    	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), s.smallBitmap);
     	    	rowView.setBackgroundDrawable(drawable);
     	    }
     	    
