@@ -81,8 +81,8 @@ public class OpenVenueActivity extends ActionBarActivity{
     	    	Bitmap bitmap = data.btmmap;
     	    	
     	    	Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
-    	        View v = findViewById(R.id.openeventlayout);
-    	    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openeventlayout);
+    	        View v = findViewById(R.id.openvenuelayout);
+    	    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openvenuelayout);
     	    	relativeLayout.setBackgroundDrawable(drawable);
     	    }
 		    int actionBarHt = 0;

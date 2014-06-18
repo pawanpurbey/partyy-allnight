@@ -72,6 +72,7 @@ public class JSONParser {
 				data.startDate = obj.getString("startDate");
 				data.endData = obj.getString("endDate");
 				data.type = obj.getString("type");
+				data.id = obj.getString("_id");
 				data.ownPosition = i;
 				JSONObject venueOffer = obj.getJSONObject("venue");
 				//data.url = obj.getString("image");
@@ -98,10 +99,9 @@ public class JSONParser {
 			data.date = obj.getString("date");
 			data.time = obj.getString("time");
 			data.Desc = obj.getString("desc");
-			
+			data.id = obj.getString("_id");
 			data.ownPosition = i;
 			JSONObject venueOffer = obj.getJSONObject("venue");
-			//data.url = obj.getString("image");
 			
 			String venueName = venueOffer.getString("name");
 			data.venueName = venueName;

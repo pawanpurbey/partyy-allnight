@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 
 public class OfferData {
 	public OfferData(){}
-	
+	public String id = new String();
 	public String header = new String();
 	public String photoString = new String();
 	public String type = new String();
