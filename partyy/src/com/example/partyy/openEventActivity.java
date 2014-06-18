@@ -54,8 +54,6 @@ public class openEventActivity extends ActionBarActivity{
 
 		    //Extract the data…
 		    int  valPos = bundle.getInt("Pos");
-		   // view = (TextView)findViewById(R.id.textViewEventLayout);
-		    //Now get actual data to show 
 		    EventData data = DataArray.getInstance().vecEventData.elementAt(valPos);
 		       
 		    int venueId = data.venuePos;
@@ -120,7 +118,6 @@ public class openEventActivity extends ActionBarActivity{
 	}
 	private void openSettings() {
 		// TODO Auto-generated method stub
-		//String uri = "http://maps.google.com/maps?saddr=" + location.getLatitude()+","+location.getLongitude()+"&daddr="+venueLat+","+venueLon ;
 		 LocationGetter.getInstance().getLocation();
          String longitude = new String();
          longitude += LocationGetter.getInstance().longitude;
@@ -128,9 +125,6 @@ public class openEventActivity extends ActionBarActivity{
          latitude += LocationGetter.getInstance().latitide;
 		 String uri = "http://maps.google.com/maps?saddr=" + latitude+","+
 				longitude+"&daddr="+venueLat+","+venueLon ;
-		/*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-	    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");*/
-		//String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?saddr=%f,%f(%s)&daddr=%f,%f (%s)", location.getLatitude(), location.getLatitude(), "Home Sweet Home", 28.523056, 77.2075, "Where the party is at");
 		 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
 		 intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
 		 startActivity(intent);

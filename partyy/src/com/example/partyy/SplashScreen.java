@@ -114,11 +114,12 @@ public class SplashScreen extends Activity implements LocationListener{
 			//abcd
 			int k = 0;
 		}
-		for (ImageView imageView : imageHolders) {
-			
-			imageView.setVisibility(View.GONE);
+		if(imageHolders != null){
+			for (ImageView imageView : imageHolders) {
+				
+				imageView.setVisibility(View.GONE);
+			}
 		}
-		
 		//finish();
 		/*new Handler().postDelayed(new Runnable(){
 			/*

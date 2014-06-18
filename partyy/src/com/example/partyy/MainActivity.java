@@ -94,7 +94,7 @@ public class MainActivity extends FragmentActivity {
 					Screen =  0;
 				}
 				else if(arg0 == 1){
-					titleStrip.setBackgroundColor(Color.rgb(181, 229, 51));
+					titleStrip.setBackgroundColor(Color.rgb(0, 0, 0));
 					int h = titleStrip.getLayoutParams().height;
 					int k = 0;
 					Screen = 1;
