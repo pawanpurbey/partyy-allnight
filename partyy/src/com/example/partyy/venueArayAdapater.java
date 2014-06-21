@@ -52,8 +52,7 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	      // configure view holder
     	      ViewHolder viewHolder = new ViewHolder();
     	      viewHolder.text = (TextView) rowView.findViewById(R.id.textViewVenueLayout);
-    	      /*viewHolder.view = (ImageView) rowView
-    	          .findViewById(R.id.imageViewEvent);*/
+    	      viewHolder.view = (ImageView) rowView.findViewById(R.id.imageViewvenuelayout);
     	      viewHolder.textSmall = (TextView)rowView.findViewById(R.id.venue_DistlTextViewVenueLayout);
     	      rowView.setTag(viewHolder);
     	 }

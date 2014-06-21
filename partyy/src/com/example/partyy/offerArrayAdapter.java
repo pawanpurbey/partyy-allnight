@@ -126,23 +126,15 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	      viewHolder.textHeader = (TextView) rowView.findViewById(R.id.HeaderOfferLayout);
     	      viewHolder.textTiming = (TextView) rowView.findViewById(R.id.timingOfferLayout);
     	      viewHolder.textVenueName = (TextView) rowView.findViewById(R.id.venueNameOfferLayout);
-    	      /*viewHolder.view = (ImageView) rowView
-    	          .findViewById(R.id.imageViewEvent);*/
+    	      viewHolder.view = (ImageView) rowView
+    	          .findViewById(R.id.imageViewOfferlayout);
     	      rowView.setTag(viewHolder);
     	 }
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
     	    OfferData s = list.get(position);
     	    
     	    
-    	    //if(s != null)
-    	    //holder.text.setText(s.header);
-    	    
-    	    /*if (s.Name.startsWith("Windows7") || s.Name.startsWith("iPhone")
-    	        || s.Name.startsWith("Solaris")) {
-    	      holder.view.setImageResource(R.drawable.ic_launcher);
-    	    } else {
-    	      holder.view.setImageResource(R.drawable.party);
-    	    }*/
+    	   
     	    if(s== null || s.btmmap == null){
     	        rowView.setBackgroundResource(R.drawable.striker);
     	        if(s!= null && s.isBitmapRequested == false){
@@ -157,10 +149,9 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	    	if(s.smallBitmap == null && s.btmmap != null){
                      
     	    		  int width = s.btmmap.getWidth();
-    	                 //Log.i("Old width................", width + "");
+    	                
     	              int   height = s.btmmap.getHeight();
-    	                 //Log.i("Old height................", height + "");
-    	 
+    	                
     	            Matrix matrix = new Matrix();
     	            float scaleWidth = ((float) 200) / width;
     	            float scaleHeight = ((float) 200) / height;
@@ -171,13 +162,32 @@ public class offerArrayAdapter extends ArrayAdapter<OfferData>{
     	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), s.smallBitmap);
     	    	rowView.setBackgroundDrawable(drawable);
     	    }
-    	    
+    	    if(holder.view != null){
+    	    	Drawable drawable  = null;
+    	    	if(s.type.equals("Food")){
+    	    		holder.view.setImageResource(R.drawable.fastfood);
+    	    	}else if(s.type.equals("Drink")){
+    	    		holder.view.setImageResource(R.drawable.bottle_and_glass);
+    	    	}else if(s.type.endsWith("Unknown")){
+    	    		holder.view.setImageResource(R.drawable.star);
+    	    	}else if(s.type.equals("GuestList")){
+    	    		holder.view.setImageResource(R.drawable.heart);
+    	    	}
+    	    	//holder.view.setImageResource(R.drawable.fastfood);
+    	    }
     	    if(holder.textHeader != null)
     	    holder.textHeader.setText(s.header);
     	    if(holder.textTiming != null)
     	    holder.textTiming.setText(s.timing);
-    	    if(holder.textVenueName != null)
-    	    holder.textVenueName.setText(s.venueName);
+    	    if(holder.textVenueName != null){
+    	    String venueName = s.venueName;
+    	      venueName+= "\n";
+    	      venueName+= DataArray.getInstance().vecVenueData.elementAt(s.venuePos).distance;
+    	      holder.textVenueName.setText(venueName);
+    	    }
+    	    int venuePos = s.venuePos;
+    	    String dist = DataArray.getInstance().vecVenueData.elementAt(venuePos).distance;
+    	   
             return rowView;
     	//return super.getView(position, convertView, parent);
     }

@@ -20,6 +20,7 @@
 		android:layout_height="fill_parent"
 		android:src="@drawable/beer"	
 		android:background="#2fd6fb"
+		android:id = "@+id/imageViewvenuelayout"
         ></ImageView>     
 
     <TextView

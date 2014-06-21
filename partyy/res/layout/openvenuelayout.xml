@@ -55,7 +55,7 @@
     <ImageView
 		android:layout_width="wrap_content"
 		android:layout_height="fill_parent"
-		android:src="@drawable/time"	
+		android:src="@drawable/show"	
 		android:background="#2fd6fb"
         ></ImageView>     
 
@@ -80,7 +80,7 @@
     <ImageView
 		android:layout_width="wrap_content"
 		android:layout_height="fill_parent"
-		android:src="@drawable/time"	
+		android:src="@drawable/phone"	
 		android:background="#2fd6fb"
         ></ImageView>     
 

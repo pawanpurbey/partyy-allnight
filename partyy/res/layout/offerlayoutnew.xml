@@ -19,6 +19,7 @@
 		android:layout_height="fill_parent"
 		android:src="@drawable/star"	
 		android:background="#FFA500"
+		android:id = "@+id/imageViewOfferlayout"
         ></ImageView>     
 
     <TextView
@@ -56,7 +57,7 @@
     android:layout_width="fill_parent"
     android:drawableRight="@drawable/bullet_green"
     android:id = "@+id/venueNameOfferLayout"
-    android:text = "Name"
+    android:text = "Name \n dist"
      android:textColor="#FFA500"
      />
  

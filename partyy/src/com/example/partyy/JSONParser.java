@@ -106,8 +106,8 @@ public class JSONParser {
 			String venueName = venueOffer.getString("name");
 			data.venueName = venueName;
 			if(mapVenue.get(venueName) != null){
-			data.venuePos = mapVenue.get(venueName).pos;
-			vecEvent.add(data);
+			  data.venuePos = mapVenue.get(venueName).pos;
+			  vecEvent.add(data);
 			}
 			
 		}
