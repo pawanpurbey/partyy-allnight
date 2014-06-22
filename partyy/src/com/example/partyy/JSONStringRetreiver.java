@@ -5,12 +5,15 @@ import java.util.Vector;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
 
 public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 	private Context context;
 	public int method = 0;
+	static Timer timerUpdateDistance = null;
+	static Timer timerRecycleBitmap = null;
 	public JSONStringRetreiver(Context context, int method) {
 		// TODO Auto-generated constructor stub
 		this.context = context;
@@ -73,12 +76,24 @@ public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 			}
 			}
 			StateMachine.getInstance().setDataRetreived(true);
-			Timer timerUpdateDistance = new Timer();
+			if(timerUpdateDistance !=  null ){
+				timerUpdateDistance.cancel();
+				timerUpdateDistance = null;
+			}
+			timerUpdateDistance = new Timer();
 	        CalculateDistanceTimerTask taskCalcDist = new CalculateDistanceTimerTask();
 	        timerUpdateDistance.schedule(taskCalcDist, 100, 1000*60);
 	        //timerUpdateDistance.
 	        DownlaodBitmapThread thread = new DownlaodBitmapThread();
 	        thread.start();
+	        if(timerRecycleBitmap != null){
+	        	timerRecycleBitmap.cancel();
+	        	timerRecycleBitmap = null;
+	        }
+	        //timerRecycleBitmap =  new Timer();
+	        RecycleBitmapTask taskRecycleBitmap = new RecycleBitmapTask();
+	        //timerRecycleBitmap.schedule(taskRecycleBitmap, 500,500);
+	        taskRecycleBitmap.start();
 		}
 	}
     

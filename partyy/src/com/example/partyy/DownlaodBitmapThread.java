@@ -22,7 +22,7 @@ public class DownlaodBitmapThread extends Thread{
 		
 		while(stopDownloading == false){
 			int len =0;
-			if(StateMachine.getInstance().currentFragment == 0 || (AllOffersDownloaded && AllEventsDownloaded)){
+			if(StateMachine.getInstance().currentFragment == 0){// || (AllOffersDownloaded && AllEventsDownloaded)){
 			if(DataArray.getInstance().vecVenueData != null)
 			   len = DataArray.getInstance().vecVenueData.size();
 			
@@ -82,12 +82,12 @@ public class DownlaodBitmapThread extends Thread{
 						if(SplashScreenApp.getInstance() != null){
 							SplashScreenApp.getInstance().runOnUiThread(new Runnable() {
 							    public void run() {
-							    	if(eventarrayadapter.getInstance() != null){
+							    	/*if(eventarrayadapter.getInstance() != null){
 							            eventarrayadapter.getInstance().notifyDataSetChanged();
 							    	}
 							    	if(offerArrayAdapter.getInstance() != null){
 							           offerArrayAdapter.getInstance().notifyDataSetChanged();
-							    	}
+							    	}*/
 							        if(venueArayAdapater.getInstance() != null){
 							          venueArayAdapater.getInstance().notifyDataSetChanged();
 							        }
@@ -103,7 +103,7 @@ public class DownlaodBitmapThread extends Thread{
 			    	AllVenuesDownloaded = true;
 			    }
 		    }
-		    else if(StateMachine.getInstance().currentFragment == 1 || (AllOffersDownloaded && AllVenuesDownloaded)){
+		    else if(StateMachine.getInstance().currentFragment == 1 ){//|| (AllOffersDownloaded && AllVenuesDownloaded)){
 	    	if(DataArray.getInstance().vecEventData != null)
 				   len = DataArray.getInstance().vecEventData.size();
 		    boolean bitmapRemaining = false;
@@ -165,12 +165,12 @@ public class DownlaodBitmapThread extends Thread{
 						    	if(eventarrayadapter.getInstance() != null){
 						            eventarrayadapter.getInstance().notifyDataSetChanged();
 						    	}
-						    	if(offerArrayAdapter.getInstance() != null){
+						    	/*if(offerArrayAdapter.getInstance() != null){
 						           offerArrayAdapter.getInstance().notifyDataSetChanged();
 						    	}
 						        if(venueArayAdapater.getInstance() != null){
 						          venueArayAdapater.getInstance().notifyDataSetChanged();
-						        }
+						        }*/
 						    }
 					});
 						
@@ -183,7 +183,7 @@ public class DownlaodBitmapThread extends Thread{
 		    	AllEventsDownloaded = true;
 		    }
 	    }
-	    else if(StateMachine.getInstance().currentFragment == 2 || (AllEventsDownloaded && AllVenuesDownloaded)){
+	    else if(StateMachine.getInstance().currentFragment == 2 ){//|| (AllEventsDownloaded && AllVenuesDownloaded)){
 	    	if(DataArray.getInstance().vecOfferData != null)
 				   len = DataArray.getInstance().vecOfferData.size();
 		    boolean bitmapRemaining = false;
@@ -245,15 +245,15 @@ public class DownlaodBitmapThread extends Thread{
 					if(SplashScreenApp.getInstance() != null){
 						SplashScreenApp.getInstance().runOnUiThread(new Runnable() {
 						    public void run() {
-						    	if(eventarrayadapter.getInstance() != null){
+						    	/*if(eventarrayadapter.getInstance() != null){
 						            eventarrayadapter.getInstance().notifyDataSetChanged();
-						    	}
+						    	}*/
 						    	if(offerArrayAdapter.getInstance() != null){
 						           offerArrayAdapter.getInstance().notifyDataSetChanged();
 						    	}
-						        if(venueArayAdapater.getInstance() != null){
+						        /*if(venueArayAdapater.getInstance() != null){
 						          venueArayAdapater.getInstance().notifyDataSetChanged();
-						        }
+						        }*/
 						    }
 					});
 						
@@ -267,7 +267,7 @@ public class DownlaodBitmapThread extends Thread{
 		    }
 	    }
 		if(AllEventsDownloaded == true && AllOffersDownloaded == true && AllVenuesDownloaded == true){
-			stopDownloading = true;
+			//stopDownloading = true;
 		}
 	}
 
