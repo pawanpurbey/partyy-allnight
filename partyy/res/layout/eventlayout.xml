@@ -43,16 +43,16 @@
 	</ImageView>
 
    <TextView
-       android:id="@+id/venue_DistlTextVieweventLayout"
+       android:id="@+id/venue_DistlEventLayout"
        android:layout_width="fill_parent"
        android:layout_height="40dp"
        android:layout_alignParentBottom="true"
        android:layout_alignParentLeft="true"
        android:background="#040a0b"
        android:drawableRight="@drawable/bullet_green"
-       android:text="Dist....."
+       android:text="AB \n Dist....."
        android:textColor="#2fd6fb"
-       android:textSize="18dp" />
+       android:textSize="16dp" />
  
 </RelativeLayout>
 

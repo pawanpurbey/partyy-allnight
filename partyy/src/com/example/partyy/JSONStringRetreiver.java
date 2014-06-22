@@ -1,5 +1,6 @@
 package com.example.partyy;
 
+import java.util.Timer;
 import java.util.Vector;
 
 import android.content.Context;
@@ -45,6 +46,9 @@ public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 			DataArray.getInstance().vecVenueData = parser.vecVenue;
 			DataArray.getInstance().vecOfferData = parser.vecOffer;
 			DataArray.getInstance().vecEventData = parser.vecEvent;
+			parser.vecVenue = null;
+			parser.vecOffer = null;
+			parser.vecEvent = null;
 			if(StateMachine.getInstance().isFirstTime == false || (StateMachine.getInstance().isMainactivityLaunched == false && StateMachine.getInstance().isUserRegistered == true)){
 				StateMachine.getInstance().isMainactivityLaunched = true;
 			   Intent i = new Intent(context, MainActivity.class);
@@ -69,6 +73,12 @@ public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 			}
 			}
 			StateMachine.getInstance().setDataRetreived(true);
+			Timer timerUpdateDistance = new Timer();
+	        CalculateDistanceTimerTask taskCalcDist = new CalculateDistanceTimerTask();
+	        timerUpdateDistance.schedule(taskCalcDist, 100, 1000*60);
+	        //timerUpdateDistance.
+	        DownlaodBitmapThread thread = new DownlaodBitmapThread();
+	        thread.start();
 		}
 	}
     

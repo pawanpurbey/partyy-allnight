@@ -53,7 +53,7 @@ public class eventarrayadapter extends ArrayAdapter<EventData>{
     	      // configure view holder
     	      ViewHolder viewHolder = new ViewHolder();
     	      viewHolder.text = (TextView) rowView.findViewById(R.id.textVieweventLayout);
-    	      viewHolder.textSmall = (TextView)rowView.findViewById(R.id.venue_DistlTextViewVenueLayout);
+    	      viewHolder.textSmall = (TextView)rowView.findViewById(R.id.venue_DistlEventLayout);
     	      /*viewHolder.view = (ImageView) rowView
     	          .findViewById(R.id.imageViewEvent);*/
     	      rowView.setTag(viewHolder);
@@ -88,10 +88,12 @@ public class eventarrayadapter extends ArrayAdapter<EventData>{
     	    	rowView.setBackgroundDrawable(drawable);
     	    }
     	    int venuePos = s.venuePos;
-    	    String dist = DataArray.getInstance().vecVenueData.elementAt(venuePos).distance;
+    	    String venueDetails = DataArray.getInstance().vecVenueData.elementAt(venuePos).Name;
+    	    venueDetails += "\n";
+    	    venueDetails += DataArray.getInstance().vecVenueData.elementAt(venuePos).distance;
     	    if(holder.textSmall != null)
-    	    holder.textSmall.setText(dist);
-        return rowView;
+    	    holder.textSmall.setText(venueDetails);
+            return rowView;
     	//return super.getView(position, convertView, parent);
     }
 }

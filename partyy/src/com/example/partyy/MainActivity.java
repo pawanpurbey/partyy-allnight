@@ -119,14 +119,8 @@ public class MainActivity extends FragmentActivity {
 				
 			}
 		});
-        /*Intent serviceIntent = new Intent(this,DownloadImageService.class);
-        startService(serviceIntent);*/
-        /*Timer timerdownloadImage = new Timer();
-        DownloadImageTimerTask task = new DownloadImageTimerTask();
-        task.timer = timerdownloadImage;
-        timerdownloadImage.schedule(task, 0, 300);*/
-        
-       Timer timerUpdateDistance = new Timer();
+       
+        Timer timerUpdateDistance = new Timer();
         CalculateDistanceTimerTask taskCalcDist = new CalculateDistanceTimerTask();
         timerUpdateDistance.schedule(taskCalcDist, 100, 1000*60);
         //timerUpdateDistance.

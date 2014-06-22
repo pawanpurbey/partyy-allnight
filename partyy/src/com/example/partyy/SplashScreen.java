@@ -47,13 +47,13 @@ public class SplashScreen extends Activity implements LocationListener{
 		    	 AlertDialog alertDialog = new AlertDialog.Builder(this).create(); 
 		         alertDialog.setTitle("No Interent connection");
 		         alertDialog.setMessage("To use this application internet connection is required...Please try again after switching on the internet connection.");
-                 final Context c = this;
+                 final Activity c = this;
 		         alertDialog.setButton("Got it..", new DialogInterface.OnClickListener() {
 		            public void onClick(DialogInterface dialog, int which) {
 		               // here you can add functions
 		            	
 		   		        	finish();
-		   		        
+		   		            c.finish();
 		            }
 		         });
                  isAlertDialogShown = true;
@@ -144,9 +144,12 @@ public class SplashScreen extends Activity implements LocationListener{
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-        timer.cancel();
-		if(isAlertDialogShown == false)
-		   finish();
+       
+		if(isAlertDialogShown == false){
+			 timer.cancel();
+			finish();
+		}
+		   
 	}
 	@Override
 	protected void onResume() {

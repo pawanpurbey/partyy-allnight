@@ -2,11 +2,12 @@
     xmlns:partyyApp="http://schemas.android.com/apk/res-auto" >
     
     <item android:id="@+id/action_search"
-          android:title="Search"
+          android:title=""
+          android:icon = "@drawable/ic_action_locate"
           partyyApp:showAsAction="ifRoom" />
    
     <item android:id="@+id/action_navigate"
           android:title=""
-          android:icon="@drawable/ic_action_locate"
+          android:icon="@drawable/ic_dialog_map"
           partyyApp:showAsAction="always" />
 </menu>
