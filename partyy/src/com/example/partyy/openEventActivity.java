@@ -71,16 +71,19 @@ public class openEventActivity extends ActionBarActivity{
 	        viewDate.setText(data.date);
 	        viewTitle.setText(data.title);
 	       
-		    if(data== null || data.btmmap == null){
+		    if(data== null || data.smallBitmap == null){
 		    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openeventlayout);
     	    	relativeLayout.setBackgroundResource(R.drawable.striker);
 		       
     	    }
-    	    else  if (data != null && data.btmmap != null){
-    	    	Bitmap bitmap = data.btmmap;
+    	    else  if (data != null && data.smallBitmap != null){
+    	    	Bitmap bitmap = data.smallBitmap;
     	    	Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
     	        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openeventlayout);
     	    	relativeLayout.setBackgroundDrawable(drawable);
+    	    	LoadLargerBitmap task = new LoadLargerBitmap(1, data.id, this);
+    	    	Void arr[] = new Void[2];
+    	    	task.execute(arr[0]);
     	    }
 		    int actionBarHt = 0;
 		    TypedValue tv = new TypedValue();

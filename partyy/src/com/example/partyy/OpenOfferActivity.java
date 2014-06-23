@@ -1,5 +1,6 @@
 package com.example.partyy;
 import java.util.Locale;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -74,17 +75,20 @@ public class OpenOfferActivity extends ActionBarActivity{
 		    viewTimings.setText(data.timing);
 		    if(viewdate!=null)
 		    viewdate.setText(data.startDate+ "-"+data.endData);
-		    if(data== null || data.btmmap == null){
+		    if(data== null || data.smallBitmap == null){
 		    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openofferlayoutNew);
     	    	relativeLayout.setBackgroundResource(R.drawable.striker);
     	    }
-    	    else  if (data != null && data.btmmap != null){
-    	    	Bitmap bitmap = data.btmmap;
+    	    else  if (data != null && data.smallBitmap != null){
     	    	
-    	    	Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
+    	    	
+    	    	Drawable drawable = new BitmapDrawable(this.getResources(), data.smallBitmap);
     	    
     	    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openofferlayoutNew);
     	    	relativeLayout.setBackgroundDrawable(drawable);
+    	    	LoadLargerBitmap task = new LoadLargerBitmap(2, data.id, this);
+    	    	Void arr[] = new Void[2];
+    	    	task.execute(arr[0]);
     	    }
 		    TypedValue tv = new TypedValue();
 		    int actionBarHt = 0;

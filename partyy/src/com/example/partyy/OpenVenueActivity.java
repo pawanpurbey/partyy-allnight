@@ -72,18 +72,21 @@ public class OpenVenueActivity extends ActionBarActivity{
 	        viewPhone.setText(data.phone);
 	        viewAge.setText(data.City);
 	        viewDescription.setText(data.bDescription);
-		    if(data== null || data.btmmap == null){
+		    if(data== null || data.sbtmmap == null){
 		    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openvenuelayout);
     	    	relativeLayout.setBackgroundResource(R.drawable.striker);
 		       
     	    }
-    	    else  if (data != null && data.btmmap != null){
-    	    	Bitmap bitmap = data.btmmap;
+    	    else  if (data != null && data.sbtmmap != null){
     	    	
-    	    	Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
+    	    	
+    	    	Drawable drawable = new BitmapDrawable(this.getResources(), data.sbtmmap);
     	        View v = findViewById(R.id.openvenuelayout);
     	    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openvenuelayout);
     	    	relativeLayout.setBackgroundDrawable(drawable);
+    	    	LoadLargerBitmap task = new LoadLargerBitmap(0, data.ID, this);
+    	    	Void arr[] = new Void[2];
+    	    	task.execute(arr[0]);
     	    }
 		    int actionBarHt = 0;
 		    TypedValue tv = new TypedValue();
@@ -135,6 +138,11 @@ public class OpenVenueActivity extends ActionBarActivity{
 		 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
 		 intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
 		 startActivity(intent);
+	}
+	public void ChangeBitmap(Bitmap btmp){
+		Drawable drawable = new BitmapDrawable(this.getResources(), btmp);
+    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openvenuelayout);
+    	relativeLayout.setBackgroundDrawable(drawable);
 	}
  }
 
