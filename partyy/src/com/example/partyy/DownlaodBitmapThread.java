@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 
@@ -29,7 +30,7 @@ public class DownlaodBitmapThread extends Thread{
 			    boolean bitmapRemaining = false;
 			    for(int i = 0;i<len;i++){
 					VenueData s = DataArray.getInstance().vecVenueData.elementAt(i);
-					if(s!= null && s.btmmap == null && s.isBitmapRequested == false){
+					if(s!= null && s.sbtmmap == null && s.isBitmapRequested == false){
 						InputStream in;
 						Bitmap mIcon11 = null;
 						String path = "/sdcard/Mozito/Venues/" + s.ID +".jpg";
@@ -38,7 +39,18 @@ public class DownlaodBitmapThread extends Thread{
 						if(imageFile.exists()){
 							Bitmap bitmap = BitmapFactory.decodeFile(path);
 							if(bitmap != null){
-							DataArray.getInstance().vecVenueData.elementAt(s.pos).btmmap = bitmap;
+							//DataArray.getInstance().vecVenueData.elementAt(s.pos).btmmap = bitmap;
+							int width = bitmap.getWidth();
+		  	                 //Log.i("Old width................", width + "");
+		  	                int   height = bitmap.getHeight();
+		  	                 //Log.i("Old height................", height + "");
+		  	 
+			  	            Matrix matrix = new Matrix();
+			  	            float scaleWidth = ((float) 200) / width;
+			  	            float scaleHeight = ((float) 200) / height;
+			  	            matrix.postScale(scaleWidth, scaleHeight);
+			  	    		s.sbtmmap = Bitmap.createBitmap(bitmap, 0, 0,width, height, matrix, true);
+			  	    	
 							correctlyloaded = true;
 							}
 						}
@@ -47,8 +59,19 @@ public class DownlaodBitmapThread extends Thread{
 							try {
 						         in = new java.net.URL(s.url).openStream();
 						        mIcon11 = BitmapFactory.decodeStream(in);
-						        DataArray.getInstance().vecVenueData.elementAt(i).btmmap = mIcon11;
+						        //DataArray.getInstance().vecVenueData.elementAt(i).btmmap = mIcon11;
 								//Now saving the image
+						        int width = mIcon11.getWidth();
+			  	                 //Log.i("Old width................", width + "");
+			  	                int   height = mIcon11.getHeight();
+			  	                 //Log.i("Old height................", height + "");
+			  	 
+				  	            Matrix matrix = new Matrix();
+				  	            float scaleWidth = ((float) 200) / width;
+				  	            float scaleHeight = ((float) 200) / height;
+				  	            matrix.postScale(scaleWidth, scaleHeight);
+				  	    		s.sbtmmap = Bitmap.createBitmap(mIcon11, 0, 0,width, height, matrix, true);
+				  	    	
 						        String fileName = "/sdcard/Mozito/Venues/";
 						        
 						        File fileDirs = new File(fileName);
@@ -109,7 +132,7 @@ public class DownlaodBitmapThread extends Thread{
 		    boolean bitmapRemaining = false;
 		    for(int i = 0;i<len;i++){
 				EventData s = DataArray.getInstance().vecEventData.elementAt(i);
-				if(s!= null && s.btmmap == null && s.isBitmapRequested == false){
+				if(s!= null && s.smallBitmap == null && s.isBitmapRequested == false){
 					InputStream in;
 					Bitmap mIcon11 = null;
 					String path = "/sdcard/Mozito/Events/" + s.id +".jpg";
@@ -118,8 +141,17 @@ public class DownlaodBitmapThread extends Thread{
 					if(imageFile.exists()){
 						Bitmap bitmap = BitmapFactory.decodeFile(path);
 						if(bitmap !=  null){
-						DataArray.getInstance().vecEventData.elementAt(s.ownPosition).btmmap = bitmap;
-						correctlyloaded = true;
+							int width = bitmap.getWidth();
+		  	                  //Log.i("Old width................", width + "");
+		  	                int   height = bitmap.getHeight();
+		  	                 //Log.i("Old height................", height + "");
+		  	 
+			  	            Matrix matrix = new Matrix();
+			  	            float scaleWidth = ((float) 200) / width;
+			  	            float scaleHeight = ((float) 200) / height;
+			  	            matrix.postScale(scaleWidth, scaleHeight);
+			  	    		s.smallBitmap = Bitmap.createBitmap(bitmap, 0, 0,width, height, matrix, true);
+			  	    	    correctlyloaded = true;
 						}
 					}
 					if(correctlyloaded == false){
@@ -127,8 +159,18 @@ public class DownlaodBitmapThread extends Thread{
 						try {
 					         in = new java.net.URL(s.photoString).openStream();
 					        mIcon11 = BitmapFactory.decodeStream(in);
-					        DataArray.getInstance().vecEventData.elementAt(s.ownPosition).btmmap = mIcon11;
-							//Now saving the image
+					        int width = mIcon11.getWidth();
+		  	                 //Log.i("Old width................", width + "");
+		  	                int   height = mIcon11.getHeight();
+		  	                 //Log.i("Old height................", height + "");
+		  	 
+			  	            Matrix matrix = new Matrix();
+			  	            float scaleWidth = ((float) 200) / width;
+			  	            float scaleHeight = ((float) 200) / height;
+			  	            matrix.postScale(scaleWidth, scaleHeight);
+			  	    		s.smallBitmap = Bitmap.createBitmap(mIcon11, 0, 0,width, height, matrix, true);
+			  	    	
+					        //Now saving the image
 					        String fileName = "/sdcard/Mozito/Events/";
 					        
 					        File fileDirs = new File(fileName);
@@ -189,7 +231,7 @@ public class DownlaodBitmapThread extends Thread{
 		    boolean bitmapRemaining = false;
 		    for(int i = 0;i<len;i++){
 				OfferData s = DataArray.getInstance().vecOfferData.elementAt(i);
-				if(s!= null && s.btmmap == null && s.isBitmapRequested == false){
+				if(s!= null && s.smallBitmap == null && s.isBitmapRequested == false){
 					InputStream in;
 					Bitmap mIcon11 = null;
 					String path = "/sdcard/Mozito/Offers/" + s.id +".jpg";
@@ -198,8 +240,17 @@ public class DownlaodBitmapThread extends Thread{
 					if(imageFile.exists()){
 						Bitmap bitmap = BitmapFactory.decodeFile(path);
 						if(bitmap !=  null){
-							DataArray.getInstance().vecOfferData.elementAt(s.ownPosition).btmmap = bitmap;
-							correctlyloaded = true;
+							int width = bitmap.getWidth();
+		  	                 //Log.i("Old width................", width + "");
+		  	                int   height = bitmap.getHeight();
+		  	                 //Log.i("Old height................", height + "");
+		  	 
+			  	            Matrix matrix = new Matrix();
+			  	            float scaleWidth = ((float) 200) / width;
+			  	            float scaleHeight = ((float) 200) / height;
+			  	            matrix.postScale(scaleWidth, scaleHeight);
+			  	    		s.smallBitmap = Bitmap.createBitmap(bitmap, 0, 0,width, height, matrix, true);
+			  	    	    correctlyloaded = true;
 						}
 					}
 					if(correctlyloaded == false){
@@ -208,9 +259,19 @@ public class DownlaodBitmapThread extends Thread{
 					         in = new java.net.URL(s.photoString).openStream();
 					        mIcon11 = BitmapFactory.decodeStream(in);
 					        if(mIcon11 != null){
-						        DataArray.getInstance().vecOfferData.elementAt(s.ownPosition).btmmap = mIcon11;
-								//Now saving the image
-						      //Now saving the image
+					        	int width = mIcon11.getWidth();
+			  	                 //Log.i("Old width................", width + "");
+			  	                int   height = mIcon11.getHeight();
+			  	                 //Log.i("Old height................", height + "");
+			  	 
+				  	            Matrix matrix = new Matrix();
+				  	            float scaleWidth = ((float) 200) / width;
+				  	            float scaleHeight = ((float) 200) / height;
+				  	            matrix.postScale(scaleWidth, scaleHeight);
+				  	    		s.smallBitmap = Bitmap.createBitmap(mIcon11, 0, 0,width, height, matrix, true);
+				  	    	
+						        //Now saving the image
+						      
 						        String fileName = "/sdcard/Mozito/Offers/";
 						        
 						        File fileDIrs = new File(fileName);

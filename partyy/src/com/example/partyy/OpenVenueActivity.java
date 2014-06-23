@@ -73,7 +73,7 @@ public class OpenVenueActivity extends ActionBarActivity{
 	        viewAge.setText(data.City);
 	        viewDescription.setText(data.bDescription);
 		    if(data== null || data.btmmap == null){
-		    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openeventlayout);
+		    	RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.openvenuelayout);
     	    	relativeLayout.setBackgroundResource(R.drawable.striker);
 		       
     	    }

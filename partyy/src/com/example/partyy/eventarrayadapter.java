@@ -65,25 +65,12 @@ public class eventarrayadapter extends ArrayAdapter<EventData>{
     	    
     	    }
     	   
-    	    if(s== null || s.btmmap == null){
+    	    if(s== null || s.smallBitmap == null){
     	        rowView.setBackgroundResource(R.drawable.striker);
     	        
     	    }
     	    else  if (s!= null){
-    	    	if(s.smallBitmap == null && s.btmmap != null){
-                    
-    	    		  int width = s.btmmap.getWidth();
-    	                 //Log.i("Old width................", width + "");
-    	              int   height = s.btmmap.getHeight();
-    	                 //Log.i("Old height................", height + "");
-    	 
-    	            Matrix matrix = new Matrix();
-    	            float scaleWidth = ((float) 200) / width;
-    	            float scaleHeight = ((float) 200) / height;
-    	            matrix.postScale(scaleWidth, scaleHeight);
-    	    		s.smallBitmap = Bitmap.createBitmap(s.btmmap, 0, 0,width, height, matrix, true);
-    	    		
-    	    	}
+    	    	
     	    	Drawable drawable = new BitmapDrawable(this.context.getResources(), s.smallBitmap);
     	    	rowView.setBackgroundDrawable(drawable);
     	    }

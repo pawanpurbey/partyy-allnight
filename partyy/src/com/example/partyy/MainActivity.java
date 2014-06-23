@@ -279,8 +279,8 @@ public class MainActivity extends FragmentActivity {
 							// TODO Auto-generated method stub
 							ListView v= (ListView)arg0;
 							
-							OfferData data = DataArray.getInstance().vecOfferData.elementAt(arg2-1);
-							Intent i = new Intent(context, OpenOfferActivity.class);
+							  OfferData data = DataArray.getInstance().vecOfferData.elementAt(arg2-1);
+							  Intent i = new Intent(context, OpenOfferActivity.class);
 							 
 							  //Create the bundle
 							  Bundle bundle = new Bundle();
@@ -289,7 +289,7 @@ public class MainActivity extends FragmentActivity {
 							  //Add the bundle to the intent
 							  i.putExtras(bundle);
 							  i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(i);
+                              context.startActivity(i);
 							
 						}
 	                	}); 
@@ -365,13 +365,13 @@ public class MainActivity extends FragmentActivity {
 						public void onItemClick(AdapterView<?> arg0, View arg1,
 								int arg2, long arg3) {
 							// TODO Auto-generated method stub
-							ListView v= (ListView)arg0;
-							ListAdapter listadapter = v.getAdapter();
-							venueArayAdapater adapter = (venueArayAdapater)listadapter;
-							VenueData viewdata = adapter.getData(arg2);
+							 ListView v= (ListView)arg0;
+							 ListAdapter listadapter = v.getAdapter();
+							 venueArayAdapater adapter = (venueArayAdapater)listadapter;
+							 VenueData viewdata = adapter.getData(arg2);
 							
 							
-							Intent i = new Intent(context, OpenVenueActivity.class);
+							  Intent i = new Intent(context, OpenVenueActivity.class);
 							 
 							  //Create the bundle
 							  Bundle bundle = new Bundle();
@@ -381,6 +381,7 @@ public class MainActivity extends FragmentActivity {
 							  i.putExtras(bundle);
 							  i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                               context.startActivity(i);
+                             
 							//VenueData data = DataArray.getInstance().vecVenueData.elementAt(viewdata.pos);
 							//Toast.makeText(getActivity(),data.Name , Toast.LENGTH_SHORT).show();
 						}
