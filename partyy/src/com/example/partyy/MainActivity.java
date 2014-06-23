@@ -302,11 +302,11 @@ public class MainActivity extends FragmentActivity {
                 	int len =0;
                 	if(DataArray.getInstance().vecEventData != null)
                 	   len = DataArray.getInstance().vecEventData.size();
-                	EventData[] values = new EventData[len];
+                	ArrayList<EventData> list = new ArrayList<EventData>();
                     for(int i = 0;i<len;i++){
-                    	  values[i] = DataArray.getInstance().vecEventData.elementAt(i);
+                    	   list.add(DataArray.getInstance().vecEventData.elementAt(i));
                     }
-	                eventarrayadapter adapter = new eventarrayadapter(this.activity, values);
+	                eventarrayadapter adapter = new eventarrayadapter(this.activity, list);
 	                viewEvent = (ListView)rootView.findViewById(R.id.listView121Events);
 	                viewEvent.setAdapter(adapter);
 	               
@@ -322,7 +322,7 @@ public class MainActivity extends FragmentActivity {
 							ListView v= (ListView)arg0;
 							ListAdapter listadapter = v.getAdapter();
 							eventarrayadapter adapter = (eventarrayadapter)listadapter;
-							EventData viewdata = adapter.getData(arg2);
+							EventData viewdata = DataArray.getInstance().vecEventData.elementAt(arg2);
 							Intent i = new Intent(context, openEventActivity.class);
 							 
 							  //Create the bundle
@@ -348,11 +348,11 @@ public class MainActivity extends FragmentActivity {
                 	 len = DataArray.getInstance().vecVenueData.size();
                 	 
                 	}
-                	VenueData[] values = new VenueData[len];
+                	ArrayList<VenueData> list = new ArrayList<VenueData>();
                     for(int i = 0;i<len;i++){
-                    	values[i] = (VenueData)DataArray.getInstance().vecVenueData.elementAt(i);
+                    	list.add(DataArray.getInstance().vecVenueData.elementAt(i));
                     }
-	                venueArayAdapater adapter = new venueArayAdapater(this.activity, values);
+	                venueArayAdapater adapter = new venueArayAdapater(this.activity, list);
 	                viewVenue = (ListView)rootView.findViewById(R.id.listViewVenues);
 	                viewVenue.setAdapter(adapter);
 	                //view.setLongClickable(true);
@@ -368,7 +368,7 @@ public class MainActivity extends FragmentActivity {
 							 ListView v= (ListView)arg0;
 							 ListAdapter listadapter = v.getAdapter();
 							 venueArayAdapater adapter = (venueArayAdapater)listadapter;
-							 VenueData viewdata = adapter.getData(arg2);
+							 VenueData viewdata = DataArray.getInstance().vecVenueData.elementAt(arg2);
 							
 							
 							  Intent i = new Intent(context, OpenVenueActivity.class);

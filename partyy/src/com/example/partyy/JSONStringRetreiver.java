@@ -90,9 +90,9 @@ public class JSONStringRetreiver extends AsyncTask<String,Void,String>{
 	        	timerRecycleBitmap.cancel();
 	        	timerRecycleBitmap = null;
 	        }
-	        //timerRecycleBitmap =  new Timer();
-	        //RecycleBitmapTask taskRecycleBitmap = new RecycleBitmapTask();
-	        //timerRecycleBitmap.schedule(taskRecycleBitmap, 500,500);
+	        timerRecycleBitmap =  new Timer();
+	        RecycleBitmapTask taskRecycleBitmap = new RecycleBitmapTask();
+	        timerRecycleBitmap.schedule(taskRecycleBitmap, 500,5000);
 	        //taskRecycleBitmap.start();
 		}
 	}

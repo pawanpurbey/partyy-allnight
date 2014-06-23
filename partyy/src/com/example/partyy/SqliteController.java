@@ -62,6 +62,7 @@ public class SqliteController extends SQLiteOpenHelper{
     	    while(cursor.moveToNext());
     		
     	}
+    	database.close();
     	return user;
     }
 	

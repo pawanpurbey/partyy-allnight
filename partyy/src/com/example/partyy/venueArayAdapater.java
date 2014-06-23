@@ -1,6 +1,8 @@
 
 package com.example.partyy;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,12 +20,12 @@ import android.widget.TextView;
 public class venueArayAdapater extends ArrayAdapter<VenueData>{
      private Activity context;
      //Later on String will be changed by our own class
-     private VenueData[] val;
+     private ArrayList<VenueData> list ;
      private static venueArayAdapater _instance;
-     public venueArayAdapater(Activity c,VenueData[] val){
+     public venueArayAdapater(Activity c,ArrayList<VenueData> val){
     	 super(c, R.layout.venuelayout,val);
     	 this.context = c;
-    	 this.val = val;
+    	 this.list = val;
     	 _instance = this;
      }
      public static venueArayAdapater getInstance(){
@@ -34,13 +36,7 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	 public ImageView view;
     	 public TextView textSmall;
      }
-     public VenueData getData(int pos){
-    	 if(pos>=0 && pos<val.length){
-    	     return val[pos];
-    	 }else{
-    		 return null;
-    	 }
-     }
+     
      @SuppressWarnings("deprecation")
 	@Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -57,7 +53,7 @@ public class venueArayAdapater extends ArrayAdapter<VenueData>{
     	      rowView.setTag(viewHolder);
     	 }
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
-    	 VenueData s = val[position];
+    	 VenueData s = list.get(position);
     	    if(s != null)
     	    holder.text.setText(s.Name);
     	    if(holder.textSmall != null &&  s.distance.equals("-1") == false){

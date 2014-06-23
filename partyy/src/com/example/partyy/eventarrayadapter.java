@@ -1,5 +1,7 @@
 package com.example.partyy;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,17 +19,18 @@ import android.widget.TextView;
 public class eventarrayadapter extends ArrayAdapter<EventData>{
      private Activity context;
      //Later on String will be changed by our own class
-     private EventData[] val;
+     private   ArrayList<EventData> list =new ArrayList<EventData>();
+
      private static eventarrayadapter _instance;
      public static eventarrayadapter getInstance(){
     	 return _instance;
      }
      
-     public eventarrayadapter(Activity activity, EventData[] values) {
+     public eventarrayadapter(Activity activity, ArrayList<EventData> values) {
 		// TODO Auto-generated constructor stub
     	 super(activity, R.layout.eventlayout,values);
     	 this.context = activity;
-    	 this.val = values;
+    	 this.list = values;
     	 _instance = this;
 	}
 	
@@ -35,13 +38,8 @@ public class eventarrayadapter extends ArrayAdapter<EventData>{
     	 public TextView text;
     	 public TextView textSmall;
      }
-     public EventData getData(int pos){
-    	 if(pos>=0 && pos<val.length){
-    	     return val[pos];
-    	 }else{
-    		 return null;
-    	 }
-     }
+    
+     
      @SuppressWarnings("deprecation")
 	@Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -59,7 +57,7 @@ public class eventarrayadapter extends ArrayAdapter<EventData>{
     	      rowView.setTag(viewHolder);
     	 }
     	 ViewHolder holder = (ViewHolder) rowView.getTag();
-    	    EventData s = val[position];
+    	    EventData s = list.get(position);
     	    if(s != null){
     	       holder.text.setText(s.title);
     	    
